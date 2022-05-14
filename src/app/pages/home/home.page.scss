@@ -1,0 +1,41 @@
+// ion-content {
+//     --padding-bottom: 10px;
+//     --padding-end: 10px;
+//     --padding-start: 20px;
+//     --padding-top: 20px;
+// }
+.view-icons{
+    margin-left: 5px; font-size: 24px;
+}
+.product-name{
+    font-size: 14px;
+    margin-top: 0;
+}
+.product-block{
+    border:#ccc 1px solid;
+    padding: 10px;
+}
+ion-slide{
+    margin-left: -5px; margin-right:-5px;
+}
+ion-slide ion-card{
+    padding-left: 5px; padding-right:5px;
+}
+.pro-title{
+    margin-left: 5px;
+}
+ion-slide ion-card ion-img {
+    width:108px;
+    height:71px;
+}
+.banner{
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+.banner h1{
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    color: #fff;
+}

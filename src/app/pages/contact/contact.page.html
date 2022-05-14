@@ -1,0 +1,54 @@
+<app-header title="Contact"></app-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="banner">
+        <ion-img src="https://i.picsum.photos/id/1060/536/354.jpg?blur=2&hmac=0zJLs1ar00sBbW5Ahd_4zA6pgZqCVavwuHToO6VtcYY"></ion-img>
+        <h1>Contact us</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="todo" (ngSubmit)="logForm()" class="form">
+          <ion-item>
+            <ion-label position="floating">Enter Your Full Name <span>*</span></ion-label>
+            <ion-input type="text" name="title" formControlName="title"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Enter Your  Email Id <span>*</span></ion-label>
+            <ion-input type="text" name="email" formControlName="email"></ion-input>            
+          </ion-item>
+          <!-- <div class="show-error">
+            <div *ngIf="todo.get('email').hasError('required') && todo.get('email').dirty">Please enter email id
+            </div>
+            <div *ngIf="todo.get('email').hasError('email') && todo.get('email').dirty">
+              Please enter valid email id</div>
+          </div> -->
+          <ion-item>
+            <ion-label position="floating">Enter Your  Phone Number <span>*</span></ion-label>
+            <ion-input type="text" name="phone" formControlName="phone"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Enter Your description </ion-label>
+            <ion-textarea name="description"></ion-textarea>
+          </ion-item>
+          <ion-button size="large" type="submit" expand="block" [disabled]="!todo.valid">Submit</ion-button>
+        </form>
+        <ion-row text-center class="otp">
+          <ion-col>
+           <ion-input #otp1 required maxLength="1" (keyup)="otpController($event,otp2,'')">
+           </ion-input>
+           <ion-input #otp2 required maxLength="1" (keyup)="otpController($event,otp3,otp1)">
+           </ion-input>
+           <ion-input #otp3 required maxLength="1" (keyup)="otpController($event,otp4,otp2)">
+           </ion-input>
+           <ion-input #otp4  required maxLength="1" (keyup)="otpController($event,'',otp3)">
+           </ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
