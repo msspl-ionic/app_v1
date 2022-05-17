@@ -4,7 +4,23 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('../home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('../../auth/get-started/get-started.module').then( m => m.GetStartedPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('../../auth/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'otp',
+    loadChildren: () => import('../../auth/otp/otp.module').then( m => m.OtpPageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('../../auth/signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'set-location',
+    loadChildren: () => import('../../auth/set-location/set-location.module').then( m => m.SetLocationPageModule)
   },
   {
     path: 'home',

@@ -30,6 +30,11 @@
     "@capacitor/storage": "^1.2.5",
     "@ionic/angular": "^6.0.0",
     "@ionic/pwa-elements": "^3.1.1",
+    "flag-icon-css": "^4.1.7",
+    "flag-icons": "^6.3.0",
+    "google-libphonenumber": "^3.2.27",
+    "ion-intl-tel-input": "^1.0.5",
+    "ionic-selectable": "^4.9.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

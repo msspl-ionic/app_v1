@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="back-navigate">
+      <ion-back-button defaultHref="signup" icon="chevron-back-outline"></ion-back-button>
+      Set location
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-no-padding">
+      <ion-col>
+        <div class="bap-large">
+          <ion-img class="map" src="assets/images/map-large.png"></ion-img>          
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding">
+      <ion-col>
+        <ion-button color="primary" shape='round' routerLink="/otp" >Confirm Location</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

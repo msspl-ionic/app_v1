@@ -1,0 +1,67 @@
+<!-- <ion-header >
+  <ion-toolbar color="white" >   
+  <ion-buttons slot="end">
+    <a><img class="country" src="assets/images/country-img.png"/></a>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <div class="login-header">
+     <a id="trigger-button"><img class="country" src="assets/images/country-img.png"/></a>
+  </div>
+  <div class="login-body">
+      <div class="logo">
+        <a><img src="assets/images/logo.png"/></a>
+      </div>
+      <h2>Login</h2>
+      <p>Already a Merkaaz cutomer? Login to place your order & access our services.</p>
+      <form>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4">
+              <ion-select placeholder="+91" class="custom-options" value="+91">
+                <ion-select-option >+91</ion-select-option>
+                <ion-select-option >+91</ion-select-option>
+              </ion-select>
+            </ion-col>
+            <ion-col size="8">
+              <ion-input type="number" inputmode="numeric" name="phone" placeholder="Phone No*" class="number-fld"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button color="primary" shape='round' routerLink="/otp" >Send OTP</ion-button>
+              <p class="signup-withtext">Don’t have a Merkaaz account? <a routerLink="/signup">Sign Up</a> </p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+  </div>
+</ion-content>
+<ion-modal
+  [isOpen]="true"
+  [breakpoints]="[0.1, 0.5, 1]"
+  [initialBreakpoint]="0.4"
+  class="my-custom-class"
+  handle="false"
+  trigger="trigger-button"
+>
+  <ng-template>
+    <ion-content class="language-modal-content">
+      <h2 class="select-contenttxt">Select Language</h2>
+      <form action="">
+        <ion-list radio-group>
+          <ion-item>
+            <ion-label><img src="assets/images/flag-1.png"/> Portuguese</ion-label>
+            <ion-radio slot="end"  value="packard"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label><img src="assets/images/flag-2.png"/> English</ion-label>
+            <ion-radio slot="end" value="packard"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </form>
+    </ion-content>
+  </ng-template>
+</ion-modal>
