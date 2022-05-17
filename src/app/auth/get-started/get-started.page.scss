@@ -1,0 +1,35 @@
+.get-started-shape{
+    background: url(/assets/images/get-started-spape.png);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-position:top center;
+    background-repeat: no-repeat;
+    padding: 30px;
+    padding-top: 85px;
+    text-align: center;
+
+    color: #fff;
+}
+.get-started-shape h1{
+    font-family: 'Russo One', sans-serif;
+    font-size: 32px;
+}
+.get-started-shape p{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+}
+.get-started-btn{   
+    background-color: #08151E;
+    font-family: "Russo One", sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    min-width: 215px;
+    display: inline-block;
+    line-height: 68px;
+    color: #fff;
+    border-radius: 64px;
+    text-decoration: none;
+    margin-top: 25px;
+}

@@ -1,0 +1,39 @@
+<ion-content>
+  <div class="login-body">
+      <div class="logo">
+        <a><img src="assets/images/logo.png"/></a>
+      </div>
+      <h2>Enter One Time Password</h2>
+      <p>A one time password has been sent to (+244) 1238329147</p>
+      <form>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-input type="text" inputmode="numeric" class="number-fld" #otp1 required maxLength="1" (keyup)="otpController($event,otp2,'')"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input type="text" inputmode="numeric" class="number-fld" #otp2 required maxLength="1" (keyup)="otpController($event,otp3,otp1)"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input type="text" inputmode="numeric" class="number-fld" #otp3 required maxLength="1" (keyup)="otpController($event,otp4,otp2)"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input type="text" inputmode="numeric" class="number-fld" #otp4 required maxlength="1" pattern="[0-9]+" (keyup)="otpController($event,'',otp3)"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+                <a class="resend">Resend OTP <ion-icon name="repeat-outline"></ion-icon></a>
+                <span class="second-count">23 Sec</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button color="primary" shape='round' routerLink="" >Login</ion-button>
+              <p class="signup-withtext">Don’t have a Merkaaz account? <a routerLink="/signup">Sign Up</a> </p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+  </div>
+</ion-content>
