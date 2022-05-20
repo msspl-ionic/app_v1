@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Network } from '@ionic-native/network/ngx';
 import { AlertController } from '@ionic/angular';
+import { Device } from '@awesome-cordova-plugins/device/ngx';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,14 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private network:Network, public alertController: AlertController) {
+  constructor(private network:Network, public alertController: AlertController, private device: Device) {
     window.addEventListener('offline', ()=>{
       this.openalert();
-    })
+    });
+
+   
+  //  this.getDeviceInfo();
+
   }
 
   async openalert(){
@@ -27,4 +32,15 @@ export class AppComponent {
     });
     await alert.present();
   }
+
+  async getDeviceInfo(){
+    let deviceDetails = 
+    `Device UUID: ${this.device.uuid} 
+    Version : ${this.device.version} 
+    Platform : ${this.device.platform} 
+    Model : ${this.device.model}
+    `;
+    alert(deviceDetails);
+  }
+  
 }

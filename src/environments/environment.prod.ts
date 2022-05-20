@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'http://api.com/',
+  FooterCopyright: '[YYYY]',
+  ajax_timeout: 300000
 };
