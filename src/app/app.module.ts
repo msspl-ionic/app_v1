@@ -10,11 +10,22 @@ import {MenuPage} from './pages/menu/menu.page'
 import { TabsPage } from './pages/tabs/tabs.page';
 import { Network } from '@ionic-native/network/ngx';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
+import { HttpClientModule } from '@angular/common/http';
+import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
+import { IonicStorageModule } from '@ionic/storage-angular';
 @NgModule({
   declarations: [AppComponent,MenuPage,TabsPage],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [Network, Device, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, JwtModule.forRoot({ // for JwtHelperService
+    config: {
+      tokenGetter: () => {
+        return '';
+      }
+    }
+  }),
+  IonicStorageModule.forRoot(),
+  ],
+  providers: [JwtHelperService,HttpClientModule, Network, Device, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

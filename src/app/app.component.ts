@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Network } from '@ionic-native/network/ngx';
 import { AlertController } from '@ionic/angular';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import { Device } from '@awesome-cordova-plugins/device/ngx';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private network:Network, public alertController: AlertController, private device: Device) {
+  
+  constructor(private storage: Storage,private network:Network, public alertController: AlertController, private device: Device) {
     window.addEventListener('offline', ()=>{
       this.openalert();
     });
@@ -17,6 +19,12 @@ export class AppComponent {
    
   //  this.getDeviceInfo();
 
+  }
+
+  async ngOnInit() {
+    // If using a custom driver:
+    // await this.storage.defineDriver(MyCustomDriver)
+    await this.storage.create();
   }
 
   async openalert(){
