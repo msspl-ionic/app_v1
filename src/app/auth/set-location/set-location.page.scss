@@ -2,6 +2,9 @@ ion-toolbar{
     --border-color:#fff;
     
 }
+ion-header ion-toolbar{
+    --background: #fff;
+}
 ion-buttons.back-navigate{
     color: #08151E;
     font-size: 16px;

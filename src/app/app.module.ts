@@ -10,9 +10,11 @@ import {MenuPage} from './pages/menu/menu.page'
 import { TabsPage } from './pages/tabs/tabs.page';
 import { Network } from '@ionic-native/network/ngx';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
+
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { IonicStorageModule } from '@ionic/storage-angular';
+
 @NgModule({
   declarations: [AppComponent,MenuPage,TabsPage],
   entryComponents: [],

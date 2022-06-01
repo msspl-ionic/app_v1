@@ -1,4 +1,4 @@
-<ion-header color="primary">
+<!-- <ion-header color="primary">
   <ion-toolbar color="primary">   
     <ion-title>{{ title }}</ion-title>
     <ion-buttons slot="start">
@@ -16,4 +16,42 @@
     </ion-searchbar>
    </ion-buttons>
   </ion-toolbar>
+</ion-header> -->
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ title }}
+      <img src={{logo}} alt="">
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu">
+        <svg width="33" height="23" viewBox="0 0 33 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 23H19V19.1667H0V23ZM0 0V3.83333H33V0H0ZM0 13.4167H33V9.58333H0V13.4167Z" fill="white"/>
+          </svg>
+          
+      </ion-menu-button>
+     </ion-buttons>
+     <div slot="end" *ngIf="header_right === 'true'">
+        <ul class="header-right">
+          <li>
+            <a><img src="assets/images/countryimg.png" alt=""></a>
+          </li>
+          <li>
+            <a>
+              <ion-icon name="notifications-outline"></ion-icon>
+              <span class="circle"></span>
+            </a>
+          </li>
+          <li>
+            <a class="user">
+              <img src="assets/images/user.png" alt="">
+              <span class="user-tick"><ion-icon name="checkmark-outline"></ion-icon></span>
+            </a>
+          </li>
+        </ul>
+     </div>
+  </ion-toolbar>
+  <ion-searchbar></ion-searchbar>
 </ion-header>

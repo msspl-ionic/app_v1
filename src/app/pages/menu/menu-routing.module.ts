@@ -23,12 +23,24 @@ const routes: Routes = [
     loadChildren: () => import('../../auth/set-location/set-location.module').then( m => m.SetLocationPageModule)
   },
   {
+    path: 'dashboard',
+    loadChildren: () => import('../dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
     path: 'home',
     loadChildren: () => import('../home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'about',
     loadChildren: () => import('../about/about.module').then( m => m.AboutPageModule)
+  },
+  {
+    path: 'category',
+    loadChildren: () => import('../category/category.module').then( m => m.CategoryPageModule)
+  },
+  {
+    path: 'shop-by-category',
+    loadChildren: () => import('../shop-by-category/shop-by-category.module').then( m => m.ShopByCategoryPageModule)
   },
   {
     path: 'contact',

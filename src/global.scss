@@ -27,3 +27,41 @@
 
 
 
+ion-content{
+    &::part(background){
+        background-color: #fff;
+    }   
+}
+ion-select{
+    color: #08151E;
+}
+ion-input{
+    color: #08151E !important;
+}
+ion-button{
+    &::part(native){
+        background-color: #03989E;
+    }   
+}
+
+ion-searchbar ion-icon {
+    right: 16px !important;
+    left: auto !important;
+    color: #fff !important;
+}
+ion-searchbar .searchbar-input{
+    --padding-left: 0;
+}
+.searchbar-input.sc-ion-searchbar-md{
+    padding-left: 15px;
+    background-color: #0AAAB0;
+    border:#0AA1A8 1px solid;
+    border-radius: 8px;
+    box-shadow: none;
+    color: #fff;
+}
+.searchbar-input.sc-ion-searchbar-md::placeholder{
+    color: #fff;
+    opacity: 1;
+}
+.searchbar-has-value.searchbar-should-show-clear.sc-ion-searchbar-md-h .searchbar-clear-button.sc-ion-searchbar-md{ display: none;}
