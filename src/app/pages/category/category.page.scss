@@ -34,3 +34,20 @@ ion-select.custom-options{
         align-items: normal;
     }   
 }
+.view-more.disabled{
+    background-color: #EEEEEE;
+    color: #fff;
+    pointer-events: none;
+  cursor: default;
+}
+.out-of-stock{
+    background-color: #FF0000;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 4px 7px;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    display: inline-block;
+    margin-top: 4px;
+    border-radius: 2px;
+}
