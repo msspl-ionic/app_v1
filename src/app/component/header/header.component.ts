@@ -8,7 +8,8 @@ import { LoadingController } from '@ionic/angular';
 })
 export class HeaderComponent implements OnInit {
   @Input() title: string;
-  
+  @Input() logo: string;
+  @Input() header_right: string;
   public toggled: boolean = false;
 
   constructor(

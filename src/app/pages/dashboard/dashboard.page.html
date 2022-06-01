@@ -1,0 +1,348 @@
+<app-header logo="assets/images/header-logo.png" header_right="true"></app-header>
+
+<ion-content>
+  <ion-grid class="no-padding">
+    <ion-slides [options]="slideOptsOne" >
+      <ion-slide>
+        <ion-card>
+          <ion-card-content class="slide-blk">
+            <div class="circle">
+              <img src="assets/images/img1.png"/>
+            </div>                
+            <h2>Fruits & Vegetables</h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <ion-card-content class="slide-blk">
+            <div class="circle">
+              <img src="assets/images/img2.png"/>
+            </div>                
+            <h2>Staples</h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>            
+      <ion-slide>
+        <ion-card>
+          <ion-card-content class="slide-blk">
+            <div class="circle">
+              <img src="assets/images/img3.png"/>
+            </div>                
+            <h2>Snacks & Branded Food</h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <ion-card-content class="slide-blk">
+            <div class="circle">
+              <img src="assets/images/img4.png"/>
+            </div>                
+            <h2>Personal Care</h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </ion-grid>
+
+  <ion-grid class="featured-section">
+    <ion-row>
+      <ion-col size="8">
+        <h2>Featured Products</h2>
+      </ion-col>
+      <ion-col size="4">
+        <a class="view-more">View More</a>
+      </ion-col>
+    </ion-row>
+    <ion-slides [options]="featuredSlide" >
+      <ion-slide>
+        <ion-card>
+          <ion-card-content>
+            <div class="product-img">
+              <img src="assets/images/product1.png"/>
+            </div>
+            <div class="product-content">       
+              <span>Staples</span>
+              <h3>Tata Sampann Masoor Dal</h3>
+              <ion-select placeholder="500g" class="custom-options" value="500g">
+                <ion-select-option >500g</ion-select-option>
+                <ion-select-option >1 Kg</ion-select-option>
+              </ion-select>
+              <ion-row>
+                <ion-col>
+                  <div class="price">
+                      <h4>€1.99</h4>
+                      <del>€2.99</del>
+                  </div>
+                </ion-col>
+                <ion-col>
+                  <ion-button>Add</ion-button>
+                </ion-col>
+              </ion-row>
+            </div>        
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <ion-card-content>
+            <div class="product-img">
+              <img src="assets/images/product1.png"/>
+            </div>
+            <div class="product-content">       
+              <span>Staples</span>
+              <h3>Tata Sampann Masoor Dal</h3>
+              <ion-select placeholder="500g" class="custom-options" value="500g">
+                <ion-select-option >500g</ion-select-option>
+                <ion-select-option >1 Kg</ion-select-option>
+              </ion-select>
+              <ion-row>
+                <ion-col>
+                  <div class="price">
+                      <h4>€1.99</h4>
+                      <del>€2.99</del>
+                  </div>
+                </ion-col>
+                <ion-col>
+                  <ion-button>Add</ion-button>
+                </ion-col>
+              </ion-row>
+            </div>        
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <ion-card-content>
+            <div class="product-img">
+              <img src="assets/images/product1.png"/>
+            </div>
+            <div class="product-content">       
+              <span>Staples</span>
+              <h3>Tata Sampann Masoor Dal</h3>
+              <ion-select placeholder="500g" class="custom-options" value="500g">
+                <ion-select-option >500g</ion-select-option>
+                <ion-select-option >1 Kg</ion-select-option>
+              </ion-select>
+              <ion-row>
+                <ion-col>
+                  <div class="price">
+                      <h4>€1.99</h4>
+                      <del>€2.99</del>
+                  </div>
+                </ion-col>
+                <ion-col>
+                  <ion-button>Add</ion-button>
+                </ion-col>
+              </ion-row>
+            </div>        
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+
+  </ion-grid>
+
+  <ion-grid class="retail-section">
+    <ion-row>
+      <ion-col class="pos-rel">
+        <ion-img src="assets/images/retail-img.png"></ion-img>
+        <div class="retail-content">
+          <div class="retail-content-lft">
+            <h2>Retail Canteens benefit</h2>
+            <a class="shop-now">Shop Now</a>
+          </div>
+          <div class="retail-content-right">
+            <span class="discount-price">from discounted prices</span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-slides [options]="featuredSlide" >
+      <ion-slide>
+        <ion-card>
+          <ion-card-content>
+            <div class="product-img">
+              <img src="assets/images/product1.png"/>
+            </div>
+            <div class="product-content">       
+              <span>Staples</span>
+              <h3>Tata Sampann Masoor Dal</h3>
+              <ion-select placeholder="500g" class="custom-options" value="500g">
+                <ion-select-option >500g</ion-select-option>
+                <ion-select-option >1 Kg</ion-select-option>
+              </ion-select>
+              <ion-row>
+                <ion-col>
+                  <div class="price">
+                      <h4>€1.99</h4>
+                      <del>€2.99</del>
+                  </div>
+                </ion-col>
+                <ion-col>
+                  <ion-button>Add</ion-button>
+                </ion-col>
+              </ion-row>
+            </div>        
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <ion-card-content>
+            <div class="product-img">
+              <img src="assets/images/product1.png"/>
+            </div>
+            <div class="product-content">       
+              <span>Staples</span>
+              <h3>Tata Sampann Masoor Dal</h3>
+              <ion-select placeholder="500g" class="custom-options" value="500g">
+                <ion-select-option >500g</ion-select-option>
+                <ion-select-option >1 Kg</ion-select-option>
+              </ion-select>
+              <ion-row>
+                <ion-col>
+                  <div class="price">
+                      <h4>€1.99</h4>
+                      <del>€2.99</del>
+                  </div>
+                </ion-col>
+                <ion-col>
+                  <ion-button>Add</ion-button>
+                </ion-col>
+              </ion-row>
+            </div>        
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <ion-card-content>
+            <div class="product-img">
+              <img src="assets/images/product1.png"/>
+            </div>
+            <div class="product-content">       
+              <span>Staples</span>
+              <h3>Tata Sampann Masoor Dal</h3>
+              <ion-select placeholder="500g" class="custom-options" value="500g">
+                <ion-select-option >500g</ion-select-option>
+                <ion-select-option >1 Kg</ion-select-option>
+              </ion-select>
+              <ion-row>
+                <ion-col>
+                  <div class="price">
+                      <h4>€1.99</h4>
+                      <del>€2.99</del>
+                  </div>
+                </ion-col>
+                <ion-col>
+                  <ion-button>Add</ion-button>
+                </ion-col>
+              </ion-row>
+            </div>        
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </ion-grid>
+
+  <ion-grid class="featured-section">
+    <ion-row>
+      <ion-col size="8">
+        <h2>Snacks & Branded Food</h2>
+      </ion-col>
+      <ion-col size="4">
+        <a class="view-more">View More</a>
+      </ion-col>
+    </ion-row>
+    <ion-slides [options]="featuredSlide" >
+      <ion-slide>
+        <ion-card>
+          <ion-card-content>
+            <div class="product-img">
+              <img src="assets/images/product1.png"/>
+            </div>
+            <div class="product-content">       
+              <span>Staples</span>
+              <h3>Tata Sampann Masoor Dal</h3>
+              <ion-select placeholder="500g" class="custom-options" value="500g">
+                <ion-select-option >500g</ion-select-option>
+                <ion-select-option >1 Kg</ion-select-option>
+              </ion-select>
+              <ion-row>
+                <ion-col>
+                  <div class="price">
+                      <h4>€1.99</h4>
+                      <del>€2.99</del>
+                  </div>
+                </ion-col>
+                <ion-col>
+                  <ion-button>Add</ion-button>
+                </ion-col>
+              </ion-row>
+            </div>        
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <ion-card-content>
+            <div class="product-img">
+              <img src="assets/images/product1.png"/>
+            </div>
+            <div class="product-content">       
+              <span>Staples</span>
+              <h3>Tata Sampann Masoor Dal</h3>
+              <ion-select placeholder="500g" class="custom-options" value="500g">
+                <ion-select-option >500g</ion-select-option>
+                <ion-select-option >1 Kg</ion-select-option>
+              </ion-select>
+              <ion-row>
+                <ion-col>
+                  <div class="price">
+                      <h4>€1.99</h4>
+                      <del>€2.99</del>
+                  </div>
+                </ion-col>
+                <ion-col>
+                  <ion-button>Add</ion-button>
+                </ion-col>
+              </ion-row>
+            </div>        
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <ion-card-content>
+            <div class="product-img">
+              <img src="assets/images/product1.png"/>
+            </div>
+            <div class="product-content">       
+              <span>Staples</span>
+              <h3>Tata Sampann Masoor Dal</h3>
+              <ion-select placeholder="500g" class="custom-options" value="500g">
+                <ion-select-option >500g</ion-select-option>
+                <ion-select-option >1 Kg</ion-select-option>
+              </ion-select>
+              <ion-row>
+                <ion-col>
+                  <div class="price">
+                      <h4>€1.99</h4>
+                      <del>€2.99</del>
+                  </div>
+                </ion-col>
+                <ion-col>
+                  <ion-button>Add</ion-button>
+                </ion-col>
+              </ion-row>
+            </div>        
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+
+  </ion-grid>
+
+</ion-content>

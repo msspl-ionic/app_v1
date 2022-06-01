@@ -10,6 +10,7 @@ import {MenuPage} from './pages/menu/menu.page'
 import { TabsPage } from './pages/tabs/tabs.page';
 import { Network } from '@ionic-native/network/ngx';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
+
 @NgModule({
   declarations: [AppComponent,MenuPage,TabsPage],
   entryComponents: [],
