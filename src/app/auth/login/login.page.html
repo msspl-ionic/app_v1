@@ -50,18 +50,16 @@
   <ng-template>
     <ion-content class="language-modal-content">
       <h2 class="select-contenttxt">Select Language</h2>
-      <form action="" class="select-language-form">
-        <ion-list radio-group >
-          <ion-item>
-            <ion-label><img src="assets/images/flag-1.png"/> Portuguese</ion-label>
-            <ion-radio slot="end"  value="packard"></ion-radio>
+      <div class="select-language-form">
+        <ion-list>
+          <ion-item class="active">
+            <a><img src="assets/images/flag-1.png"/> Portuguese</a>
           </ion-item>
           <ion-item>
-            <ion-label><img src="assets/images/flag-2.png"/> English</ion-label>
-            <ion-radio slot="end" value="packard"></ion-radio>
+            <a><img src="assets/images/flag-2.png"/> English</a>
           </ion-item>
         </ion-list>
-      </form>
+      </div>
     </ion-content>
   </ng-template>
 </ion-modal>
