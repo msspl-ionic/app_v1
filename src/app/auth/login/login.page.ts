@@ -36,14 +36,14 @@ export class LoginPage implements OnInit {
   }
 
   onSubmit() {
-    // this.authService.login(this.credentialsForm.value).subscribe();
+    this.authService.login(this.credentialsForm.value).subscribe();
   }
  
   register() {
-    // this.authService.register(this.credentialsForm.value).subscribe(res => {
-    //   // Call Login to automatically login the new user
-    //   this.authService.login(this.credentialsForm.value).subscribe();
-    // });
+    this.authService.register(this.credentialsForm.value).subscribe(res => {
+      // Call Login to automatically login the new user
+      this.authService.login(this.credentialsForm.value).subscribe();
+    });
   }
  
 }
