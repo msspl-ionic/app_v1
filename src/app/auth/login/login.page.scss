@@ -126,19 +126,27 @@ ion-modal{
     }
 }
 
-.language-modal-content ion-item ion-label{
+.language-modal-content ion-item.active{
+    &::part(native){
+        background-color: #03989E;
+    }
+}
+
+
+.language-modal-content .select-language-form a{
     display: contents;
     color: #898a92;
     font-weight: 600;
     font-size: 15px;
     font-family: 'Open Sans', sans-serif;
 }
-.language-modal-content ion-item.item-radio-checked ion-label{
+.language-modal-content ion-item.active a{
     color: #fff;
 }
-.language-modal-content ion-item ion-label img{
+.language-modal-content .select-language-form a img{
     margin-right: 15px;
 }
+
 ion-radio{
     &::part(container){
         display: none;
@@ -155,15 +163,15 @@ ion-radio{
         border: none;
     }
 }
-ion-radio{
-    &::part(mark){
+.language-modal-content ion-item.active a:after{
         background-image:url(/../assets/images/tick.png) ;
         width: 16px;
         height: 12px;
         background-color: transparent;
-        top: 4px;
-    position: relative;
-    }
+        top: 18px;
+        position: absolute;
+        content: "";
+        right: 15px;
 }
 .select-language-form ion-list{
     background: #fff;
