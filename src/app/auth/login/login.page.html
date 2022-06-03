@@ -40,7 +40,7 @@
   </div>
 </ion-content>
 <ion-modal
-  [isOpen]="true"
+  [isOpen]="isLanguageModal"
   [breakpoints]="[0.1, 0.5, 1]"
   [initialBreakpoint]="0.4"
   class="my-custom-class"
@@ -51,12 +51,11 @@
     <ion-content class="language-modal-content">
       <h2 class="select-contenttxt">Select Language</h2>
       <div class="select-language-form">
-        <ion-list>
-          <ion-item class="active">
-            <a><img src="assets/images/flag-1.png"/> Portuguese</a>
-          </ion-item>
-          <ion-item>
-            <a><img src="assets/images/flag-2.png"/> English</a>
+        <ion-list *ngFor="let language of languages">
+          <ion-item (click)="selectedLanguange(language.id)" [class.active]="selectedItemId == language.id">
+            <a href="javascript:void(0);">
+              <img [src]="language.flag"/> {{language.language}}
+            </a>
           </ion-item>
         </ion-list>
       </div>

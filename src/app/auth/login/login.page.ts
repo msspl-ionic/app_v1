@@ -20,12 +20,31 @@ export class LoginPage implements OnInit {
     },
   ]
 
+  languages = [
+    {
+      id: 1,
+      language: 'Portuguese',
+      flag: 'assets/images/flag-1.png'
+    },
+    {
+      id: 2,
+      language: 'English',
+      flag: 'assets/images/flag-2.png'
+    }
+  ];
+  selectedItemId: number;
   credentialsForm: FormGroup;
+  isLanguageModal:boolean = true;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
 
   ngOnInit() {
     this.createCredentialForm();
+  }
+ 
+  selectedLanguange(languageId: number){
+    this.selectedItemId = languageId;
+    this.isLanguageModal = false;
   }
 
   createCredentialForm(){
