@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
+import {
+	ActivatedRoute,
+	NavigationCancel,
+	NavigationError,
+	NavigationStart,
+	Router
+} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -32,36 +39,63 @@ export class LoginPage implements OnInit {
       flag: 'assets/images/flag-2.png'
     }
   ];
+
   selectedItemId: number;
-  credentialsForm: FormGroup;
+  loginForm: FormGroup;
   isLanguageModal:boolean = true;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
+  constructor(private _router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
+    // const isLoggedIn = this.authService.isAuthenticated();
+    // // console.log(isLoggedIn);
+    // if(isLoggedIn == true){
+    //   this.isLanguageModal = false;
+    //   this._router.navigate(['/dashboard']);
+    // }
+  }
 
   ngOnInit() {
     this.createCredentialForm();
   }
+
+  get formcontrol() {
+		return this.loginForm.controls;
+	}
  
   selectedLanguange(languageId: number){
+    console.log(languageId);
     this.selectedItemId = languageId;
     this.isLanguageModal = false;
   }
 
+  openModal(){
+    this.isLanguageModal = true;
+  }
+
   createCredentialForm(){
-    this.credentialsForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      user_type: 'SA',
+      remember: false
     });
   }
 
-  onSubmit() {
-    this.authService.login(this.credentialsForm.value).subscribe();
+  public loginOnSubmit(): boolean | void {
+		if (this.loginForm.invalid) {
+			return;
+		}
+    this.authService.login(this.loginForm.value).subscribe(res =>{
+      console.log(res);
+      if(res.response.status.action_status){
+        this._router.navigate(['/dashboard']);
+      }
+    });
   }
  
   register() {
-    this.authService.register(this.credentialsForm.value).subscribe(res => {
+    this.authService.register(this.loginForm.value).subscribe(res => {
       // Call Login to automatically login the new user
-      this.authService.login(this.credentialsForm.value).subscribe();
+      this.authService.login(this.loginForm.value).subscribe();
     });
   }
  
