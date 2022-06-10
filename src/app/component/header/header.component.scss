@@ -57,7 +57,9 @@ ion-header ion-toolbar{
 }
 ion-searchbar{
     background-color: #03989E;
+    color: #fff;
 }
+
 ion-searchbar .sc-ion-searchbar-md ion-icon{
     right: 15px;
     left: inherit;
@@ -67,4 +69,8 @@ ion-title{
     color: #fff;
     text-transform: uppercase;
     font-family: "Russo One", sans-serif;
+}
+ion-title.ios{
+    padding-left: 60px;
+    text-align: left;
 }
