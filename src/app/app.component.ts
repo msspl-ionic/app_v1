@@ -3,6 +3,14 @@ import { Network } from '@ionic-native/network/ngx';
 import { AlertController } from '@ionic/angular';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
 import { Storage } from '@ionic/storage-angular';
+import { AuthService } from './shared/services/auth.service';
+import {
+	ActivatedRoute,
+	NavigationCancel,
+	NavigationError,
+	NavigationStart,
+	Router
+} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +19,13 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class AppComponent {
   
-  constructor(private storage: Storage,private network:Network, public alertController: AlertController, private device: Device) {
+  constructor(private _router: Router,private authService: AuthService, private storage: Storage,private network:Network, public alertController: AlertController, private device: Device) {
+    
+    const isLoggedIn = this.authService.isAuthenticated();
+    // console.log(isLoggedIn);
+    // if(isLoggedIn == false){
+    //   this._router.navigate(['/login']);
+    // }
     window.addEventListener('offline', ()=>{
       this.openalert();
     });

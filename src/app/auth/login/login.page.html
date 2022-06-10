@@ -8,7 +8,7 @@
 
 <ion-content>
   <div class="login-header">
-     <a id="trigger-button"><img class="country" src="assets/images/country-img.png"/></a>
+     <a (click)="openModal()"><img class="country" src="assets/images/country-img.png"/></a>
   </div>
   <div class="login-body">
       <div class="logo">
@@ -37,26 +37,73 @@
           </ion-row>
         </ion-grid>
       </form>
+
+
+      <form [formGroup]="loginForm" (ngSubmit)="loginOnSubmit()" #myForm="ngForm">
+        <div class="auth-form-group">
+          <div *ngIf="
+              formcontrol.username.errors?.required &&
+              (formcontrol.username.touched ||
+                formcontrol.username.dirty ||
+                myForm.submitted)
+            " class="auth-error-msg">
+            <span class="icon-info"></span>
+            <p>Please Enter E-mail</p>
+          </div>
+          <div *ngIf="
+              formcontrol.username.errors?.pattern &&
+              (formcontrol.username.touched ||
+                formcontrol.username.dirty ||
+                myForm.submitted)
+            " class="auth-error-msg">
+            <span class="icon-info"></span>
+            <p>Please Enter a Valid E-mail</p>
+          </div>
+          <div class="auth-formcontrol-wrapper">
+            <ion-input type="email" class="auth-formcontrol" placeholder="Email" 
+              formControlName="username"></ion-input>
+            <span class="icon-mail"></span>
+          </div>
+        </div>
+        <div class="auth-form-group">
+          <div *ngIf="
+              formcontrol.password.invalid &&
+              (formcontrol.password.touched ||
+                formcontrol.password.dirty ||
+                myForm.submitted)
+            " class="auth-error-msg">
+            <span class="icon-info"></span>
+            <p>Please Enter a Valid Password</p>
+          </div>
+          <div class="auth-formcontrol-wrapper">
+            <ion-input class="auth-formcontrol" [type]="password" placeholder="Password" 
+              formControlName="password"></ion-input>
+          </div>
+        </div>
+        <div class="auth-form-submit">
+          <button class="btn btn-dark">Login</button>
+        </div>
+      </form>
+
+
   </div>
 </ion-content>
 <ion-modal
-  [isOpen]="true"
+  [isOpen]="isLanguageModal"
   [breakpoints]="[0.1, 0.5, 1]"
   [initialBreakpoint]="0.4"
   class="my-custom-class"
   handle="false"
-  trigger="trigger-button"
 >
   <ng-template>
     <ion-content class="language-modal-content">
       <h2 class="select-contenttxt">Select Language</h2>
       <div class="select-language-form">
-        <ion-list>
-          <ion-item class="active">
-            <a><img src="assets/images/flag-1.png"/> Portuguese</a>
-          </ion-item>
-          <ion-item>
-            <a><img src="assets/images/flag-2.png"/> English</a>
+        <ion-list *ngFor="let language of languages">
+          <ion-item (click)="selectedLanguange(language.id)" [class.active]="selectedItemId == language.id">
+            <a href="javascript:void(0);">
+              <img [src]="language.flag"/> {{language.language}}
+            </a>
           </ion-item>
         </ion-list>
       </div>

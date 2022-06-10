@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://api.com/',
+  apiUrl: 'https://admin-services-staging.clusivdev.tech/',
   FooterCopyright: '[YYYY]',
   ajax_timeout: 300000
 };

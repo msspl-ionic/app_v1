@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { environment } from '../../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 const TOKEN_KEY = 'access_token';
 
@@ -19,19 +20,21 @@ export class AuthService {
   user = null;
   authenticationState = new BehaviorSubject(false);
  
-  constructor(private http: HttpClient, private helper: JwtHelperService, private storage: Storage,
+  constructor(private _router: Router, private http: HttpClient, private helper: JwtHelperService, private storage: Storage,
     private plt: Platform, private alertController: AlertController) {
       this.plt.ready().then(() => {
         this.checkToken();
       });
+
+
   }
 
   checkToken() {
     this.storage.get(TOKEN_KEY).then(token => {
+      
       if (token) {
         let decoded = this.helper.decodeToken(token);
         let isExpired = this.helper.isTokenExpired(token);
- 
         if (!isExpired) {
           this.user = decoded;
           this.authenticationState.next(true);
@@ -52,11 +55,12 @@ export class AuthService {
   }
  
   login(credentials) {
-    return this.http.post(`${this.url}/api/login`, credentials)
+    return this.http.post(`${this.url}user/login`, credentials)
       .pipe(
-        tap(res => {
-          this.storage.set(TOKEN_KEY, res['token']);
-          this.user = this.helper.decodeToken(res['token']);
+        tap((res: any) => {
+          // console.log(res.response.dataset.token); return;
+          this.storage.set(TOKEN_KEY, res.response.dataset.token);
+          this.user = this.helper.decodeToken(res.response.dataset.token);
           this.authenticationState.next(true);
         }),
         catchError(e => {
@@ -69,6 +73,7 @@ export class AuthService {
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
+      this._router.navigate(['/login']);
     });
   }
  
@@ -86,9 +91,21 @@ export class AuthService {
   }
  
   isAuthenticated() {
+    // let isLoggedIn = false;
+    // this.authenticationState.subscribe(res=>{
+    //   isLoggedIn = res;
+    //   console.log(res);
+    //   return isLoggedIn;
+    // });
+    // return isLoggedIn;
+    
     return this.authenticationState.value;
   }
- 
+  
+  isLoggedIn() {
+    return this.authenticationState.asObservable();
+  }
+
   showAlert(msg) {
     let alert = this.alertController.create({
       message: msg,
