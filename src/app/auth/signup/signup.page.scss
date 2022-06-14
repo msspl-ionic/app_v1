@@ -27,6 +27,9 @@
     font-family: "Russo One", sans-serif;
     margin-top: 30px;
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .login-body p{
     font-size: 15px;
@@ -83,20 +86,24 @@ ion-button{
     text-decoration: none;
 }
 .small-logo{
-    position: relative; top: 15px; margin-right: 5px;
+    margin-right: 13px;
 }
 .fld-row{
     margin-bottom: 10px;
 }
 .click-here{
     color: #03989E; 
-    font-weight: 600;
-    font-size: 13px;    
+    font-weight: 700;
+    font-size: 14px;    
     float: left;
     margin-top: 12px;
-    text-decoration: none;
+    // text-decoration: none;
     font-family: 'Open Sans', sans-serif;
+    position: relative;
 }
 .click-here span{
     color: #FF0101;
+    position: absolute;
+    right: -8px;
+    top: 2px;
 }

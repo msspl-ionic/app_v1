@@ -5,10 +5,11 @@
     left: 0;
     background-position:top center;
     background-repeat: no-repeat;
+    background-size: cover;
     padding: 30px;
-    padding-top: 85px;
+    padding-top: 80px;
+    padding-bottom: 50px;
     text-align: center;
-
     color: #fff;
 }
 .get-started-shape h1{
@@ -29,9 +30,14 @@
     display: inline-block;
     line-height: 68px;
     color: #fff;
-    border-radius: 64px;
+    border-radius: 11px;
     text-decoration: none;
     margin-top: 25px;
+}
+.btn_white {
+    background-color: #fff;
+    color:#08151E;
+    margin-top: 11px;
 }
 ion-content{
     --position: relative;

@@ -31,7 +31,6 @@ ion-header{
     text-transform: uppercase;
     font-family: "Russo One", sans-serif;
     margin-top: 30px;
-    margin-top: 20px;
 }
 .login-body p{
     font-size: 15px;
@@ -55,6 +54,14 @@ ion-input.number-fld{ text-align: left;
 ion-select::part(icon) {
     display: none !important;
 }
+ion-input.number-fld {
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+}
+.ios .login-body .number-fld {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+}
 
 // ion-input.number-fld:after { content:"*"; }
 ion-button{
@@ -67,6 +74,7 @@ ion-button{
     font-family: "Russo One", sans-serif;
     margin-top: 38px;
     overflow: hidden;
+    letter-spacing: 0.05em;
 }
 .signup-withtext{
     color: #08151E;
@@ -175,4 +183,24 @@ ion-radio{
 }
 .select-language-form ion-list{
     background: #fff;
+}
+
+.support_col {
+    a {
+        font-weight: 700;
+        font-size: 20px;
+        text-decoration: none;
+    }
+    .svg_wrap {
+        background-color: #03989E;
+        border-radius: 50%;
+        width: 29px;
+        height: 29px;
+        display: inline-block;
+        text-align: center;
+        line-height: 32px;
+    }
+    p {
+        margin-top: 7px;
+    }
 }
