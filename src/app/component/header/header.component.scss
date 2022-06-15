@@ -4,11 +4,14 @@ ion-toolbar{
 }
 ion-header ion-toolbar{
     --background: #03989E;
-    padding-top: 20px;
+    padding-top:20px;
     padding-bottom: 0px;
 }
+ion-header.header-ios ion-toolbar{
+    padding-top:50px;
+}
 .ios ion-header ion-toolbar {
-    padding-top: 40px !important;
+    padding-top: 80px !important;
 }
 // .title_inr {
 //     position: absolute;

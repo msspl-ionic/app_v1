@@ -68,6 +68,7 @@ export class LoginPage implements OnInit {
   }
 
   openModal(){
+    console.log(this.isLanguageModal,"hello")
     this.isLanguageModal = true;
   }
 
