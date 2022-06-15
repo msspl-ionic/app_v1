@@ -52,7 +52,7 @@ ion-searchbar ion-icon {
 ion-searchbar .searchbar-input{
     --padding-left: 0;
 }
-.searchbar-input.sc-ion-searchbar-md{
+.searchbar-input.searchbar-input{
     padding-left: 15px;
     background-color: #0AAAB0;
     border:#0AA1A8 1px solid;
@@ -60,8 +60,14 @@ ion-searchbar .searchbar-input{
     box-shadow: none;
     color: #fff;
 }
-.searchbar-input.sc-ion-searchbar-md::placeholder{
+.searchbar-input.sc-ion-searchbar-md::placeholder,.searchbar-input.sc-ion-searchbar-ios::placeholder{
+    color: #fff;
+    opacity: 1;
+}
+.searchbar-input.sc-ion-searchbar-ios::placeholder{
     color: #fff;
     opacity: 1;
 }
 .searchbar-has-value.searchbar-should-show-clear.sc-ion-searchbar-md-h .searchbar-clear-button.sc-ion-searchbar-md{ display: none;}
+
+.searchbar-has-value.searchbar-should-show-clear.sc-ion-searchbar-ios-h .searchbar-clear-button.sc-ion-searchbar-ios{ display: none;}

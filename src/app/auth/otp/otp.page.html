@@ -9,7 +9,7 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-input type="text" inputmode="numeric" class="number-fld" #otp1 required maxLength="1" (keyup)="otpController($event,otp2,'')"></ion-input>
+              <ion-input type="text" autofocus inputmode="numeric" class="number-fld" #otp1 required maxLength="1" (keyup)="otpController($event,otp2,'')"></ion-input>
             </ion-col>
             <ion-col>
               <ion-input type="text" inputmode="numeric" class="number-fld" #otp2 required maxLength="1" (keyup)="otpController($event,otp3,otp1)"></ion-input>
