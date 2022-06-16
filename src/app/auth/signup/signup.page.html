@@ -43,7 +43,7 @@
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="number" inputmode="numeric" formControlName="phone_no" placeholder="Phone Number*" class="number-fld"></ion-input>
+              <ion-input type="number" inputmode="tel" formControlName="phone_no" placeholder="Phone Number*" class="number-fld"></ion-input>
               <div *ngIf="
                 formControl.phone_no.invalid &&
                 (formControl.phone_no.dirty ||
@@ -72,7 +72,7 @@
           <ion-row>
             <ion-col>
               <ion-button color="primary" shape='round' type="submit">Create my account</ion-button>
-              <p class="signup-withtext">Already have a Merkaaz account? <a routerLink="/login">Login</a> </p>
+              <div class="acc_link_txt"><p class="signup-withtext">Already have a Merkaaz account? <a routerLink="/login">Login</a> </p></div>
             </ion-col>
           </ion-row>
         </ion-grid>
