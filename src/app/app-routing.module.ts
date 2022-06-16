@@ -1,8 +1,27 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
+import { AuthGuardService } from './shared/services/auth-guard.service';
 
 const routes: Routes = [
+ 
+  {
+		path: '',
+		canActivate: [AuthGuardService],
+		children: [
+			{
+        path: 'dashboard',
+        loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+      },
+      {
+        path: 'category',
+        loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
+      },
+      {
+        path: 'shop-by-category',
+        loadChildren: () => import('./pages/shop-by-category/shop-by-category.module').then( m => m.ShopByCategoryPageModule)
+      },
+		]
+	},
   {
     path: '',
     loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule)
@@ -46,11 +65,11 @@ const routes: Routes = [
   {
     path: 'shop-by-category',
     loadChildren: () => import('./pages/shop-by-category/shop-by-category.module').then( m => m.ShopByCategoryPageModule)
-  },  {
+  },
+  {
     path: 'congratulation',
     loadChildren: () => import('./auth/congratulation/congratulation.module').then( m => m.CongratulationPageModule)
   }
-
 ];
 @NgModule({
   imports: [

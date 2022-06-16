@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,14 +9,15 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class MenuPage implements OnInit {
 
-  constructor(private authService: AuthService, private _router: Router) { }
+  constructor(private common: CommonService, private _router: Router) { }
 
   ngOnInit() {
 
   }
 
   logOut(){
-    this.authService.logout();
+    console.log('ok');
+    this.common.logout();
   }
 
 }

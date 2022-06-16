@@ -5,11 +5,20 @@
       </div> -->
       <h2><img src="assets/images/logo.png" width="52" class="small-logo"/> Sign up</h2>
       <p>You are few steps away from activating your account</p>
-      <form>
+      <form [formGroup]="signupForm" (ngSubmit)="submitForm()" #myForm="ngForm">
         <ion-grid>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="text" name="shopname" placeholder="Shop Name*" class="number-fld"></ion-input>
+              <ion-input type="text" formControlName="shop_name" placeholder="Shop Name*" class="number-fld"></ion-input>
+              <div *ngIf="
+                formControl.shop_name.invalid &&
+                (formControl.shop_name.dirty ||
+                  formControl.shop_name.touched ||
+                  myForm.submitted)
+              ">
+                <span class="icon-info"></span>
+                <p>Please enter shop name</p>
+              </div>
             </ion-col>
           </ion-row>
           <ion-row class="fld-row">
@@ -20,17 +29,44 @@
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="text" name="Name" placeholder="Name*" class="number-fld"></ion-input>
+              <ion-input type="text" formControlName="vendor_name" placeholder="Name*" class="number-fld"></ion-input>
+              <div *ngIf="
+                formControl.vendor_name.invalid &&
+                (formControl.vendor_name.dirty ||
+                  formControl.vendor_name.touched ||
+                  myForm.submitted)
+              ">
+                <span class="icon-info"></span>
+                <p>Please enter vendor name</p>
+              </div>
             </ion-col>
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="number" inputmode="tel" name="phone" placeholder="Phone Number*" class="number-fld"></ion-input>
+              <ion-input type="number" inputmode="tel" formControlName="phone_no" placeholder="Phone Number*" class="number-fld"></ion-input>
+              <div *ngIf="
+                formControl.phone_no.invalid &&
+                (formControl.phone_no.dirty ||
+                  formControl.phone_no.touched ||
+                  myForm.submitted)
+              ">
+                <span class="icon-info"></span>
+                <p>Please enter phone number</p>
+              </div>
             </ion-col>
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="text" inputmode="email" name="email" placeholder="Email Address" class="number-fld"></ion-input>     
+              <ion-input type="text" inputmode="email" formControlName="email_id" placeholder="Email Address" class="number-fld"></ion-input>
+              <div *ngIf="
+                formControl.email_id.invalid &&
+                (formControl.email_id.dirty ||
+                  formControl.email_id.touched ||
+                  myForm.submitted)
+              ">
+                <span class="icon-info"></span>
+                <p>Please enter email</p>
+              </div>     
             </ion-col>
           </ion-row>
           <ion-row class="fld-row">
@@ -45,6 +81,7 @@
           </ion-row>
           <ion-row>
             <ion-col>
+<<<<<<< HEAD
               <ion-button color="primary" shape='round' routerLink="" >Create my account</ion-button>
               <div class="acc_link_txt"><p class="signup-withtext">Already have a MERKAAZ account? <a routerLink="/login">Login</a> </p></div>
             </ion-col>
@@ -55,6 +92,10 @@
                 <span class="svg_wrap"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.21778 6.92444C4.49778 9.44 6.56 11.4933 9.07556 12.7822L11.0311 10.8267C11.2711 10.5867 11.6267 10.5067 11.9378 10.6133C12.9333 10.9422 14.0089 11.12 15.1111 11.12C15.6 11.12 16 11.52 16 12.0089V15.1111C16 15.6 15.6 16 15.1111 16C6.76444 16 0 9.23556 0 0.888889C0 0.4 0.4 0 0.888889 0H4C4.48889 0 4.88889 0.4 4.88889 0.888889C4.88889 2 5.06667 3.06667 5.39556 4.06222C5.49333 4.37333 5.42222 4.72 5.17333 4.96889L3.21778 6.92444Z" fill="white"/>
                 </svg></span> +244 900 000 000</a>
               <p class="signup-withtext">Customer Support Team</p>
+=======
+              <ion-button color="primary" shape='round' type="submit">Create my account</ion-button>
+              <div class="acc_link_txt"><p class="signup-withtext">Already have a Merkaaz account? <a routerLink="/login">Login</a> </p></div>
+>>>>>>> af82c2d8c9d4c134ad67c8e548424b948dbc9779
             </ion-col>
           </ion-row>
         </ion-grid>

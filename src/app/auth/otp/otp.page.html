@@ -7,21 +7,42 @@
       </div>
       <h2>Enter One Time Password</h2>
       <p>A one time password has been sent to (+244) 1238329147</p>
-      <form>
+      <form [formGroup]="otpForm" (ngSubmit)="submitForm()" #myForm="ngForm">
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-input type="text" inputmode="numeric" class="number-fld" #otp1 required maxLength="1" (keyup)="otpController($event,otp2,'')"></ion-input>
+              <ion-input type="text" formControlName="otp1" inputmode="numeric" class="number-fld" #otp1 required maxLength="1" (keyup)="otpController($event,otp2,'')"></ion-input>
             </ion-col>
             <ion-col>
-              <ion-input type="text" inputmode="numeric" class="number-fld" #otp2 required maxLength="1" (keyup)="otpController($event,otp3,otp1)"></ion-input>
+              <ion-input type="text" formControlName="otp2" inputmode="numeric" class="number-fld" #otp2 required maxLength="1" (keyup)="otpController($event,otp3,otp1)"></ion-input>
             </ion-col>
             <ion-col>
-              <ion-input type="text" inputmode="numeric" class="number-fld" #otp3 required maxLength="1" (keyup)="otpController($event,otp4,otp2)"></ion-input>
+              <ion-input type="text" formControlName="otp3" inputmode="numeric" class="number-fld" #otp3 required maxLength="1" (keyup)="otpController($event,otp4,otp2)"></ion-input>
             </ion-col>
             <ion-col>
-              <ion-input type="text" inputmode="numeric" class="number-fld" #otp4 required maxlength="1" pattern="[0-9]+" (keyup)="otpController($event,'',otp3)"></ion-input>
+              <ion-input type="text" formControlName="otp4" inputmode="numeric" class="number-fld" #otp4 required maxlength="1" pattern="[0-9]+" (keyup)="otpController($event,'',otp3)"></ion-input>
             </ion-col>
+            <div *ngIf="
+                (formControl.otp1.invalid &&
+                (formControl.otp1.dirty ||
+                  formControl.otp1.touched ||
+                  myForm.submitted) 
+                || formControl.otp2.invalid &&
+                  (formControl.otp2.dirty ||
+                    formControl.otp2.touched ||
+                    myForm.submitted)
+                || formControl.otp3.invalid &&
+                (formControl.otp3.dirty ||
+                  formControl.otp3.touched ||
+                  myForm.submitted)
+                || formControl.otp4.invalid &&
+                (formControl.otp4.dirty ||
+                  formControl.otp4.touched ||
+                  myForm.submitted))
+              ">
+                <span class="icon-info"></span>
+                <p>Please enter otp</p>
+            </div>
           </ion-row>
           <ion-row>
             <ion-col>
@@ -31,6 +52,7 @@
           </ion-row>
           <ion-row>
             <ion-col>
+<<<<<<< HEAD
               <ion-button color="primary" shape='round' routerLink="/dashboard" >Login</ion-button>
               <div class="acc_link_txt"><p class="signup-withtext">Don’t have a MERKAAZ account?</p><a routerLink="/signup">Sign Up</a></div>
             </ion-col>
@@ -41,6 +63,10 @@
                 <span class="svg_wrap"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.21778 6.92444C4.49778 9.44 6.56 11.4933 9.07556 12.7822L11.0311 10.8267C11.2711 10.5867 11.6267 10.5067 11.9378 10.6133C12.9333 10.9422 14.0089 11.12 15.1111 11.12C15.6 11.12 16 11.52 16 12.0089V15.1111C16 15.6 15.6 16 15.1111 16C6.76444 16 0 9.23556 0 0.888889C0 0.4 0.4 0 0.888889 0H4C4.48889 0 4.88889 0.4 4.88889 0.888889C4.88889 2 5.06667 3.06667 5.39556 4.06222C5.49333 4.37333 5.42222 4.72 5.17333 4.96889L3.21778 6.92444Z" fill="white"/>
                 </svg></span> +244 900 000 000</a>
               <p class="signup-withtext">Customer Support Team</p>
+=======
+              <ion-button color="primary" shape='round' type="submit">Login</ion-button>
+              <div class="acc_link_txt"><p class="signup-withtext">Don’t have a Merkaaz account?</p><a routerLink="/signup">Sign Up</a></div>
+>>>>>>> af82c2d8c9d4c134ad67c8e548424b948dbc9779
             </ion-col>
           </ion-row>
         </ion-grid>

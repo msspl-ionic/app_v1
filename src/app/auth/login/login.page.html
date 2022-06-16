@@ -8,7 +8,7 @@
 
 <ion-content>
   <div class="login-header">
-     <a (click)="openModal()" id="trigger-button"><img class="country" src="assets/images/country-img.png"/></a>
+    <a (click)="openModal()" id="trigger-button"><img class="country" src="assets/images/country-img.png"/></a>
   </div>
   <div class="login-body">
       <div class="logo">
@@ -16,7 +16,7 @@
       </div>
       <h2>Login</h2>
       <p>Already a Merkaaz cutomer? Login to place your order & access our services.</p>
-      <form>
+      <form [formGroup]="otpForm" (ngSubmit)="submitForm()" #myForm="ngForm">
         <ion-grid>
           <ion-row>
             <ion-col size="4">
@@ -26,7 +26,16 @@
               </ion-select>
             </ion-col>
             <ion-col size="8">
-              <ion-input type="text" inputmode="numeric" name="phone" placeholder="Phone No*" class="number-fld"></ion-input>
+              <ion-input type="text" inputmode="numeric" formControlName="phone" placeholder="Phone No*" class="number-fld"></ion-input>
+              <div *ngIf="
+                fControl.phone.invalid &&
+                (fControl.phone.dirty ||
+                  fControl.phone.touched ||
+                  myForm.submitted)
+              ">
+                <span class="icon-info"></span>
+                <p>Please enter phone number</p>
+              </div>
             </ion-col>
           </ion-row>
           <ion-row>
