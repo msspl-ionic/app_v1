@@ -34,3 +34,16 @@ ion-item{
        
     }   
 }
+
+.cat_list {
+    padding: 19px;
+    .ion-item {
+        padding-left: 30px;
+    }
+    ion-button {
+        margin-right: -10px;
+    }
+    ion-thumbnail{
+        margin-left: -20px;
+    }
+}

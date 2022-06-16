@@ -11,6 +11,7 @@ ion-buttons.back-navigate{
     font-family: "Russo One", sans-serif;
     text-transform: uppercase;
     height: 76px;
+    --margin-end: 15px;
 }
 ion-button{
 
@@ -37,6 +38,6 @@ ion-content{
     margin:0;
 }
 
-.can-go-back > ion-header ion-back-button {
-    
+ion-header ion-back-button {
+    margin-right: 15px;
 }

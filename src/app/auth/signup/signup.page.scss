@@ -79,7 +79,7 @@ ion-button{
     color: #08151E;
     font-size: 15px;
     font-family: 'Open Sans', sans-serif;
-    margin-bottom: 0;
+    margin-bottom: 30px;
     display: inline-block;
 }
 .acc_link_txt a{
@@ -111,4 +111,29 @@ ion-button{
     position: absolute;
     right: -8px;
     top: 2px;
+}
+
+.mandatory_info span {
+    font-size: 12px;
+    line-height: 117.5%;
+    color: #FF0101;
+}
+.support_col {
+    a {
+        font-weight: 700;
+        font-size: 20px;
+        text-decoration: none;
+    }
+    .svg_wrap {
+        background-color: #03989E;
+        border-radius: 50%;
+        width: 29px;
+        height: 29px;
+        display: inline-block;
+        text-align: center;
+        line-height: 32px;
+    }
+    p {
+        margin-top: 7px;
+    }
 }
