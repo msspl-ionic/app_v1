@@ -4,6 +4,8 @@ import { ApiService } from '../../shared/services/api.service';
 import { environment } from '@env/environment';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service';
+import { CommonService } from '../../shared/services/common.service';
+
 
 import {
 	ActivatedRoute,
@@ -58,6 +60,7 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
 		private fb: FormBuilder,
     private service: ApiService,
+    private common: CommonService
   ) {
     // const isLoggedIn = this.authService.isAuthenticated();
     // // console.log(isLoggedIn);
@@ -90,10 +93,11 @@ export class LoginPage implements OnInit {
 		param = this.otpForm.value;
 		// param['device_os'] = 'and';
 		// param['appversion'] = '1.0.0';
-	
-		console.log(param);
+
+		// console.log(param);
     // return;
 		this.subscriptions.push(this.service.ApiCall(param, `user/getphonenumber`, 'POST').subscribe(result => {
+      this.common._onUpdatePhoneSubject.next(param.phone);
       console.log(result);
 			this.myForm.resetForm();
       this._router.navigate(['/otp']);

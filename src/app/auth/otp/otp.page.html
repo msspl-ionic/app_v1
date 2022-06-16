@@ -7,21 +7,42 @@
       </div>
       <h2>Enter One Time Password</h2>
       <p>A one time password has been sent to (+244) 1238329147</p>
-      <form>
+      <form [formGroup]="otpForm" (ngSubmit)="submitForm()" #myForm="ngForm">
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-input type="text" inputmode="numeric" class="number-fld" #otp1 required maxLength="1" (keyup)="otpController($event,otp2,'')"></ion-input>
+              <ion-input type="text" formControlName="otp1" inputmode="numeric" class="number-fld" #otp1 required maxLength="1" (keyup)="otpController($event,otp2,'')"></ion-input>
             </ion-col>
             <ion-col>
-              <ion-input type="text" inputmode="numeric" class="number-fld" #otp2 required maxLength="1" (keyup)="otpController($event,otp3,otp1)"></ion-input>
+              <ion-input type="text" formControlName="otp2" inputmode="numeric" class="number-fld" #otp2 required maxLength="1" (keyup)="otpController($event,otp3,otp1)"></ion-input>
             </ion-col>
             <ion-col>
-              <ion-input type="text" inputmode="numeric" class="number-fld" #otp3 required maxLength="1" (keyup)="otpController($event,otp4,otp2)"></ion-input>
+              <ion-input type="text" formControlName="otp3" inputmode="numeric" class="number-fld" #otp3 required maxLength="1" (keyup)="otpController($event,otp4,otp2)"></ion-input>
             </ion-col>
             <ion-col>
-              <ion-input type="text" inputmode="numeric" class="number-fld" #otp4 required maxlength="1" pattern="[0-9]+" (keyup)="otpController($event,'',otp3)"></ion-input>
+              <ion-input type="text" formControlName="otp4" inputmode="numeric" class="number-fld" #otp4 required maxlength="1" pattern="[0-9]+" (keyup)="otpController($event,'',otp3)"></ion-input>
             </ion-col>
+            <div *ngIf="
+                (formControl.otp1.invalid &&
+                (formControl.otp1.dirty ||
+                  formControl.otp1.touched ||
+                  myForm.submitted) 
+                || formControl.otp2.invalid &&
+                  (formControl.otp2.dirty ||
+                    formControl.otp2.touched ||
+                    myForm.submitted)
+                || formControl.otp3.invalid &&
+                (formControl.otp3.dirty ||
+                  formControl.otp3.touched ||
+                  myForm.submitted)
+                || formControl.otp4.invalid &&
+                (formControl.otp4.dirty ||
+                  formControl.otp4.touched ||
+                  myForm.submitted))
+              ">
+                <span class="icon-info"></span>
+                <p>Please enter otp</p>
+            </div>
           </ion-row>
           <ion-row>
             <ion-col>
@@ -31,7 +52,7 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-button color="primary" shape='round' routerLink="/dashboard" >Login</ion-button>
+              <ion-button color="primary" shape='round' type="submit">Login</ion-button>
               <div class="acc_link_txt"><p class="signup-withtext">Don’t have a Merkaaz account?</p><a routerLink="/signup">Sign Up</a></div>
             </ion-col>
           </ion-row>

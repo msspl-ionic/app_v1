@@ -4,6 +4,9 @@ import { AlertController } from '@ionic/angular';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
 import { Storage } from '@ionic/storage-angular';
 import { AuthService } from './shared/services/auth.service';
+import { CommonService } from './shared/services/common.service';
+import { environment } from '@env/environment';
+
 import {
 	ActivatedRoute,
 	NavigationCancel,
@@ -12,6 +15,8 @@ import {
 	Router
 } from '@angular/router';
 
+import { Platform } from '@ionic/angular';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -19,7 +24,11 @@ import {
 })
 export class AppComponent {
   
-  constructor(private _router: Router,private authService: AuthService, private storage: Storage,private network:Network, public alertController: AlertController, private device: Device) {
+  constructor(private _router: Router,private authService: AuthService, private storage: Storage,private network:Network, public alertController: AlertController, private device: Device,  private plt: Platform, private common: CommonService) {
+
+    this.plt.ready().then(() => {
+      this.checkToken();
+    });
     
     const isLoggedIn = this.authService.isAuthenticated();
     // console.log(isLoggedIn);
@@ -33,6 +42,17 @@ export class AppComponent {
    
   //  this.getDeviceInfo();
 
+  }
+
+  checkToken() {
+    this.storage.get(environment.TOKEN_KEY).then(token => {
+      if (token) {
+        this.common.authenticationState.next(true);
+        
+      }else{
+        this.common.authenticationState.next(false);
+      }
+    });
   }
 
   async ngOnInit() {

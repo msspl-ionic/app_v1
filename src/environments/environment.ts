@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   apiUrl: 'https://staging-api.merkaaz.com/v1/',
   FooterCopyright: '[YYYY]',
-  ajax_timeout: 300000
+  ajax_timeout: 300000,
+  TOKEN_KEY : 'access_token'
 };
 
 /*

@@ -24,7 +24,7 @@ export class SignupPage implements OnInit {
     this.createForm();
   }
 
-  createForm() {
+  	createForm() {
 		this.signupForm = this.fb.group({
 			shop_name: ['', [Validators.required]],
 			vendor_name: ['', [Validators.required]],
@@ -33,7 +33,7 @@ export class SignupPage implements OnInit {
 		})
 	}
 
-  get formControl() {
+  	get formControl() {
 		return this.signupForm.controls;
 	}
 
