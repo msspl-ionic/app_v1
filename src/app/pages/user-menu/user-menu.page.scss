@@ -1,0 +1,131 @@
+.header-top{
+   
+    padding: 50px 15px;
+    padding-bottom: 0px;
+    position: relative;
+}
+.header-top:after{
+    background-color: #03989E;
+    height: 166px;
+    width: 100%;
+    content: '';
+    top: 0;
+    left: 0;
+    position:absolute;
+}
+.user-tick{
+    background: #14FF8E;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    bottom: 6px;
+    right: -5px;
+    border-radius: 100%;
+}
+.user-tick ion-icon{
+    font-size: 15px;
+    line-height: 10px;
+    position: relative;
+    top: -2px;
+    color: #000;
+    border: #04878C 2px solid;
+    border-radius: 100%;
+    right: 1px;
+}
+.user{
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    vertical-align: middle;
+}
+.user img{
+    border: #04878C 2px solid;
+    border-radius: 100%;
+}
+.user-name{
+    display: inline-block;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    vertical-align: middle;
+    margin-left: 15px;
+    position: relative;
+    z-index: 1;
+}
+.user-name span{display: block;
+    font-size: 15px;
+    font-weight: 600;}
+.user-name .edit{
+    font-weight: bold;
+    font-size: 12px;
+    border: #fff 1px solid;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    padding: 1px 8px;
+    margin-left: 7px;
+    text-transform: uppercase;
+}
+.notification{
+    position: relative;
+    color: #fff;
+    font-size: 28px;
+    float: right;
+    margin-top: 10px;
+    z-index: 1;
+}
+.circle{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #FF7F22;
+    border-radius: 100%;
+}
+
+.location{
+    // position: absolute;
+    // bottom: -83px;
+    // left: 0;
+    // padding: 0 15px;
+    width: 100%;
+
+    margin-top: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.location-inner{
+    background-color: #fff;
+    border-radius: 11px;
+    padding: 15px;
+    box-shadow: 0 4px 6px 2px rgb(145 145 145 / 20%);
+}
+.location-inner h4{ color: #03989E; font-weight: 600; font-size: 15px;
+margin: 0; font-family: 'Open Sans', sans-serif;}
+.location-inner h4 ion-icon{
+    font-size: 21px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.location-inner h4 .edit{
+    font-weight: bold;
+    font-size: 12px;
+    border: #03989E 1px solid;
+    border-radius: 3px;
+    color: #03989E;
+    display: inline-block;
+    padding: 0px 8px;
+    margin-left: 7px;
+    text-transform: uppercase;
+    line-height: 19px;
+    float: right;
+}
+.location-inner p{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: #171A2C;
+    max-width: 260px;
+}
