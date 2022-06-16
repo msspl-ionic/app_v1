@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://admin-services-staging.clusivdev.tech/',
+  apiUrl: 'https://staging-api.merkaaz.com/v1/',
   FooterCopyright: '[YYYY]',
   ajax_timeout: 300000
 };
