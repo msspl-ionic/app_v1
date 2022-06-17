@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-congratulation',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CongratulationPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _route: Router
+  ) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this._route.navigate(['/login']);
+		},4000);
   }
 
 }

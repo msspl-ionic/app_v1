@@ -6,6 +6,7 @@ import { environment } from '@env/environment';
 import { Subscription } from 'rxjs';
 import { CommonService } from '../../shared/services/common.service';
 import { Storage } from '@ionic/storage';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-otp',
@@ -25,6 +26,7 @@ export class OtpPage implements OnInit {
     private service: ApiService,
     private common: CommonService,
     private storage: Storage,
+    public alertController: AlertController,
   ) {
 
   }
@@ -34,7 +36,13 @@ export class OtpPage implements OnInit {
     this.common.onPhoneUpdateSource$.subscribe((data:any) => {
 			this.phoneNumber = data;
 		});
-    console.log(this.phoneNumber);
+
+    this.storage.get(environment.REGISTER_NUMBER).then(phNumber => {
+      if (phNumber) {
+        this.phoneNumber = phNumber;
+      }
+    });
+
     this.createForm();
   }
 
@@ -74,8 +82,16 @@ export class OtpPage implements OnInit {
       this.common.authenticationState.next(true);
 			this.myForm.resetForm();
       this._router.navigate(['/dashboard']);
-		}, apiError => {
-        console.log('API error');
+		}, async apiError => {
+        let  alert =  await this.alertController.create({
+          header: 'Error',
+          message: apiError.error.response.status.msg,
+          buttons: [{
+                text: 'Ok'
+              }]
+        });
+        await alert.present();
+        // console.log(apiError.error.response.status.msg);
 		}))
 	}
 
