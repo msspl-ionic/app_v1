@@ -5,27 +5,9 @@ import { LoginGuardService } from './shared/services/login-guard.service';
 const routes: Routes = [
   {
     path: '',
-    // canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService],
     loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule)
   },
-  // {
-	// 	path: '',
-	// 	// canActivate: [AuthGuardService],
-	// 	children: [
-	// 		{
-  //       path: 'dashboard',
-  //       loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  //     },
-  //     {
-  //       path: 'category',
-  //       loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
-  //     },
-  //     {
-  //       path: 'shop-by-category',
-  //       loadChildren: () => import('./pages/shop-by-category/shop-by-category.module').then( m => m.ShopByCategoryPageModule)
-  //     },
-	// 	]
-	// },
   {
     path: 'about',
     loadChildren: () => import('./pages/about/about.module').then(m => m.AboutPageModule),
@@ -36,39 +18,60 @@ const routes: Routes = [
   },
   {
     path: 'get-started',
+    canActivate: [LoginGuardService],
     loadChildren: () => import('./auth/get-started/get-started.module').then( m => m.GetStartedPageModule)
   },
   {
+		path: '',
+		canActivate: [AuthGuardService],
+		children: [
+			{
+        path: 'dashboard',
+        loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+      },
+      {
+        path: 'category',
+        loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
+      },
+      {
+        path: 'shop-by-category',
+        loadChildren: () => import('./pages/shop-by-category/shop-by-category.module').then( m => m.ShopByCategoryPageModule)
+      },
+		]
+	},
+ 
+  {
     path: 'login',
-    // canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService],
     loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'otp',
-    // canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService],
     loadChildren: () => import('./auth/otp/otp.module').then( m => m.OtpPageModule)
   },
   {
     path: 'signup',
-    // canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService],
     loadChildren: () => import('./auth/signup/signup.module').then( m => m.SignupPageModule)
   },
   {
     path: 'set-location',
+    canActivate: [LoginGuardService],
     loadChildren: () => import('./auth/set-location/set-location.module').then( m => m.SetLocationPageModule)
   },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
-  {
-    path: 'category',
-    loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
-  },
-  {
-    path: 'shop-by-category',
-    loadChildren: () => import('./pages/shop-by-category/shop-by-category.module').then( m => m.ShopByCategoryPageModule)
-  },
+  // {
+  //   path: 'dashboard',
+  //   loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  // },
+  // {
+  //   path: 'category',
+  //   loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
+  // },
+  // {
+  //   path: 'shop-by-category',
+  //   loadChildren: () => import('./pages/shop-by-category/shop-by-category.module').then( m => m.ShopByCategoryPageModule)
+  // },
   {
     path: 'congratulation',
     loadChildren: () => import('./auth/congratulation/congratulation.module').then( m => m.CongratulationPageModule)

@@ -6,7 +6,7 @@
         <a><img src="assets/images/logo.png"/></a>
       </div>
       <h2>Enter One Time Password</h2>
-      <p>A one time password has been sent to (+244) 1238329147</p>
+      <p>A one time password has been sent to (+244) {{this.phoneNumber}}</p>
       <form [formGroup]="otpForm" (ngSubmit)="submitForm()" #myForm="ngForm">
         <ion-grid>
           <ion-row>
