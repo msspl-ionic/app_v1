@@ -27,11 +27,13 @@ export class CommonService {
 
 	isAuthenticated() {	
 		const isLoggedIn = this.authenticationState.value;
+
+		console.log(isLoggedIn);
+		// return;
 		if (isLoggedIn) {
 			// authorised so return true
 			return true;
 		}else{
-			this._router.navigate(['/login']);
 			return false;
 		}
 	}

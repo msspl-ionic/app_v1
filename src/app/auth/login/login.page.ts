@@ -5,7 +5,8 @@ import { environment } from '@env/environment';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service';
 import { CommonService } from '../../shared/services/common.service';
-
+import { Storage } from '@ionic/storage';
+import { AlertController } from '@ionic/angular';
 
 import {
 	ActivatedRoute,
@@ -60,7 +61,9 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
 		private fb: FormBuilder,
     private service: ApiService,
-    private common: CommonService
+    private common: CommonService,
+    private storage: Storage,
+    private alertController : AlertController
   ) {
     // const isLoggedIn = this.authService.isAuthenticated();
     // // console.log(isLoggedIn);
@@ -97,13 +100,21 @@ export class LoginPage implements OnInit {
 		// console.log(param);
     // return;
 		this.subscriptions.push(this.service.ApiCall(param, `user/getphonenumber`, 'POST').subscribe(result => {
+      this.storage.set(environment.REGISTER_NUMBER, param.phone);
       this.common._onUpdatePhoneSubject.next(param.phone);
       console.log(result);
 			this.myForm.resetForm();
       this._router.navigate(['/otp']);
 
-		}, apiError => {
-        console.log('API error');
+		}, async apiError => {
+        let  alert =  await this.alertController.create({
+          header: 'Error',
+          message: apiError.error.response.status.msg,
+          buttons: [{
+              text: 'Ok'
+            }]
+          });
+        await alert.present();
 		}))
 	}
 

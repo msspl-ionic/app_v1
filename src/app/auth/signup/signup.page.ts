@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../shared/services/api.service';
 import { environment } from '@env/environment';
 import { Subscription } from 'rxjs';
+import { CommonService } from '../../shared/services/common.service';
+import { Storage } from '@ionic/storage';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-signup',
@@ -16,8 +19,11 @@ export class SignupPage implements OnInit {
   private subscriptions: Subscription[] = [];
   constructor(
     private _router: Router,
-		private fb: FormBuilder,
+	private fb: FormBuilder,
     private service: ApiService,
+	private common: CommonService,
+    private storage: Storage,
+	private alertController : AlertController
   ) { }
   
   ngOnInit() {
@@ -58,12 +64,24 @@ export class SignupPage implements OnInit {
 		console.log(param);
     // return;
 		this.subscriptions.push(this.service.ApiCall(param, `user/register`, 'POST').subscribe(result => {
-      console.log(result);
-			this.myForm.resetForm();
-      this._router.navigate(['/login']);
+      	console.log(result);
 
-		}, apiError => {
-        console.log('API error');
+		/* Update storage for otp submittion */
+		this.storage.set(environment.REGISTER_NUMBER, param.phone_no);
+		this.common._onUpdatePhoneSubject.next(param.phone_no);
+
+		this.myForm.resetForm();
+      	this._router.navigate(['/congratulation']);
+
+		}, async apiError => {
+			let  alert =  await this.alertController.create({
+				header: 'Error',
+				message: apiError.error.response.status.msg,
+				buttons: [{
+					  text: 'Ok'
+					}]
+			  });
+			await alert.present();
 		}))
 	}
 

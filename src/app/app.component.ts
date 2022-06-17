@@ -30,7 +30,7 @@ export class AppComponent {
       this.checkToken();
     });
     
-    const isLoggedIn = this.authService.isAuthenticated();
+    // const isLoggedIn = this.authService.isAuthenticated();
     // console.log(isLoggedIn);
     // if(isLoggedIn == false){
     //   this._router.navigate(['/login']);
