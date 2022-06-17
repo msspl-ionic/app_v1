@@ -3,7 +3,10 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 
 const routes: Routes = [
- 
+  {
+    path: '',
+    loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule)
+  },
   {
 		path: '',
 		canActivate: [AuthGuardService],
@@ -22,10 +25,6 @@ const routes: Routes = [
       },
 		]
 	},
-  {
-    path: '',
-    loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule)
-  },
   {
     path: 'about',
     loadChildren: () => import('./pages/about/about.module').then(m => m.AboutPageModule),
@@ -69,6 +68,10 @@ const routes: Routes = [
   {
     path: 'user-menu',
     loadChildren: () => import('./pages/user-menu/user-menu.module').then( m => m.UserMenuPageModule)
+  },
+  {
+    path: 'congratulation',
+    loadChildren: () => import('./auth/congratulation/congratulation.module').then( m => m.CongratulationPageModule)
   }
 ];
 @NgModule({

@@ -8,7 +8,7 @@
 
 <ion-content>
   <div class="login-header">
-     <a (click)="openModal()" id="trigger-button"><img class="country" src="assets/images/country-img.png"/></a>
+    <a (click)="openModal()" id="trigger-button"><img class="country" src="assets/images/country-img.png"/></a>
   </div>
   <div class="login-body">
       <div class="logo">
@@ -40,8 +40,8 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-button shape='round' type="submit">Send OTP</ion-button>
-                <div class="acc_link_txt"><p class="signup-withtext">Don’t have a Merkaaz account? </p><a routerLink="/signup">Sign Up</a></div>
+              <ion-button shape='round' routerLink="/otp" >Send OTP</ion-button>
+                <div class="acc_link_txt"><p class="signup-withtext">Don’t have a MERKAAZ account? </p><a routerLink="/signup">Sign Up</a></div>
             </ion-col>
           </ion-row>
           <ion-row>

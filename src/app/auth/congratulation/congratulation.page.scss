@@ -1,0 +1,37 @@
+.cong_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 30px;
+    background-image: url(/assets/images/cong-bg-top.png), url(/assets/images/cong-bg-bottom.png);
+    background-position: top center, bottom center;
+    background-repeat: no-repeat;
+    --overflow: hidden;
+
+    h1 {
+        font-family: 'Russo One';
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 34px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #03989E;
+        margin-bottom: 7px;
+    }
+    span {
+        font-size: 15px;
+        line-height: 122.5%;
+        color: #08151E;
+        display: inline-block;
+    }
+    h2{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 122.5%;
+        color: #03989E;
+        margin-top: 50px;
+    }
+}
