@@ -34,7 +34,13 @@ export class OtpPage implements OnInit {
     this.common.onPhoneUpdateSource$.subscribe((data:any) => {
 			this.phoneNumber = data;
 		});
-    console.log(this.phoneNumber);
+
+    this.storage.get(environment.REGISTER_NUMBER).then(phNumber => {
+      if (phNumber) {
+        this.phoneNumber = phNumber;
+      }
+    });
+
     this.createForm();
   }
 
