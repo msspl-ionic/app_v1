@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ApiService } from '../../shared/services/api.service';
+import { environment } from '@env/environment';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service';
+import { CommonService } from '../../shared/services/common.service';
+
+
 import {
 	ActivatedRoute,
 	NavigationCancel,
@@ -44,7 +50,18 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   isLanguageModal:boolean = true;
 
-  constructor(private _router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
+  @ViewChild('myForm') public myForm!: FormGroupDirective;
+  otpForm!: FormGroup;
+  private subscriptions: Subscription[] = [];
+
+  constructor(
+    private _router: Router,
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+		private fb: FormBuilder,
+    private service: ApiService,
+    private common: CommonService
+  ) {
     // const isLoggedIn = this.authService.isAuthenticated();
     // // console.log(isLoggedIn);
     // if(isLoggedIn == true){
@@ -55,7 +72,40 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.createCredentialForm();
+    this.createOtpForm();
   }
+
+  createOtpForm(){
+    this.otpForm = this.formBuilder.group({
+      phone: ['', [Validators.required]]
+    });
+  }
+
+  get fControl(){
+    return this.otpForm.controls;
+  }
+
+  submitForm() {
+		if (this.otpForm.invalid) {
+			return;
+		}
+		let param: any = {};
+		param = this.otpForm.value;
+		// param['device_os'] = 'and';
+		// param['appversion'] = '1.0.0';
+
+		// console.log(param);
+    // return;
+		this.subscriptions.push(this.service.ApiCall(param, `user/getphonenumber`, 'POST').subscribe(result => {
+      this.common._onUpdatePhoneSubject.next(param.phone);
+      console.log(result);
+			this.myForm.resetForm();
+      this._router.navigate(['/otp']);
+
+		}, apiError => {
+        console.log('API error');
+		}))
+	}
 
   get formcontrol() {
 		return this.loginForm.controls;

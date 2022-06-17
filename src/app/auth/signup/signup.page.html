@@ -5,11 +5,20 @@
       </div> -->
       <h2><img src="assets/images/logo.png" width="52" class="small-logo"/> Sign up</h2>
       <p>You are few steps away from activating your account</p>
-      <form>
+      <form [formGroup]="signupForm" (ngSubmit)="submitForm()" #myForm="ngForm">
         <ion-grid>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="text" name="shopname" placeholder="Shop Name*" class="number-fld"></ion-input>
+              <ion-input type="text" formControlName="shop_name" placeholder="Shop Name*" class="number-fld"></ion-input>
+              <div *ngIf="
+                formControl.shop_name.invalid &&
+                (formControl.shop_name.dirty ||
+                  formControl.shop_name.touched ||
+                  myForm.submitted)
+              ">
+                <span class="icon-info"></span>
+                <p>Please enter shop name</p>
+              </div>
             </ion-col>
           </ion-row>
           <ion-row class="fld-row">
@@ -20,22 +29,49 @@
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="text" name="Name" placeholder="Name*" class="number-fld"></ion-input>
+              <ion-input type="text" formControlName="vendor_name" placeholder="Name*" class="number-fld"></ion-input>
+              <div *ngIf="
+                formControl.vendor_name.invalid &&
+                (formControl.vendor_name.dirty ||
+                  formControl.vendor_name.touched ||
+                  myForm.submitted)
+              ">
+                <span class="icon-info"></span>
+                <p>Please enter vendor name</p>
+              </div>
             </ion-col>
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="number" inputmode="tel" name="phone" placeholder="Phone Number*" class="number-fld"></ion-input>
+              <ion-input type="number" inputmode="tel" formControlName="phone_no" placeholder="Phone Number*" class="number-fld"></ion-input>
+              <div *ngIf="
+                formControl.phone_no.invalid &&
+                (formControl.phone_no.dirty ||
+                  formControl.phone_no.touched ||
+                  myForm.submitted)
+              ">
+                <span class="icon-info"></span>
+                <p>Please enter phone number</p>
+              </div>
             </ion-col>
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="text" inputmode="email" name="email" placeholder="Email Address" class="number-fld"></ion-input>     
+              <ion-input type="text" inputmode="email" formControlName="email_id" placeholder="Email Address" class="number-fld"></ion-input>
+              <div *ngIf="
+                formControl.email_id.invalid &&
+                (formControl.email_id.dirty ||
+                  formControl.email_id.touched ||
+                  myForm.submitted)
+              ">
+                <span class="icon-info"></span>
+                <p>Please enter email</p>
+              </div>     
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-button color="primary" shape='round' routerLink="" >Create my account</ion-button>
+              <ion-button color="primary" shape='round' type="submit">Create my account</ion-button>
               <div class="acc_link_txt"><p class="signup-withtext">Already have a Merkaaz account? <a routerLink="/login">Login</a> </p></div>
             </ion-col>
           </ion-row>
