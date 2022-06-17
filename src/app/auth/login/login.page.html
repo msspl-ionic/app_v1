@@ -27,14 +27,14 @@
             </ion-col>
             <ion-col size="8">
               <ion-input type="text" inputmode="numeric" formControlName="phone" placeholder="Phone No*" class="number-fld"></ion-input>
-              <div *ngIf="
+              <div class="error_msg" *ngIf="
                 fControl.phone.invalid &&
                 (fControl.phone.dirty ||
                   fControl.phone.touched ||
                   myForm.submitted)
               ">
-                <span class="icon-info"></span>
-                <p>Please enter phone number</p>
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>Please enter phone number</span>
               </div>
             </ion-col>
           </ion-row>

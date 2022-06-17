@@ -22,7 +22,8 @@
             <ion-col>
               <ion-input type="text" formControlName="otp4" inputmode="numeric" class="number-fld" #otp4 required maxlength="1" pattern="[0-9]+" (keyup)="otpController($event,'',otp3)"></ion-input>
             </ion-col>
-            <div *ngIf="
+          </ion-row>
+          <div class="error_msg" *ngIf="
                 (formControl.otp1.invalid &&
                 (formControl.otp1.dirty ||
                   formControl.otp1.touched ||
@@ -40,10 +41,9 @@
                   formControl.otp4.touched ||
                   myForm.submitted))
               ">
-                <span class="icon-info"></span>
-                <p>Please enter otp</p>
+                <ion-icon name="information-circle-outline"></ion-icon>
+                <span>Please enter otp</span>
             </div>
-          </ion-row>
           <ion-row>
             <ion-col>
                 <a class="resend">Resend OTP <ion-icon name="repeat-outline"></ion-icon></a>

@@ -205,5 +205,18 @@ ion-radio{
     }
     p {
         margin-top: 7px;
+        display: block !important;
+    }
+}
+.error_msg {
+    margin-top: 10px;
+    text-align: left;
+    color: red;
+    font-size: 12px;
+
+    ion-icon {
+        position: relative;
+        top: 2px;
+        margin-right: 5px;
     }
 }
