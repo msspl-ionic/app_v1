@@ -7,7 +7,7 @@ import { LoginPage } from './login.page';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [LoginGuardService],
+    // canActivate: [LoginGuardService],
     component: LoginPage
   }
 ];
