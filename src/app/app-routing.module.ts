@@ -1,30 +1,31 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './shared/services/auth-guard.service';
-
+import { LoginGuardService } from './shared/services/login-guard.service';
 const routes: Routes = [
   {
     path: '',
+    // canActivate: [LoginGuardService],
     loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule)
   },
-  {
-		path: '',
-		canActivate: [AuthGuardService],
-		children: [
-			{
-        path: 'dashboard',
-        loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-      },
-      {
-        path: 'category',
-        loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
-      },
-      {
-        path: 'shop-by-category',
-        loadChildren: () => import('./pages/shop-by-category/shop-by-category.module').then( m => m.ShopByCategoryPageModule)
-      },
-		]
-	},
+  // {
+	// 	path: '',
+	// 	// canActivate: [AuthGuardService],
+	// 	children: [
+	// 		{
+  //       path: 'dashboard',
+  //       loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  //     },
+  //     {
+  //       path: 'category',
+  //       loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
+  //     },
+  //     {
+  //       path: 'shop-by-category',
+  //       loadChildren: () => import('./pages/shop-by-category/shop-by-category.module').then( m => m.ShopByCategoryPageModule)
+  //     },
+	// 	]
+	// },
   {
     path: 'about',
     loadChildren: () => import('./pages/about/about.module').then(m => m.AboutPageModule),
@@ -39,14 +40,17 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    // canActivate: [LoginGuardService],
     loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'otp',
+    // canActivate: [LoginGuardService],
     loadChildren: () => import('./auth/otp/otp.module').then( m => m.OtpPageModule)
   },
   {
     path: 'signup',
+    // canActivate: [LoginGuardService],
     loadChildren: () => import('./auth/signup/signup.module').then( m => m.SignupPageModule)
   },
   {

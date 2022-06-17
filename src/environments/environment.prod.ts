@@ -3,5 +3,6 @@ export const environment = {
   apiUrl: 'https://staging-api.merkaaz.com/v1/',
   FooterCopyright: '[YYYY]',
   ajax_timeout: 300000,
-  TOKEN_KEY : 'access_token'
+  TOKEN_KEY : 'access_token',
+  REGISTER_NUMBER : 'register_number'
 };

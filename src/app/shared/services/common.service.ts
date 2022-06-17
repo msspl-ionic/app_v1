@@ -31,7 +31,6 @@ export class CommonService {
 			// authorised so return true
 			return true;
 		}else{
-			this._router.navigate(['/login']);
 			return false;
 		}
 	}
