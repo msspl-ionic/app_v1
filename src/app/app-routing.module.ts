@@ -60,18 +60,10 @@ const routes: Routes = [
     canActivate: [LoginGuardService],
     loadChildren: () => import('./auth/set-location/set-location.module').then( m => m.SetLocationPageModule)
   },
-  // {
-  //   path: 'dashboard',
-  //   loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  // },
-  // {
-  //   path: 'category',
-  //   loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
-  // },
-  // {
-  //   path: 'shop-by-category',
-  //   loadChildren: () => import('./pages/shop-by-category/shop-by-category.module').then( m => m.ShopByCategoryPageModule)
-  // },
+  {
+    path: 'home',
+    loadChildren: () => import('../app/pages/home/home.module').then( m => m.HomePageModule)
+  },
   {
     path: 'congratulation',
     loadChildren: () => import('./auth/congratulation/congratulation.module').then( m => m.CongratulationPageModule)
