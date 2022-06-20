@@ -27,18 +27,18 @@ export class CommonService {
 
 
 	getToken() {
-		return this.storage.get(environment.TOKEN_KEY);
-		// let token = '';
-		// this.storage.get(environment.TOKEN_KEY).then(token => {
-		// 	console.log(token);
-		// 	if (token) {
-		// 		return token;
-		// 	}
+		
+		let token = '';
+		this.storage.get(environment.TOKEN_KEY).then(token => {
+			console.log(token);
+			if (token) {
+				return token;
+			}
 
-		// });
-		// setTimeout(function () {
-        //     return token;
-        // }, 1000);
+		});
+		setTimeout(function () {
+            return token;
+        }, 1000);
 		
 		// console.log(this.storage.get(environment.TOKEN_KEY));
 		// return this.authenticationState.value;

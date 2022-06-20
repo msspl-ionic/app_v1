@@ -7,13 +7,11 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CommonService } from '../services/common.service';
-import { Storage } from '@ionic/storage';
-import { environment } from '@env/environment';
 
 @Injectable()
 export class HttpAuthHeaderInterceptor implements HttpInterceptor {
-	constructor(private _authService: CommonService, private storage: Storage) {}
-	
+	constructor(private _authService: CommonService) {}
+
 	intercept(
 		request: HttpRequest<any>,
 		next: HttpHandler
@@ -29,16 +27,7 @@ export class HttpAuthHeaderInterceptor implements HttpInterceptor {
 		/**
 		 * If token found setting it in header
 		 */
-		//  this.storage.get(environment.TOKEN_KEY).then(token => {
-			
-		// 	if (token) {
-		// 		headersConfig['Authorization'] = token;
-		// 		const HTTPRequest = request.clone({ setHeaders: headersConfig });
-		// 		return next.handle(HTTPRequest);
-		// 	}
-
-		// });
-		
+	
 		const token: any = this._authService.getToken();
 		console.log(token);
 		if (token) {
@@ -47,5 +36,7 @@ export class HttpAuthHeaderInterceptor implements HttpInterceptor {
 
 		const HTTPRequest = request.clone({ setHeaders: headersConfig });
 		return next.handle(HTTPRequest);
+
+		
 	}
 }

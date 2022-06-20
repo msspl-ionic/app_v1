@@ -5,7 +5,7 @@ import { environment } from '@env/environment';
 import { Subscription } from 'rxjs';
 import { CommonService } from '../../shared/services/common.service';
 import { AlertController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
+// import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-shop-by-category',
@@ -20,7 +20,7 @@ export class ShopByCategoryPage implements OnInit {
     private service: ApiService,
     private common: CommonService,
     private alertController: AlertController,
-    private storage: Storage
+    // private storage: Storage
   ) { }
 
   ngOnInit() {
@@ -47,14 +47,15 @@ export class ShopByCategoryPage implements OnInit {
       console.log(result);
      
 		}, async apiError => {
-        let  alert =  await this.alertController.create({
-          header: 'Error',
-          message: apiError.error.response.status.msg,
-          buttons: [{
-                text: 'Ok'
-              }]
-        });
-        await alert.present();
+      console.log(apiError);
+        // let  alert =  await this.alertController.create({
+        //   header: 'Error',
+        //   message: apiError.error.response.status.msg,
+        //   buttons: [{
+        //         text: 'Ok'
+        //       }]
+        // });
+        // await alert.present();
         // console.log(apiError.error.response.status.msg);
 		}))
   }
