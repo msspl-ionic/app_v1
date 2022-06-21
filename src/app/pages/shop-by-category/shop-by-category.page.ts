@@ -30,7 +30,7 @@ export class ShopByCategoryPage implements OnInit {
 		// 		this.getCategory();
 		// 	}
 		// });
-    // this.getCategory();
+    this.getCategory();
     // console.log(this.common.getToken());
   }
 
