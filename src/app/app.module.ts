@@ -15,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
+//Interceptor import
+// import { HTTPInterceptorProvider } from '../app/shared/interceptors';
+
 @NgModule({
   declarations: [AppComponent,MenuPage,TabsPage],
   entryComponents: [],
@@ -27,7 +30,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
   }),
   IonicStorageModule.forRoot(),
   ],
-  providers: [JwtHelperService,HttpClientModule, Network, Device, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [ JwtHelperService,HttpClientModule, Network, Device, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

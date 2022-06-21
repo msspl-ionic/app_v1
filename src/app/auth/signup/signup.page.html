@@ -10,14 +10,14 @@
           <ion-row class="fld-row">
             <ion-col>
               <ion-input type="text" formControlName="shop_name" placeholder="Shop Name*" class="number-fld"></ion-input>
-              <div *ngIf="
+              <div class="error_msg" *ngIf="
                 formControl.shop_name.invalid &&
                 (formControl.shop_name.dirty ||
                   formControl.shop_name.touched ||
                   myForm.submitted)
               ">
-                <span class="icon-info"></span>
-                <p>Please enter shop name</p>
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>Please enter shop name</span>
               </div>
             </ion-col>
           </ion-row>
@@ -30,42 +30,42 @@
           <ion-row class="fld-row">
             <ion-col>
               <ion-input type="text" formControlName="vendor_name" placeholder="Name*" class="number-fld"></ion-input>
-              <div *ngIf="
+              <div class="error_msg" *ngIf="
                 formControl.vendor_name.invalid &&
                 (formControl.vendor_name.dirty ||
                   formControl.vendor_name.touched ||
                   myForm.submitted)
               ">
-                <span class="icon-info"></span>
-                <p>Please enter vendor name</p>
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>Please enter vendor name</span>
               </div>
             </ion-col>
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
               <ion-input type="number" inputmode="tel" formControlName="phone_no" placeholder="Phone Number*" class="number-fld"></ion-input>
-              <div *ngIf="
+              <div class="error_msg" *ngIf="
                 formControl.phone_no.invalid &&
                 (formControl.phone_no.dirty ||
                   formControl.phone_no.touched ||
                   myForm.submitted)
               ">
-                <span class="icon-info"></span>
-                <p>Please enter phone number</p>
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>Please enter phone number</span>
               </div>
             </ion-col>
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
               <ion-input type="text" inputmode="email" formControlName="email_id" placeholder="Email Address" class="number-fld"></ion-input>
-              <div *ngIf="
+              <div class="error_msg" *ngIf="
                 formControl.email_id.invalid &&
                 (formControl.email_id.dirty ||
                   formControl.email_id.touched ||
                   myForm.submitted)
               ">
-                <span class="icon-info"></span>
-                <p>Please enter email</p>
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>Please enter email</span>
               </div>     
             </ion-col>
           </ion-row>
