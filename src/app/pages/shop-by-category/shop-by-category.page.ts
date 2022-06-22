@@ -14,6 +14,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class ShopByCategoryPage implements OnInit {
   private subscriptions: Subscription[] = [];
+  public catArr: any;
 
   constructor(
     private _router: Router,
@@ -44,7 +45,9 @@ export class ShopByCategoryPage implements OnInit {
 		param['parent_cat_id'] = 0; // send 0 to get only category list; Send parent category id to get its sub categories list;
 
 		this.subscriptions.push(this.service.ApiCall(param, `category/list`, 'POST').subscribe(result => {
-      console.log(result);
+      // console.log(result.response.data);
+      console.warn(result.response.data.category_list);
+      this.catArr = result.response.data.category_list;
      
 		}, async apiError => {
       console.log(apiError);

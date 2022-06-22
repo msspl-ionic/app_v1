@@ -2,34 +2,14 @@
 
 <ion-content>
   <ion-list class="cat_list" lines="full">
-    <ion-item>
+    <ion-item *ngFor="let item of catArr">
       <ion-thumbnail slot="start">
-        <img src="assets/images/fruits-vegetables.png">
+        <!-- <img src="assets/images/fruits-vegetables.png"> -->
+        <ion-img width="26" height="26" src="{{item.category_image}}" style="width: 30px; height: 30px; border-radius: 50%;"></ion-img>
       </ion-thumbnail>
       <ion-label>
-        <h2>Fruits & Vegetables</h2>
-      </ion-label>
-      <ion-button fill="outline" slot="end">
-        <ion-icon slot="start" name="chevron-forward-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail slot="start">
-        <img src="assets/images/fruits-vegetables.png">
-      </ion-thumbnail>
-      <ion-label>
-        <h2>Vegetables</h2>
-      </ion-label>
-      <ion-button fill="outline" slot="end">
-        <ion-icon slot="start" name="chevron-forward-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail slot="start">
-        <img src="assets/images/fruits-vegetables.png">
-      </ion-thumbnail>
-      <ion-label>
-        <h2>Fruits</h2>
+        <!-- <h2>Fruits & Vegetables</h2> -->
+        <h2>{{item.category_name}}</h2>
       </ion-label>
       <ion-button fill="outline" slot="end">
         <ion-icon slot="start" name="chevron-forward-outline"></ion-icon>
