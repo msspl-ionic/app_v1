@@ -93,7 +93,7 @@ export class DashboardPage implements OnInit {
     console.log(evt.sell_price);
     this.sellPrice = evt.sell_price
     // this.priceVal = evt;
-    // console.log(evt,this.priceVal);
+    console.log(evt,this.priceVal);
     
     
   }

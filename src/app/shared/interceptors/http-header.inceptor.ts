@@ -3,17 +3,20 @@ import {
 	HttpRequest,
 	HttpHandler,
 	HttpEvent,
-	HttpInterceptor
+	HttpInterceptor,
+	HttpResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { CommonService } from '../services/common.service';
 import { Storage } from '@ionic/storage';
 import { environment } from '@env/environment';
+import { filter, map, switchMap, switchMapTo, take } from 'rxjs/operators';
+
 
 @Injectable()
 export class HttpAuthHeaderInterceptor implements HttpInterceptor {
 	constructor(private _authService: CommonService, private storage: Storage) {}
-
+	
 	intercept(
 		request: HttpRequest<any>,
 		next: HttpHandler
@@ -29,11 +32,30 @@ export class HttpAuthHeaderInterceptor implements HttpInterceptor {
 		/**
 		 * If token found setting it in header
 		 */
-		headersConfig['Authorization'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcl9pZCI6ImE0MDBiZjc1NWRiYjE5NGMxNmNiYjlmYWMyMTM3MTg0ZDI0ODlkZTNhMzRkMjE0MzI1ZTk0NzhkNDBkMTFjZGU5ZDc3MmFlMTk4ZWQwMzJjOTU5YTQ5NTI1MTJkZTNhYTgzNjFkMjhlMzhmZjk4NmI1Mjg4N2JmMGJjNzk1OWIyMTI3YWE5MThiY2JkOGEyOTdiMGMzY2MwYTI5ZWIzNGNhZDFkNDAwMDc0ZDhlODYzN2EyOTBkNjM0MWI1NmNkMzEwYjQiLCJjdXN0b21lcl9waG9uZSI6Ijk4NzY1NDMyMTAiLCJpYXQiOjE2NTU4MDk4NDcsImV4cCI6MTY1NTgyNzg0N30.Ia35VHKOyq_0hwGok04KxyWpj24aTIrb4COwnC6LUok';
+		
+		
+		//console.log(this._authService.getToken());
 		
 
-		const HTTPRequest = request.clone({ setHeaders: headersConfig });
-		return next.handle(HTTPRequest);
+		let HTTPRequest:any = request.clone({ setHeaders: headersConfig });
+
+		// return this._authService.getToken().pipe(
+			
+		// 	switchMap((token)=>{
+		// 	 	return next.handle(HTTPRequest.clone({
+		// 			setHeaders: { Authorization: token }
+		// 		}))
+		// 	})
+		// )
+
+		return from(this._authService.getToken()).pipe(
+			
+			switchMap((token)=>{
+			return next.handle(HTTPRequest.clone({
+					setHeaders: { Authorization: token }
+				}))
+			})
+		)
 		
 	}
 }

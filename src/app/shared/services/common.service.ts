@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,21 +27,19 @@ export class CommonService {
 
 
 	getToken() {
-		
-		//let token = '';
-		 return this.storage.get(environment.TOKEN_KEY).then(token => {
-			// console.log(token);
+		// return new Observable((observer) => {
+		// 	this.storage.get(environment.TOKEN_KEY).then(token => {
+		// 		// console.log(token);
+		// 		if (token) {
+		// 			return observer.next(token);
+		// 		}
+		// 	})
+		// })
+		return this.storage.get(environment.TOKEN_KEY).then(token => {
 			if (token) {
 				return token;
 			}
-
 		});
-		// setTimeout(function () {
-        //     return token;
-        // }, 1000);
-		
-		// console.log(this.storage.get(environment.TOKEN_KEY));
-		// return this.authenticationState.value;
 	}
 
 	isAuthenticated() {	
