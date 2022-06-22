@@ -62,7 +62,7 @@ export class DashboardPage implements OnInit {
 		let param: any = {
       parent_cat_id :0,
       lang_name:2,
-      device_os:"and"
+      device_os:"ios"
     };    
     // return;
 		this.subscriptions.push(this.service.ApiCall(param, `category/list`, 'POST').subscribe(result => {
@@ -76,24 +76,26 @@ export class DashboardPage implements OnInit {
   featuredProduct() {
 		let param: any = {
       lang_name:2,
-      device_os:"and",
+      device_os:"ios",
       list_type:1
     };    
     // return;
 		this.subscriptions.push(this.service.ApiCall(param, `product/bestfeaturedproduct`, 'POST').subscribe(result => {
       this.featuredProductList = result.response.data.featured_product;
       console.log(result,"result")
+      // function 
+      // let customList = this.featuredProductList.filter()
 
 		}, apiError => {
         console.log('API error');
 		}))
 	}
   valCheck(evt,id) {
-    console.log(evt,id)
-    console.log(evt.sell_price);
-    this.sellPrice = evt.sell_price
-    // this.priceVal = evt;
-    console.log(evt,this.priceVal);
+    // console.log(evt,id)
+    // console.log(evt.sell_price);
+    // this.sellPrice = evt.sell_price
+    // // this.priceVal = evt;
+    // console.log(evt,this.priceVal);
     
     
   }
