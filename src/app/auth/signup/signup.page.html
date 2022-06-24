@@ -23,7 +23,15 @@
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-img class="map" src="assets/images/map.png"></ion-img>
+              <!-- <ion-img class="map" src="assets/images/map.png"></ion-img> -->
+              <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                  (dragEnd)="markerDragEnd($event)"></agm-marker>
+              </agm-map> -->
+
+              <agm-map [latitude]="latitude" [longitude]="longitude">
+                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+              </agm-map>
               <a routerLink="/set-location" class="click-here">Press here to set shop address<span>*</span></a>
             </ion-col>
           </ion-row>

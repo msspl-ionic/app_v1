@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../shared/services/api.service';
@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { CommonService } from '../../shared/services/common.service';
 import { Storage } from '@ionic/storage';
 import { AlertController } from '@ionic/angular';
+import { MapsAPILoader, AgmMap } from '@agm/core';
 
 @Component({
   selector: 'app-signup',
@@ -17,17 +18,57 @@ export class SignupPage implements OnInit {
   @ViewChild('myForm') public myForm!: FormGroupDirective;
   signupForm!: FormGroup;
   private subscriptions: Subscription[] = [];
+
+  title: string = 'AGM project';
+  latitude: number = 47.176418;
+  longitude: number = 5.614490;
+  zoom: number;
+  address: string;
+  private geoCoder;
+  @ViewChild('search',{static:false})
+  public searchElementRef: ElementRef;
+
   constructor(
     private _router: Router,
 	private fb: FormBuilder,
     private service: ApiService,
 	private common: CommonService,
     private storage: Storage,
-	private alertController : AlertController
+	private alertController : AlertController,
+	private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) { }
   
   ngOnInit() {
     this.createForm();
+	
+	//load Places Autocomplete
+    // this.mapsAPILoader.load().then(() => {
+	// 	this.setCurrentLocation();
+	// 	this.geoCoder = new google.maps.Geocoder;
+	// 	// console.log(this.geoCoder);
+	// 	// return;
+	// 	let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+	// 	  types: ["address"]
+	// 	});
+	// 	console.log(autocomplete);
+	// 	autocomplete.addListener("place_changed", () => {
+	// 	  this.ngZone.run(() => {
+	// 		//get the place result
+	// 		let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+  
+	// 		//verify result
+	// 		if (place.geometry === undefined || place.geometry === null) {
+	// 		  return;
+	// 		}
+  
+	// 		//set latitude, longitude and zoom
+	// 		this.latitude = place.geometry.location.lat();
+	// 		this.longitude = place.geometry.location.lng();
+	// 		this.zoom = 12;
+	// 	  });
+	// 	});
+	// });
   }
 
   	createForm() {
@@ -84,5 +125,44 @@ export class SignupPage implements OnInit {
 			await alert.present();
 		}))
 	}
+
+
+	// Get Current Location Coordinates
+	private setCurrentLocation() {
+		if ('geolocation' in navigator) {
+		  navigator.geolocation.getCurrentPosition((position) => {
+			this.latitude = position.coords.latitude;
+			this.longitude = position.coords.longitude;
+			this.zoom = 8;
+			this.getAddress(this.latitude, this.longitude);
+		  });
+		}
+	  }
+	
+	
+	  markerDragEnd($event: any) {
+		console.log($event);
+		this.latitude = $event.coords.lat;
+		this.longitude = $event.coords.lng;
+		this.getAddress(this.latitude, this.longitude);
+	  }
+	
+	  getAddress(latitude, longitude) {
+		this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+		  console.log(results);
+		  console.log(status);
+		  if (status === 'OK') {
+			if (results[0]) {
+			  this.zoom = 12;
+			  this.address = results[0].formatted_address;
+			} else {
+			  window.alert('No results found');
+			}
+		  } else {
+			window.alert('Geocoder failed due to: ' + status);
+		  }
+	
+		});
+	  }
 
 }
