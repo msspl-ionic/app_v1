@@ -26,6 +26,15 @@ export class CommonService {
 	new BehaviorSubject<boolean>(false);
 
 
+	public _onUpdateLocation: BehaviorSubject<any> =
+		new BehaviorSubject<any>(null);
+
+	public onUpdateLocation$ = this._onUpdateLocation.asObservable();
+
+	public onUpdateLocation: BehaviorSubject<boolean> =
+	new BehaviorSubject<boolean>(false);
+
+
 	getToken() {
 		// return new Observable((observer) => {
 		// 	this.storage.get(environment.TOKEN_KEY).then(token => {
