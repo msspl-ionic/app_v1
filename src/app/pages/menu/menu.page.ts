@@ -19,31 +19,18 @@ export class MenuPage implements OnInit {
   public userDtlsb:  any = {};
   ngOnInit() {
     
-    // this.common.authenticationState.subscribe((data:any) => {
+    this.common.authenticationState.subscribe((data:any) => {
+      // authorised so return true  
+      if (this.common.isAuthenticated()) {
+        this.storage.get(environment.TOKEN_KEY).then(token => {
+          console.log(token);
+          this.userDetails();
+        });
         
-    //   if (this.common.isAuthenticated()) {
-    //     console.log(data);
-    //     if(data == undefined){
-    //       setTimeout(function () {
-    //            // authorised so return true
-    //           this.userDetails();
-    //       }, 4000);
-    //     }else{
-    //       setTimeout(function () {
-    //         this.userDetails();
-    //       }, 4000);
-    //     }
-          
-    //   }
-       
-    //     // authorised so return true
-    //     // this.userDetails();
+      }
       
-    // });
+    });
     
-      // authorised so return true
-     this.userDetails();
-
     
     // this.detUser();
   }
