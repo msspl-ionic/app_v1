@@ -13,7 +13,7 @@ interface User {
 })
 export class DashboardPage implements OnInit {
   private subscriptions: Subscription[] = [];
-  constructor(private service: ApiService,) { }
+  constructor(private service: ApiService) { }
   public categoryListArr:  any = [];
   public featuredProductList: any = [];
   public priceVal : any = {};
@@ -84,14 +84,23 @@ export class DashboardPage implements OnInit {
       this.featuredProductList = result.response.data.featured_product;
       console.log(result,"result")
       // function 
-      // let customList = this.featuredProductList.filter()
+      for (let i = 0; i < this.featuredProductList.length; i++) {
+        this.featuredProductList[i]['default_sell_price'] = this.featuredProductList[i].variation[0].sell_price;
+        this.featuredProductList[i]['default_discount_price'] = this.featuredProductList[i].variation[0].discount_price;
+        this.featuredProductList[i]['default_quantity'] = this.featuredProductList[i].variation[0].quantity;
+        this.featuredProductList[i]['default_unit'] = this.featuredProductList[i].variation[0].unit;        
+      }
+      console.log(this.featuredProductList)
 
 		}, apiError => {
         console.log('API error');
 		}))
 	}
-  valCheck(evt,id) {
-    // console.log(evt,id)
+  valCheck(evt) {
+    console.log(evt);
+    this.sellPrice = evt.sell_price;
+    
+    console.log(this.sellPrice,"this.sellPrice")
     // console.log(evt.sell_price);
     // this.sellPrice = evt.sell_price
     // // this.priceVal = evt;

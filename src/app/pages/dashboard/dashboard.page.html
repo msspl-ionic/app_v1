@@ -66,15 +66,15 @@
               <span>{{item.subcategory_name}}</span>
               <strong class="brand_name">{{item.brand_name}}</strong>
               <h3>{{item.product_name}}</h3>
-              <ion-select (ngModelChange)="valCheck($event,item.product_id)" [(ngModel)]="priceVal" placeholder="{{item.variation[0].quantity + item.variation[0].unit}}" class="custom-options" >
+              <ion-select (ngModelChange)="valCheck($event)" [(ngModel)]="priceVal" placeholder="{{item.variation[0].quantity + item.variation[0].unit}}" class="custom-options" >
                 <ion-select-option  *ngFor="let dropVal of item.variation" [value]="dropVal">{{dropVal.quantity + dropVal.unit}} </ion-select-option>              
               </ion-select>
               <!-- <ion-select (ngModelChange)="valCheck($event)" [(ngModel)]="priceVal" placeholder="{{item.variation[0].quantity + item.variation[0].unit}}" class="custom-options" >
                 <ion-select-option  *ngFor="let dropVal of item.variation"  [value]="dropVal">{{dropVal.quantity + dropVal.unit}} </ion-select-option>              
               </ion-select> -->
               <div class="price">              
-                  <h4>{{priceVal.sell_price}}</h4>
-                  <del>{{priceVal.discount_price}}</del>
+                  <h4>{{item.default_sell_price}}</h4>
+                  <del>{{item.default_discount_price}}</del>
               </div>
               <ion-button>Add</ion-button>
             </div>        
