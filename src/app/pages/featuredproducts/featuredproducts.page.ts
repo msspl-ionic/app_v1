@@ -5,49 +5,42 @@ import { environment } from '@env/environment';
 import { Subscription } from 'rxjs';
 import { CommonService } from '../../shared/services/common.service';
 import { AlertController } from '@ionic/angular';
-// import { Storage } from '@ionic/storage';
 
 @Component({
-  selector: 'app-shop-by-category',
-  templateUrl: './shop-by-category.page.html',
-  styleUrls: ['./shop-by-category.page.scss'],
+  selector: 'app-featuredproducts',
+  templateUrl: './featuredproducts.page.html',
+  styleUrls: ['./featuredproducts.page.scss'],
 })
-export class ShopByCategoryPage implements OnInit {
+export class FeaturedproductsPage implements OnInit {
   private subscriptions: Subscription[] = [];
-  public catArr: any;
+  public catFeaturedProductArr: any;
+  public priceVal : any;
+  public sellPrice : any;
 
   constructor(
     private _router: Router,
     private service: ApiService,
     private common: CommonService,
     private alertController: AlertController,
-    // private storage: Storage
-  ) { }
-
-  ngOnInit() {
-    /* Get category list */
-    // this.storage.get(environment.TOKEN_KEY).then(token => {
-		// 	if (token) {
-		// 		this.getCategory();
-		// 	}
-		// });
-    this.getCategory();
-    // console.log(this.common.getToken());
+  ) { 
+    
   }
 
+  ngOnInit() {
+    this.getFeaturedproducts();
+  }
 
-
-  getCategory(){
+  getFeaturedproducts(){
     let param: any = {};
 		param['lang_name'] = 1; //1 => For portugese; 2 => For english;
 		param['appversion'] = '1.0.0';
 		param['device_os'] = 'and'; //and => For Android; ios => For ios;
-		param['parent_cat_id'] = 0; // send 0 to get only category list; Send parent category id to get its sub categories list;
+		param['list_type'] = 1; // send 0 to get only category list; Send parent category id to get its sub categories list;
 
-		this.subscriptions.push(this.service.ApiCall(param, `category/list`, 'POST').subscribe(result => {
+		this.subscriptions.push(this.service.ApiCall(param, `product/bestfeaturedproduct`, 'POST').subscribe(result => {
       // console.log(result.response.data);
-      // console.warn(result.response.data.category_list);
-      this.catArr = result.response.data.category_list;
+      // console.warn(result.response.data.featured_product);
+      this.catFeaturedProductArr = result.response.data.featured_product;
      
 		}, async apiError => {
       console.log(apiError);
@@ -62,8 +55,14 @@ export class ShopByCategoryPage implements OnInit {
         // console.log(apiError.error.response.status.msg);
 		}))
   }
-  categoryNav(id) {
-    this._router.navigate(['/category/' + id])
+  valCheck(evt,id) {
+    // console.log(evt,id)
+    // console.log(evt.sell_price);
+    // this.sellPrice = evt.sell_price
+    // // this.priceVal = evt;
+    // console.log(evt,this.priceVal);
+    
+    
   }
 
 }

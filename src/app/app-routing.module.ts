@@ -71,6 +71,10 @@ const routes: Routes = [
   {
     path: 'congratulation',
     loadChildren: () => import('./auth/congratulation/congratulation.module').then( m => m.CongratulationPageModule)
+  },
+  {
+    path: 'featuredproducts',
+    loadChildren: () => import('./pages/featuredproducts/featuredproducts.module').then( m => m.FeaturedproductsPageModule)
   }
 ];
 @NgModule({

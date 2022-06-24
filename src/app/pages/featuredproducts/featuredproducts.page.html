@@ -1,8 +1,18 @@
-<app-header title="Staples" header_right="false"></app-header>
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>featuredproducts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content> -->
+
+<app-header title="Featured Products" header_right="false"></app-header>
 
 <ion-content class="category-page">
   <div class="cat_inr">
-    <ion-card class="pro_item" *ngFor="let item of productListArr">
+    <ion-card class="pro_item" *ngFor="let item of catFeaturedProductArr">
       <ion-item class="ion-align-items-center" lines="none">
         <ion-thumbnail slot="start">
           <img src="{{item.product_image}}">
