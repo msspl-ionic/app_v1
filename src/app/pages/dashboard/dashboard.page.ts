@@ -17,7 +17,7 @@ export class DashboardPage implements OnInit {
   public categoryListArr:  any = [];
   public featuredProductList: any = [];
   public priceVal : any = {};
-  public sellPrice : any = {};
+  public sellPrice = '';
   users: User[] = [
     {
       id: 1,
@@ -40,6 +40,7 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.categoryList();
     this.featuredProduct();
+    console.log(this.sellPrice,"jjj")
   }
   // slider jayanta
   slideOptsOne = {
