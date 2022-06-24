@@ -5,7 +5,7 @@ import { CategoryPage } from './category.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: CategoryPage
   }
 ];

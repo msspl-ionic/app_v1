@@ -1,0 +1,187 @@
+ion-thumbnail{
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+}
+ion-item {
+    ion-label{
+    text-overflow: unset;
+    white-space: normal;
+}
+}
+
+ion-select.custom-options{
+    background-color: #fff;
+    border: #ccc 1px solid;
+    height: 24px;
+    padding: 2px 6px;
+    color: #08151E;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    position: relative;
+}
+.view-more{
+    background-color: #03989E;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    float: right;
+    padding: 5px 25px;
+}
+
+.category-page ion-item{
+    &::part(native){
+        align-items: normal;
+        align-items: center;
+    }   
+}
+.view-more.disabled{
+    background-color: #EEEEEE;
+    color: #fff;
+    pointer-events: none;
+  cursor: default;
+}
+.out-of-stock{
+    background-color: #FF0000;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 4px 7px;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    display: inline-block;
+    margin-top: 4px;
+    border-radius: 2px;
+}
+.cat_inr::before{
+    content: "";
+    width: 100%;
+    height: 10vh;
+    background: linear-gradient(180deg, #5CD5DA 0%, rgba(196, 196, 196, 0) 100%);
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
+.cat_inr {
+    padding: 30px 0px;
+    background-color: #F2FFFF;
+    .pro_item {
+        margin-bottom: 10px;
+        margin-top: 0;
+    }
+}
+.product-content{
+    text-align: left;
+    margin-bottom: 20px;
+    width: 100%;
+    strong {
+        // font-family: 'Mukta';
+        font-weight: 500;
+        font-size: 9px;
+        line-height: 117.5%;
+        color: #03989E;
+        display: block;
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+    .pro_off {
+        width: 60px;
+        height: 60px;
+        background: #FF7F22;
+        border-radius: 50%;
+        text-align: center;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 13px;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        padding-bottom: 1px;
+        position: absolute;
+        right: 8px;
+        top: -30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        * {
+            vertical-align: bottom;
+        }
+        em {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 17px;
+            display: block;
+        }
+    }
+    span {
+        // font-family: 'Mukta';
+        font-weight: 500;
+        font-size: 9px;
+        line-height: 117.5%;
+        text-align: center;
+        color: #FFFFFF;
+        background-color: #03989E;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 3px 3px 3px 3px;
+        padding: 2px 5px;
+        display: inline-block;
+        max-width: calc(100% - 65px);
+        position: relative;
+        margin-top: -1px;
+    }
+}
+// .product-content 
+.product-content h3{
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+
+    color: #171A2C;
+    margin-bottom: 8px;
+}
+ion-select.custom-options{
+    height: 24px;
+    padding: 2px 6px;
+    color: #08151E;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(8, 21, 30, 0.38);
+    border-radius: 2px;
+    // width: 100%;
+    // display: flex;
+    margin-bottom: 6px;
+    max-width: 100% !important;
+}
+.product-content ion-select::part(icon) {
+    content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAGCAYAAAARx7TFAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABuSURBVHgBfY5BCoAgEEWHIFLauHCihQ4eoSN1g7qBR/BoHqFjtEpTwqiQ3uYzn8fwARJCGAEV2GhMzqZHM+1t2ErxFOIRvEhcBeqZDXSLOfPdoVreryVZjuSLwKSytQnAUTuGFLnUDv7gktZvdwLwIRRqyC80AgAAAABJRU5ErkJggg==');
+    height: 6px;
+    opacity: 1;
+}
+
+.price {
+    margin-bottom: 5px;
+    h4{
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: -0.02em;
+        color: #08151E;
+        font-family: 'Open Sans', sans-serif;
+        margin-bottom: 0;
+    }
+
+    del{
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: -0.02em;
+        text-decoration-line: line-through;
+        color: rgba(8, 21, 30, 0.59);
+        font-family: 'Open Sans', sans-serif;
+    }
+}

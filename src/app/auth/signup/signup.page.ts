@@ -18,6 +18,7 @@ export class SignupPage implements OnInit {
   @ViewChild('myForm') public myForm!: FormGroupDirective;
   signupForm!: FormGroup;
   private subscriptions: Subscription[] = [];
+  public fullLocation: any;
 
   title: string = 'AGM project';
   latitude: number = 47.176418;
@@ -37,10 +38,21 @@ export class SignupPage implements OnInit {
 	private alertController : AlertController,
 	private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
-  ) { }
+  ) {
+	
+   }
+
+  // get a key/value pair
+  
   
   ngOnInit() {
     this.createForm();
+
+	this.common.onUpdateLocation$.subscribe((data:any) => {
+		this.fullLocation = data;
+	});
+
+	console.warn(this.fullLocation);
 	
 	//load Places Autocomplete
     // this.mapsAPILoader.load().then(() => {

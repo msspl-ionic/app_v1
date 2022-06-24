@@ -46,7 +46,7 @@ export class ShopByCategoryPage implements OnInit {
 
 		this.subscriptions.push(this.service.ApiCall(param, `category/list`, 'POST').subscribe(result => {
       // console.log(result.response.data);
-      console.warn(result.response.data.category_list);
+      // console.warn(result.response.data.category_list);
       this.catArr = result.response.data.category_list;
      
 		}, async apiError => {
@@ -61,6 +61,9 @@ export class ShopByCategoryPage implements OnInit {
         // await alert.present();
         // console.log(apiError.error.response.status.msg);
 		}))
+  }
+  categoryNav(id) {
+    this._router.navigate(['/category/' + id])
   }
 
 }

@@ -32,7 +32,15 @@
               <agm-map [latitude]="latitude" [longitude]="longitude">
                 <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
               </agm-map>
-              <a routerLink="/set-location" class="click-here">Press here to set shop address<span>*</span></a>
+              <div class="ion-no-padding" *ngIf="fullLocation === null;else other_content">
+                <a routerLink="/set-location" class="click-here">Press here to set shop address<span>*</span></a>
+              </div>
+              <ng-template #other_content>
+                <div class="location-data ion-no-padding">
+                  <p><ion-icon name="location-outline"></ion-icon>{{fullLocation}}</p>
+                  <a routerLink="/set-location" class="location_edit">Edit</a>
+                </div>
+            </ng-template>
             </ion-col>
           </ion-row>
           <ion-row class="fld-row">

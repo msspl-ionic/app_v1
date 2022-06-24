@@ -1,31 +1,102 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start" class="back-navigate">
-      <ion-back-button text="" defaultHref="signup" icon="chevron-back-outline"></ion-back-button>
+      <ion-back-button text="" defaultHref="signup" icon="chevron-back-outline" color="dark"></ion-back-button>
       Set Shop location
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid class="ion-no-padding">
-    <ion-row class="ion-no-padding">
-      <ion-col>
-        <div class="bap-large">
-          <ion-img class="map" src="assets/images/map-large.png"></ion-img>          
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-padding">
-      <ion-col class="location-data">
-        <p><ion-icon name="location-outline"></ion-icon> C-1 4floor - Martin burn i spec 1 Street</p>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-padding-start ion-padding-end ion-padding-end">
-      <ion-col class="map-btn">
-        <ion-button color="primary" shape='round' routerLink="/signup" >Confirm Location</ion-button>
-      </ion-col>
-    </ion-row>
-    
-  </ion-grid>
+  <form class="ion-padding" [formGroup]="signupForm" (ngSubmit)="submitForm()" #myForm="ngForm">
+    <ion-grid>
+      <ion-row class="fld-row">
+        <ion-col>
+          <ion-input type="text" inputmode="text" formControlName="street_1" placeholder="Street 1*" class="number-fld"></ion-input>
+          <div class="error_msg" *ngIf="
+            formControl.street_1.invalid &&
+            (formControl.street_1.dirty ||
+              formControl.street_1.touched ||
+              myForm.submitted)
+          ">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>Please enter street 1</span>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fld-row">
+        <ion-col>
+          <ion-input type="text" inputmode="text" formControlName="street_2" placeholder="Street 2" class="number-fld"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fld-row">
+        <ion-col>
+          <ion-input type="text" inputmode="text" formControlName="City" placeholder="City*" class="number-fld"></ion-input>
+          <div class="error_msg" *ngIf="
+            formControl.City.invalid &&
+            (formControl.City.dirty ||
+              formControl.City.touched ||
+              myForm.submitted)
+          ">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>Please enter city</span>
+          </div>
+        </ion-col>
+        <ion-col>
+          <ion-input type="text" inputmode="text" formControlName="State" placeholder="State*" class="number-fld"></ion-input>
+          <div class="error_msg" *ngIf="
+            formControl.State.invalid &&
+            (formControl.State.dirty ||
+              formControl.State.touched ||
+              myForm.submitted)
+          ">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>Please enter state</span>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="fld-row">
+        <ion-col>
+          <ion-input type="number" inputmode="number" formControlName="Zip" placeholder="Zip*" class="number-fld"></ion-input>
+          <div class="error_msg" *ngIf="
+            formControl.Zip.invalid &&
+            (formControl.Zip.dirty ||
+              formControl.Zip.touched ||
+              myForm.submitted)
+          ">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>Please enter zip</span>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button color="primary" shape='round' type="submit">Locate</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+<ion-grid class="ion-no-padding">
+  <ion-row class="ion-no-padding">
+    <ion-col>
+      <div class="bap-large">
+        <!-- <ion-img class="map" src="assets/images/map-large.png"></ion-img>           -->
+        <agm-map [latitude]="latitude" [longitude]="longitude">
+          <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+        </agm-map>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-padding">
+    <ion-col class="location-data">
+      <p><ion-icon name="location-outline"></ion-icon> C-1 4floor - Martin burn i spec 1 Street</p>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-padding-start ion-padding-end ion-margin-top ion-padding-top">
+    <ion-col class="map-btn">
+      <ion-button color="medium" shape='round' routerLink="/signup" disabled>Confirm Location</ion-button>
+    </ion-col>
+  </ion-row>
+  
+</ion-grid>
 </ion-content>
