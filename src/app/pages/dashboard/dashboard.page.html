@@ -66,61 +66,12 @@
               <span>{{item.subcategory_name}}</span>
               <strong class="brand_name">{{item.brand_name}}</strong>
               <h3>{{item.product_name}}</h3>
-              <ion-select (ngModelChange)="valCheck($event)" [(ngModel)]="priceVal" placeholder="{{item.default_quantity + item.default_unit}}" class="custom-options" >
+              <ion-select (ionChange)="handleChangeFeatured($event,item,item.product_id)" placeholder="{{item.default_quantity + item.default_unit}}" class="custom-options" >
                 <ion-select-option  *ngFor="let dropVal of item.variation" [value]="dropVal">{{dropVal.quantity + dropVal.unit}} </ion-select-option>              
               </ion-select>
-              <!-- <ion-select (ngModelChange)="valCheck($event)" [(ngModel)]="priceVal" placeholder="{{item.variation[0].quantity + item.variation[0].unit}}" class="custom-options" >
-                <ion-select-option  *ngFor="let dropVal of item.variation"  [value]="dropVal">{{dropVal.quantity + dropVal.unit}} </ion-select-option>              
-              </ion-select> -->
-              <div class="price">              
-                  <h4>{{this.sellPrice=='' ? item.default_sell_price : this.sellPrice}}</h4>
-                  <del>{{item.default_discount_price}}</del>
-              </div>
-              <ion-button>Add</ion-button>
-            </div>        
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <ion-card-content>
-            <div class="product-img">
-              <img src="assets/images/product1.png"/>
-            </div>
-            <div class="product-content">       
-              <span>Staples</span>
-              <strong class="brand_name">Tata Sampann</strong>
-              <h3>Tata Sampann Masoor Dal</h3>
-              <ion-select placeholder="500g" class="custom-options" value="500g">
-                <ion-select-option >500g</ion-select-option>
-                <ion-select-option >1 Kg</ion-select-option>
-              </ion-select>
               <div class="price">
-                  <h4>€1.99</h4>
-                  <del>€2.99</del>
-              </div>
-              <ion-button>Add</ion-button>
-            </div>        
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <ion-card-content>
-            <div class="product-img">
-              <img src="assets/images/product1.png"/>
-            </div>
-            <div class="product-content">       
-              <span>Staples</span>
-              <strong class="brand_name">Tata Sampann</strong>
-              <h3>Tata Sampann Masoor Dal</h3>
-              <ion-select placeholder="500g" class="custom-options" value="500g">
-                <ion-select-option >500g</ion-select-option>
-                <ion-select-option >1 Kg</ion-select-option>
-              </ion-select>
-              <div class="price">
-                  <h4>€1.99</h4>
-                  <del>€2.99</del>
+                <h4>{{item.default_sell_price}}</h4>
+                <del>{{item.default_discount_price}}</del>
               </div>
               <ion-button>Add</ion-button>
             </div>        
@@ -146,87 +97,30 @@
         </div>
       </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col class="pos-rel headline-bestsellers">
+        <h2>Best Sellers</h2>
+      </ion-col>
+    </ion-row>
     <ion-slides [options]="featuredSlide" >
-      <ion-slide>
+      <ion-slide *ngFor="let item of bestSellersProductList">
         <ion-card>
           <ion-card-content>
             <div class="product-img">
-              <img src="assets/images/product1.png"/>
+              <img src={{item.product_image}}/>
             </div>
             <div class="product-content">       
-              <span>Staples</span>
-              <h3>Tata Sampann Masoor Dal</h3>
-              <ion-select placeholder="500g" class="custom-options" value="500g">
-                <ion-select-option >500g</ion-select-option>
-                <ion-select-option >1 Kg</ion-select-option>
+              <span>{{item.subcategory_name}}</span>
+              <strong class="brand_name">{{item.brand_name}}</strong>
+              <h3>{{item.product_name}}</h3>
+              <ion-select (ionChange)="handleChangeBestsellers($event,item,item.product_id)" placeholder="{{item.default_quantity + item.default_unit}}" class="custom-options" >
+                <ion-select-option  *ngFor="let dropVal of item.variation" [value]="dropVal">{{dropVal.quantity + dropVal.unit}} </ion-select-option>              
               </ion-select>
-              <ion-row>
-                <ion-col>
-                  <div class="price">
-                      <h4>€1.99</h4>
-                      <del>€2.99</del>
-                  </div>
-                </ion-col>
-                <ion-col>
-                  <ion-button>Add</ion-button>
-                </ion-col>
-              </ion-row>
-            </div>        
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <ion-card-content>
-            <div class="product-img">
-              <img src="assets/images/product1.png"/>
-            </div>
-            <div class="product-content">       
-              <span>Staples</span>
-              <h3>Tata Sampann Masoor Dal</h3>
-              <ion-select placeholder="500g" class="custom-options" value="500g">
-                <ion-select-option >500g</ion-select-option>
-                <ion-select-option >1 Kg</ion-select-option>
-              </ion-select>
-              <ion-row>
-                <ion-col>
-                  <div class="price">
-                      <h4>€1.99</h4>
-                      <del>€2.99</del>
-                  </div>
-                </ion-col>
-                <ion-col>
-                  <ion-button>Add</ion-button>
-                </ion-col>
-              </ion-row>
-            </div>        
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <ion-card-content>
-            <div class="product-img">
-              <img src="assets/images/product1.png"/>
-            </div>
-            <div class="product-content">       
-              <span>Staples</span>
-              <h3>Tata Sampann Masoor Dal</h3>
-              <ion-select placeholder="500g" class="custom-options" value="500g">
-                <ion-select-option >500g</ion-select-option>
-                <ion-select-option >1 Kg</ion-select-option>
-              </ion-select>
-              <ion-row>
-                <ion-col>
-                  <div class="price">
-                      <h4>€1.99</h4>
-                      <del>€2.99</del>
-                  </div>
-                </ion-col>
-                <ion-col>
-                  <ion-button>Add</ion-button>
-                </ion-col>
-              </ion-row>
+              <div class="price">
+                <h4>{{item.default_sell_price}}</h4>
+                <del>{{item.default_discount_price}}</del>
+              </div>
+              <ion-button>Add</ion-button>
             </div>        
           </ion-card-content>
         </ion-card>
