@@ -1,15 +1,69 @@
 <ion-menu menuId="main-menu" content-id="main" >
-  <ion-header >
-    <ion-toolbar color="primary">
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
+  <ion-header>
+    <div class="header-top">
+      <div class="user">
+        <img src="assets/images/user-2.png" alt="">
+        <span class="user-tick"><ion-icon name="checkmark-outline"></ion-icon></span>
+      </div>
+      <div class="user-name">
+        {{this.userDtls.customer_name}}
+        <span><ion-icon name="call"></ion-icon> {{this.userDtls.phone}} <a class="edit">Edit</a> </span>
+      </div>
+      <a class="notification">
+        <ion-icon name="notifications"></ion-icon>
+        <span class="circle"></span>
+      </a>
+      <div class="location">
+        <div class="location-inner">
+          <h4><ion-icon name="location"></ion-icon> Your Current Location <a class="edit">Edit</a></h4>
+          <p>{{this.userDtls.shop_name + " " + this.userDtls.address1 + " " + this.userDtls.address2 + " " + this.userDtls.city + " " + this.userDtls.country + " " + this.userDtls.pincode}}</p>
+        </div>
+      </div>
+    </div>
   </ion-header>
-  <ion-content color="dark">
+  <ion-content>
     <ion-list class="sidebar">
       <ion-menu-toggle>
-        <ion-item routerLink="dashboard" color="dark">
-          <ion-icon name="mail" slot="start"></ion-icon>
-          <ion-label>Dashboard</ion-label>
+        <ion-item detail-icon="none" routerLink="dashboard" class="menu-link" lines="none">
+          <ion-label>Home</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item detail-icon="none" routerLink="" class="menu-link" lines="none">
+          <ion-label>Manage Profit Loss</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item detail-icon="none" routerLink="shop-by-category" class="menu-link" lines="none">
+          <ion-label>Shop by Category</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item detail-icon="none" routerLink="featuredproducts" class="menu-link" lines="none">
+          <ion-label>Featured Products</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item detail-icon="none" routerLink="bestsellers" class="menu-link" lines="none">
+          <ion-label>Best Sellers</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item detail-icon="none" routerLink="" class="menu-link" lines="none">
+          <ion-label>Terms and Conditions</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item detail-icon="none" routerLink="" class="menu-link" lines="none">
+          <ion-label>Privacy Policy</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <!-- <ion-item (click)="logOut()" class="menu-link"  detail-icon="none" lines="none">
+          <ion-label>Logout</ion-label>
+        </ion-item> -->
+        <ion-item id="open-modal" expand="block" class="menu-link" lines="none" detail-icon="none">
+          <ion-label>Logout</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <!-- <ion-menu-toggle>
@@ -30,30 +84,58 @@
           <ion-label name="Category">Category</ion-label>
         </ion-item>
       </ion-menu-toggle> -->
-      <ion-menu-toggle>
-        <ion-item routerLink="shop-by-category" color="dark">
+      <!-- <ion-menu-toggle>
+        <ion-item routerLink="shop-by-category">
           <ion-icon name="mail" slot="start"></ion-icon>
           <ion-label>Shop By Category</ion-label>
         </ion-item>
-      </ion-menu-toggle>
+      </ion-menu-toggle> -->
       <!-- <ion-menu-toggle>
         <ion-item routerLink="contact" color="dark">
           <ion-icon name="mail" slot="start"></ion-icon>
           <ion-label>Contact</ion-label>
         </ion-item>
       </ion-menu-toggle> -->
-      <ion-menu-toggle>
-        <ion-item routerLink="user-menu" color="dark">
+      <!-- <ion-menu-toggle>
+        <ion-item routerLink="user-menu" >
           <ion-icon name="mail" slot="start"></ion-icon>
           <ion-label>Menus</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
-        <ion-item (click)="logOut()" color="dark">
+        <ion-item (click)="logOut()">
           <ion-icon name="mail" slot="start"></ion-icon>
           <ion-label>Logout</ion-label>
         </ion-item>
-      </ion-menu-toggle>
+      </ion-menu-toggle> -->
     </ion-list>
+    <ion-modal #modal trigger="open-modal" class="logout-modal" [isOpen]="isLanguageModal">
+      <ng-template>
+        <ion-content>
+          <!-- <ion-toolbar>
+            <ion-title>Modal</ion-title>
+            <ion-buttons slot="end">
+              <ion-button color="light" (click)="modal.dismiss()">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar> -->
+          <ion-list>
+            <ion-item lines="none">
+              <ion-label>
+                <h2>Logout</h2>
+                <p>Are you sure want to log out?</p>
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none" class="ion-item-btmgrp">
+              <ion-buttons slot="start" class="mr-less">
+                <ion-button color="light" (click)="modal.dismiss()" class="cancel-btn">Cancel</ion-button>
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button color="light" (click)="logOut()" class="logout-btn">Logout</ion-button>
+              </ion-buttons>
+            </ion-item>            
+          </ion-list>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </ion-content>
 </ion-menu>

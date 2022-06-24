@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 // import { GetStartedPage } from '../../auth/get-started/get-started.page';
 const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('../../auth/get-started/get-started.module').then( m => m.GetStartedPageModule)
-  },
+  // {
+  //   path: '',
+  //   loadChildren: () => import('../../auth/get-started/get-started.module').then( m => m.GetStartedPageModule)
+  // },
   // {
   //   path: '',
   //   component: GetStartedPage

@@ -3,10 +3,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { LoginGuardService } from './shared/services/login-guard.service';
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   canActivate: [LoginGuardService],
+  //   loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule)
+  // },
   {
     path: '',
     canActivate: [LoginGuardService],
-    loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule)
+    loadChildren: () => import('./auth/get-started/get-started.module').then( m => m.GetStartedPageModule)
   },
   {
     path: 'about',
@@ -16,11 +21,11 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
-  {
-    path: 'get-started',
-    canActivate: [LoginGuardService],
-    loadChildren: () => import('./auth/get-started/get-started.module').then( m => m.GetStartedPageModule)
-  },
+  // {
+  //   path: 'get-started',
+  //   canActivate: [LoginGuardService],
+  //   loadChildren: () => import('./auth/get-started/get-started.module').then( m => m.GetStartedPageModule)
+  // },
   {
 		path: '',
 		canActivate: [AuthGuardService],

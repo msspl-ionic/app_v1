@@ -79,6 +79,7 @@ export class OtpPage implements OnInit {
 		this.subscriptions.push(this.service.ApiCall(param, `user/verify-otp`, 'POST').subscribe(result => {
       console.log(result);
       this.storage.set(environment.TOKEN_KEY, result.response.data.token);
+      // this.storage.set("UserDeatils", result.response.data);
       this.common.authenticationState.next(true);
 			this.myForm.resetForm();
       this._router.navigate(['/dashboard']);
