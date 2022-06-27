@@ -16,14 +16,14 @@ export class DashboardPage implements OnInit {
   public sellPrice = '';
   public discountPrice = '';
   public bestSellersProductList: any = [];
-  
+  public snacksBranded: any = [];
 
 
   ngOnInit() {
     this.categoryList();
     this.featuredProduct(1);
     this.featuredProduct(2);
-    console.log(this.sellPrice,"jjj")
+    // this.dashboarsProduct();
   }
   // slider jayanta
   slideOptsOne = {
@@ -65,7 +65,6 @@ export class DashboardPage implements OnInit {
     };    
     // return;
 		this.subscriptions.push(this.service.ApiCall(param, `product/bestfeaturedproduct`, 'POST').subscribe(result => {
-      console.log(result,"result")
       if(param.list_type == 1){
         this.featuredProductList = result.response.data.featured_product;
       }else{
@@ -87,7 +86,6 @@ export class DashboardPage implements OnInit {
         this.bestSellersProductList[i]['default_quantity'] = this.bestSellersProductList[i].variation[0].quantity;
         this.bestSellersProductList[i]['default_unit'] = this.bestSellersProductList[i].variation[0].unit;       
       }
-      console.log(this.bestSellersProductList,"this.bestSellersProductList")
 		}, apiError => {
         console.log('API error');
 		}))
@@ -107,6 +105,22 @@ export class DashboardPage implements OnInit {
     this.discountPrice = ev.target.value.discount_price
     item.default_discount_price = this.discountPrice;
   }
+
+
+
+  // dashboarsProduct() {
+	// 	let param: any = {
+  //     lang_name:2,
+  //     device_os:"ios"
+  //   };    
+  //   // return;
+	// 	this.subscriptions.push(this.service.ApiCall(param, `category/dashboardproducts`, 'POST').subscribe(result => {      
+  //     this.snacksBranded = result.response.data;
+  //     console.log(this.snacksBranded,"this.snacksBranded")
+	// 	}, apiError => {
+  //       console.log('API error');
+	// 	}))
+	// }
 
 
   
