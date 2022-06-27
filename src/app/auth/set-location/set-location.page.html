@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <form class="ion-padding" [formGroup]="signupForm" (ngSubmit)="submitForm()" #myForm="ngForm">
+  <form class="ion-padding" [formGroup]="signupForm" (ngSubmit)="submitForm('Locate')" #myForm="ngForm">
     <ion-grid>
       <ion-row class="fld-row">
         <ion-col>
@@ -31,7 +31,7 @@
       </ion-row>
       <ion-row class="fld-row">
         <ion-col>
-          <ion-input type="text" inputmode="text" formControlName="City" placeholder="City*" class="number-fld"></ion-input>
+          <ion-input type="text" disabled="true" inputmode="text" formControlName="City" placeholder="City*" class="number-fld"></ion-input>
           <div class="error_msg" *ngIf="
             formControl.City.invalid &&
             (formControl.City.dirty ||
@@ -43,7 +43,7 @@
           </div>
         </ion-col>
         <ion-col>
-          <ion-input type="text" inputmode="text" formControlName="State" placeholder="State*" class="number-fld"></ion-input>
+          <ion-input type="text" disabled="true" inputmode="text" formControlName="State" placeholder="State*" class="number-fld"></ion-input>
           <div class="error_msg" *ngIf="
             formControl.State.invalid &&
             (formControl.State.dirty ||
@@ -57,7 +57,7 @@
       </ion-row>
       <ion-row class="fld-row">
         <ion-col>
-          <ion-input type="number" inputmode="number" formControlName="Zip" placeholder="Zip*" class="number-fld"></ion-input>
+          <ion-input type="number" inputmode="number" formControlName="Zip" placeholder="Zip" class="number-fld"></ion-input>
           <div class="error_msg" *ngIf="
             formControl.Zip.invalid &&
             (formControl.Zip.dirty ||
@@ -71,32 +71,38 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button color="primary" shape='round' type="submit">Locate</ion-button>
+          <ion-button color="primary" shape='round' (click)="submitForm('Locate')" type="submit">Locate</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </form>
-<ion-grid class="ion-no-padding">
-  <ion-row class="ion-no-padding">
-    <ion-col>
-      <div class="bap-large">
-        <!-- <ion-img class="map" src="assets/images/map-large.png"></ion-img>           -->
-        <agm-map [latitude]="latitude" [longitude]="longitude">
-          <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-        </agm-map>
-      </div>
-    </ion-col>
-  </ion-row>
-  <ion-row class="ion-padding">
-    <ion-col class="location-data">
-      <p><ion-icon name="location-outline"></ion-icon> C-1 4floor - Martin burn i spec 1 Street</p>
-    </ion-col>
-  </ion-row>
-  <ion-row class="ion-padding-start ion-padding-end ion-margin-top ion-padding-top">
-    <ion-col class="map-btn">
-      <ion-button color="medium" shape='round' routerLink="/signup" disabled>Confirm Location</ion-button>
-    </ion-col>
-  </ion-row>
   
-</ion-grid>
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-no-padding">
+        <ion-col>
+          <div class="bap-large">
+            <!-- <ion-img class="map" src="assets/images/map-large.png"></ion-img>           -->
+            <!-- <agm-map #search [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                      (dragEnd)="markerDragEnd($event)"></agm-marker>
+            </agm-map> -->
+
+            <agm-map #search [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+              <agm-marker [latitude]="latitude" [longitude]="longitude" ></agm-marker>
+            </agm-map>
+          </div>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row class="ion-padding">
+        <ion-col class="location-data">
+          <p><ion-icon name="location-outline"></ion-icon> C-1 4floor - Martin burn i spec 1 Street</p>
+        </ion-col>
+      </ion-row> -->
+      <ion-row class="ion-padding-start ion-padding-end ion-margin-top ion-padding-top">
+        <ion-col class="map-btn">
+          <ion-button color="medium" shape='round' type="submit" (click)="submitForm('Confirm')">Confirm Location</ion-button>
+        </ion-col>
+      </ion-row>
+      
+    </ion-grid>
+  </form>
 </ion-content>

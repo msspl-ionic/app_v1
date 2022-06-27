@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../../shared/services/api.service';
-interface User {
-  id: number;
-  first: string;
-  last: string;
-}
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -17,29 +13,17 @@ export class DashboardPage implements OnInit {
   public categoryListArr:  any = [];
   public featuredProductList: any = [];
   public priceVal : any = {};
-  public sellPrice : any = {};
-  users: User[] = [
-    {
-      id: 1,
-      first: 'Alice',
-      last: 'Smith',
-    },
-    {
-      id: 2,
-      first: 'Bob',
-      last: 'Davis',
-    },
-    {
-      id: 3,
-      first: 'Charlie',
-      last: 'Rosenburg',
-    }
-  ];
+  public sellPrice = '';
+  public discountPrice = '';
+  public bestSellersProductList: any = [];
+  public snacksBranded: any = [];
 
 
   ngOnInit() {
     this.categoryList();
-    this.featuredProduct();
+    this.featuredProduct(1);
+    this.featuredProduct(2);
+    // this.dashboarsProduct();
   }
   // slider jayanta
   slideOptsOne = {
@@ -73,46 +57,73 @@ export class DashboardPage implements OnInit {
 		}))
 	}
 
-  featuredProduct() {
+  featuredProduct(type:1|2) {
 		let param: any = {
       lang_name:2,
       device_os:"ios",
-      list_type:1
+      list_type:type
     };    
     // return;
 		this.subscriptions.push(this.service.ApiCall(param, `product/bestfeaturedproduct`, 'POST').subscribe(result => {
-      this.featuredProductList = result.response.data.featured_product;
-      console.log(result,"result")
+      if(param.list_type == 1){
+        this.featuredProductList = result.response.data.featured_product;
+      }else{
+        this.bestSellersProductList= result.response.data.bestseller_product;
+      }
+
       // function 
+
       for (let i = 0; i < this.featuredProductList.length; i++) {
         this.featuredProductList[i]['default_sell_price'] = this.featuredProductList[i].variation[0].sell_price;
         this.featuredProductList[i]['default_discount_price'] = this.featuredProductList[i].variation[0].discount_price;
         this.featuredProductList[i]['default_quantity'] = this.featuredProductList[i].variation[0].quantity;
-        this.featuredProductList[i]['default_unit'] = this.featuredProductList[i].variation[0].unit;        
+        this.featuredProductList[i]['default_unit'] = this.featuredProductList[i].variation[0].unit;       
       }
-      console.log(this.featuredProductList)
 
+      for (let i = 0; i < this.bestSellersProductList.length; i++) {
+        this.bestSellersProductList[i]['default_sell_price'] = this.bestSellersProductList[i].variation[0].sell_price;
+        this.bestSellersProductList[i]['default_discount_price'] = this.bestSellersProductList[i].variation[0].discount_price;
+        this.bestSellersProductList[i]['default_quantity'] = this.bestSellersProductList[i].variation[0].quantity;
+        this.bestSellersProductList[i]['default_unit'] = this.bestSellersProductList[i].variation[0].unit;       
+      }
 		}, apiError => {
         console.log('API error');
 		}))
 	}
-  valCheck(evt) {
-    console.log(evt);
-    this.sellPrice = evt.sell_price;
-    
-    console.log(this.sellPrice,"this.sellPrice")
-    // console.log(evt.sell_price);
-    // this.sellPrice = evt.sell_price
-    // // this.priceVal = evt;
-    // console.log(evt,this.priceVal);
-    
-    
+
+  handleChangeFeatured(ev,item) {   
+    this.sellPrice = ev.target.value.sell_price
+    item.default_sell_price = this.sellPrice;
+    this.discountPrice = ev.target.value.discount_price
+    item.default_discount_price = this.discountPrice;
   }
 
 
-  // compareWith(o1: User, o2: User) {
-  //   return o1 && o2 ? o1.id === o2.id : o1 === o2;
-  // }
+  handleChangeBestsellers(ev,item) {   
+    this.sellPrice = ev.target.value.sell_price
+    item.default_sell_price = this.sellPrice;
+    this.discountPrice = ev.target.value.discount_price
+    item.default_discount_price = this.discountPrice;
+  }
+
+
+
+  // dashboarsProduct() {
+	// 	let param: any = {
+  //     lang_name:2,
+  //     device_os:"ios"
+  //   };    
+  //   // return;
+	// 	this.subscriptions.push(this.service.ApiCall(param, `category/dashboardproducts`, 'POST').subscribe(result => {      
+  //     this.snacksBranded = result.response.data;
+  //     console.log(this.snacksBranded,"this.snacksBranded")
+	// 	}, apiError => {
+  //       console.log('API error');
+	// 	}))
+	// }
+
+
+  
   
 
 }

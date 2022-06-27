@@ -2,7 +2,7 @@
   <ion-header>
     <div class="header-top">
       <div class="user">
-        <img src="assets/images/user-2.png" alt="">
+        <img src="{{this.userDtls.profile_image =='' ? 'assets/images/user-icon.png' : this.userDtls.profile_image}}" alt="">
         <span class="user-tick"><ion-icon name="checkmark-outline"></ion-icon></span>
       </div>
       <div class="user-name">
