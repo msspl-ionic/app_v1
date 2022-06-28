@@ -31,27 +31,6 @@ export class CommonService {
 
 	public onUpdateLocation$ = this._onUpdateLocation.asObservable();
 
-	public onUpdateLocation: BehaviorSubject<boolean> =
-	new BehaviorSubject<boolean>(false);
-
-	// Update Long Lat
-	public _onUpdateLat: BehaviorSubject<any> =
-		new BehaviorSubject<any>(null);
-
-	public onUpdateLat$ = this._onUpdateLat.asObservable();
-
-	public onUpdateLat: BehaviorSubject<boolean> =
-	new BehaviorSubject<boolean>(false);
-
-	public _onUpdateLong: BehaviorSubject<any> =
-		new BehaviorSubject<any>(null);
-
-	public onUpdateLong$ = this._onUpdateLong.asObservable();
-
-	public onUpdateLong: BehaviorSubject<boolean> =
-	new BehaviorSubject<boolean>(false);
-
-
 	getToken() {
 		// return new Observable((observer) => {
 		// 	this.storage.get(environment.TOKEN_KEY).then(token => {
@@ -62,7 +41,7 @@ export class CommonService {
 		// 	})
 		// })
 		return this.storage.get(environment.TOKEN_KEY).then(token => {
-			if (token) {
+			if(token) {
 				return token;
 			}
 		});
