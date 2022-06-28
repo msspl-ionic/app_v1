@@ -32,12 +32,12 @@
               <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
                 <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
               </agm-map>
-              <div class="ion-no-padding" *ngIf="fullLocation === null;else other_content">
+              <div class="ion-no-padding" *ngIf="fullAddress === undefined;else other_content">
                 <a routerLink="/set-location" class="click-here">Press here to set shop address<span>*</span></a>
               </div>
               <ng-template #other_content>
                 <div class="location-data ion-no-padding">
-                  <p><ion-icon name="location-outline"></ion-icon>{{fullLocation}}</p>
+                  <p><ion-icon name="location-outline"></ion-icon>{{fullAddress}}</p>
                   <a routerLink="/set-location" class="location_edit">Edit</a>
                 </div>
             </ng-template>
@@ -85,11 +85,11 @@
               </div>     
             </ion-col>
           </ion-row>
-          <!-- <ion-row class="fld-row">
+          <ion-row class="fld-row">
             <ion-col>
               <ion-input type="text" inputmode="text" name="taxid" placeholder="Tax ID" class="number-fld"></ion-input>     
             </ion-col>
-          </ion-row> -->
+          </ion-row>
           <ion-row class="mandatory_info">
             <ion-col>
               <span>*Represents all mandatory fields to be filled out.</span>

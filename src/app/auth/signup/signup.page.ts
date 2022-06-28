@@ -19,6 +19,8 @@ export class SignupPage implements OnInit {
   signupForm!: FormGroup;
   private subscriptions: Subscription[] = [];
   public fullLocation: any;
+  public fullAddress: any;
+
 
   title: string = 'AGM project';
   latitude: number = -8.838333;
@@ -51,18 +53,34 @@ export class SignupPage implements OnInit {
     this.createForm();
 
 	this.common.onUpdateLocation$.subscribe((data:any) => {
+		if(data) {
 		this.fullLocation = data;
+
+		this.fullAddress = (this.fullLocation.street_1 + "," + (this.fullLocation.street_2 !='' ? this.fullLocation.street_2 + "," : '')  + this.fullLocation.City + "," + this.fullLocation.State + ((this.fullLocation.Zip !='' && this.fullLocation.Zip !=null) ?  "," + this.fullLocation.Zip : ''));
+		
+		}
 	});
 
 	this.common.onUpdateLat$.subscribe((data:any) => {
-		this.latitude = data;
+		if(data) {
+			this.latitude = data;
+		}
 	});
 
 	this.common.onUpdateLong$.subscribe((data:any) => {
-		this.longitude = data;
+		if(data) {
+			this.longitude = data;	
+		}
 	});
 
-	console.warn("go",this.longitude);
+	// console.warn("sig",this.fullLocation);
+
+	// if (this.fullLocation) {
+		
+	// }
+	
+
+	console.warn("go",this.fullAddress);
 	
 	//load Places Autocomplete
     // this.mapsAPILoader.load().then(() => {
