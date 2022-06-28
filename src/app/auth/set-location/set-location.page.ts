@@ -18,7 +18,7 @@ export class SetLocationPage implements OnInit {
   @ViewChild('myForm') public myForm!: FormGroupDirective;
   signupForm!: FormGroup;
   public fullLocation: any;
-  public mapLatlong: any;
+  public streetVal: any;
   public mapLat: any;
   public mapLong: any;
 
@@ -75,6 +75,21 @@ export class SetLocationPage implements OnInit {
 		// 	  });
 		// 	});
 		// });
+
+		this.common.onUpdateLocation$.subscribe((data:any) => {
+			if(data) {
+			this.fullLocation = data;
+	
+			this.streetVal = this.fullLocation.street_1;
+			
+			}
+		});
+
+		this.signupForm.patchValue({
+			street_1: this.streetVal,
+		});
+
+		console.warn('be', this.streetVal);
 	}
 
    	getCoordinates(address){
@@ -84,7 +99,7 @@ export class SetLocationPage implements OnInit {
 		// console.log(data);
 		this.latitude = data.results[0].geometry.location.lat;
 		this.longitude = data.results[0].geometry.location.lng;
-		console.log("hii", this.latitude, "hello", this.longitude)
+		// console.log(this.latitude, this.longitude);
 	  })
   	}
 
@@ -111,9 +126,16 @@ export class SetLocationPage implements OnInit {
 		/* Update latitude & longitude */
 		this.getCoordinates(this.signupForm.value.street_1 + "," + this.city + "," + this.state);
 		// console.warn(this.signupForm.value);
-		this.fullLocation = (this.signupForm.value.street_1 + "," + (this.signupForm.value.street_2 !='' ? this.signupForm.value.street_2 + "," : '')  + this.signupForm.value.City + "," + this.signupForm.value.State + ((this.signupForm.value.Zip !='' && this.signupForm.value.Zip !=null) ?  "," + this.signupForm.value.Zip : ''));
-		
 
+		this.fullLocation = this.signupForm.value;
+
+		console.warn(this.signupForm.value);
+
+		// this.fullLocation = (this.signupForm.value.street_1 + "," + (this.signupForm.value.street_2 !='' ? this.signupForm.value.street_2 + "," : '')  + this.signupForm.value.City + "," + this.signupForm.value.State + ((this.signupForm.value.Zip !='' && this.signupForm.value.Zip !=null) ?  "," + this.signupForm.value.Zip : ''));
+
+		// this.streetVal = this.signupForm.value.street_1;
+		
+		// console.warn('af', this.streetVal);
 
 		// set a key/value
 		this.common._onUpdateLocation.next(this.fullLocation);
@@ -122,6 +144,12 @@ export class SetLocationPage implements OnInit {
 		// Map Long Lat
 		this.common._onUpdateLat.next(this.latitude );
 		this.common._onUpdateLong.next(this.longitude );
+
+		// this.signupForm.patchValue({
+		// 	street_1: this.streetVal,
+		// 	// formControlName2: myValue2 (can be omitted)
+		// });
+		// console.warn('be', this.streetVal);
 
 
 		// this.myForm.resetForm();
