@@ -60,7 +60,8 @@ export class MenuPage implements OnInit {
       //   this.userDtlsb = usrdtls;
       // });
       
-      this.userDtls = result.response.data
+      this.userDtls = result.response.data;
+      this.common.setProfileData(this.userDtls);
 
 		}, apiError => {
         console.log('API error');

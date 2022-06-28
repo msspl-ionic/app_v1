@@ -7,7 +7,11 @@
       </div>
       <div class="user-name">
         {{this.userDtls.customer_name}}
-        <span><ion-icon name="call"></ion-icon> {{this.userDtls.phone}} <a class="edit" routerLink="update-profile">Edit</a> </span>
+        <span><ion-icon name="call"></ion-icon> {{this.userDtls.phone}} 
+          <ion-menu-toggle>
+            <a class="edit" routerLink="profile">Edit</a>
+          </ion-menu-toggle>
+        </span>
       </div>
       <a class="notification">
         <ion-icon name="notifications"></ion-icon>

@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="back-navigate">
+      <ion-back-button text="" defaultHref="signup" icon="chevron-back-outline" color="light"></ion-back-button>
+      Update Profile
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="login-body cat_inr">
+      <!-- <div class="logo">
+        <a><img src="assets/images/logo.png"/></a>
+      </div> -->
+      <!-- <h2><img src="assets/images/logo.png" width="52" class="small-logo"/> Sign up</h2>
+      <p>You are few steps away from activating your account</p> -->
+      <form [formGroup]="signupForm" (ngSubmit)="submitForm()" #myForm="ngForm" class="profile-form">
+        <ion-grid>
+          <ion-row class="fld-row">
+            <ion-col>
+                <div class="img-upload">
+                  <span>fff</span>
+                </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="fld-row">
+            <ion-col>
+              <ion-input type="text" formControlName="shop_name" placeholder="Shop Name*" class="number-fld"></ion-input>
+              <div class="error_msg" *ngIf="
+                formControl.shop_name.invalid &&
+                (formControl.shop_name.dirty ||
+                  formControl.shop_name.touched ||
+                  myForm.submitted)
+              ">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>Please enter shop name</span>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="fld-row">
+            <ion-col>
+              <ion-input type="text" formControlName="vendor_name" placeholder="Name*" class="number-fld"></ion-input>
+              <div class="error_msg" *ngIf="
+                formControl.vendor_name.invalid &&
+                (formControl.vendor_name.dirty ||
+                  formControl.vendor_name.touched ||
+                  myForm.submitted)
+              ">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>Please enter vendor name</span>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="fld-row">
+            <ion-col>
+              <ion-input type="number" inputmode="tel" formControlName="phone_no" placeholder="Phone Number*" class="number-fld"></ion-input>
+              <div class="error_msg" *ngIf="
+                formControl.phone_no.invalid &&
+                (formControl.phone_no.dirty ||
+                  formControl.phone_no.touched ||
+                  myForm.submitted)
+              ">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>Please enter phone number</span>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="fld-row">
+            <ion-col>
+              <ion-input type="text" inputmode="email" formControlName="email_id" placeholder="Email Address" class="number-fld"></ion-input>
+              <div class="error_msg" *ngIf="
+                formControl.email_id.invalid &&
+                (formControl.email_id.dirty ||
+                  formControl.email_id.touched ||
+                  myForm.submitted)
+              ">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>Please enter email</span>
+              </div>     
+            </ion-col>
+          </ion-row>
+          <ion-row class="fld-row">
+            <ion-col>
+              <ion-input type="text" inputmode="text" name="taxid" placeholder="Tax ID" class="number-fld" formControlName="tax_id" ></ion-input>     
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-item lines="none" class="ftr_btm_btns ion-item-btmgrp">
+      <ion-buttons slot="start" class="mr-less">
+        <ion-button color="light" class="cancel_btn">Cancel</ion-button>
+      </ion-buttons>
+
+      <ion-buttons slot="start" class="m-less">
+        <ion-button color="light" class="save_btn">Save Changes</ion-button>
+      </ion-buttons>
+    </ion-item>   
+  </ion-toolbar>
+</ion-footer>

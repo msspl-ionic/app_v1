@@ -52,6 +52,18 @@ export class CommonService {
 	new BehaviorSubject<boolean>(false);
 
 
+	public _onProfileData: BehaviorSubject<any> =
+		new BehaviorSubject<any>(null);
+	public _onProfileDataAll$ =
+		this._onProfileData.asObservable();
+
+	
+
+	public setProfileData(data: []): void {
+		this._onProfileData.next(data);
+	}
+
+
 	getToken() {
 		// return new Observable((observer) => {
 		// 	this.storage.get(environment.TOKEN_KEY).then(token => {
