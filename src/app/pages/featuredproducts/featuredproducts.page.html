@@ -12,7 +12,7 @@
 
 <ion-content class="category-page">
   <div class="cat_inr">
-    <ion-card class="pro_item" *ngFor="let item of catFeaturedProductArr">
+    <ion-card class="pro_item" *ngFor="let item of featuredProductList">
       <ion-item class="ion-align-items-center" lines="none">
         <ion-thumbnail slot="start">
           <img src="{{item.product_image}}">
@@ -28,18 +28,12 @@
           <strong class="brand_name">{{item.brand_name}}</strong>
           <h3>{{item.product_name}}</h3>
           <!-- <p>Fortune Kachi Ghani Mustard Oil Pouch</p> -->
-          <div class="select_wrap">
-            <ion-select (ngModelChange)="valCheck($event,item.product_id)" [(ngModel)]="priceVal" placeholder="{{item.variation[0].quantity + item.variation[0].unit}}" class="custom-options">
-              <!-- <ion-select-option >500g</ion-select-option>
-              <ion-select-option >1 Kg</ion-select-option> -->
-              <ion-select-option *ngFor="let dropVal of item.variation" [value]="dropVal">{{dropVal.quantity + dropVal.unit}} </ion-select-option> 
-            </ion-select>
-          </div>
-          <div class="price">              
-              <!-- <h4>{{priceVal.sell_price}}</h4> -->
-              <!-- <del>{{priceVal.discount_price}}</del> -->
-              <h4>301.00 AOA</h4>
-              <del>401.00 AOA</del>
+          <ion-select (ionChange)="handleChangeFeatured($event,item)" placeholder="{{item.default_quantity + item.default_unit}}" class="custom-options" >
+            <ion-select-option  *ngFor="let dropVal of item.variation" [value]="dropVal">{{dropVal.quantity + dropVal.unit}} </ion-select-option>              
+          </ion-select>
+          <div class="price">
+            <h4>{{item.default_sell_price}}</h4>
+            <del>{{item.default_discount_price}}</del>
           </div>
           <a class="view-more">ADD</a>
         </div>

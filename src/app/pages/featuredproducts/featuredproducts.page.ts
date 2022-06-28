@@ -13,9 +13,10 @@ import { AlertController } from '@ionic/angular';
 })
 export class FeaturedproductsPage implements OnInit {
   private subscriptions: Subscription[] = [];
-  public catFeaturedProductArr: any;
-  public priceVal : any;
-  public sellPrice : any;
+  public featuredProductList: any;
+  public priceVal : any = {};
+  public sellPrice = '';
+  public discountPrice = '';
 
   constructor(
     private _router: Router,
@@ -28,6 +29,7 @@ export class FeaturedproductsPage implements OnInit {
 
   ngOnInit() {
     this.getFeaturedproducts();
+    // this.featuredProduct(2);
   }
 
   getFeaturedproducts(){
@@ -40,7 +42,15 @@ export class FeaturedproductsPage implements OnInit {
 		this.subscriptions.push(this.service.ApiCall(param, `product/bestfeaturedproduct`, 'POST').subscribe(result => {
       // console.log(result.response.data);
       // console.warn(result.response.data.featured_product);
-      this.catFeaturedProductArr = result.response.data.featured_product;
+      // this.catFeaturedProductArr = result.response.data.featured_product;
+      this.featuredProductList = result.response.data.featured_product;
+
+      for (let i = 0; i < this.featuredProductList.length; i++) {
+        this.featuredProductList[i]['default_sell_price'] = this.featuredProductList[i].variation[0].sell_price;
+        this.featuredProductList[i]['default_discount_price'] = this.featuredProductList[i].variation[0].discount_price;
+        this.featuredProductList[i]['default_quantity'] = this.featuredProductList[i].variation[0].quantity;
+        this.featuredProductList[i]['default_unit'] = this.featuredProductList[i].variation[0].unit;
+      }
      
 		}, async apiError => {
       console.log(apiError);
@@ -55,14 +65,11 @@ export class FeaturedproductsPage implements OnInit {
         // console.log(apiError.error.response.status.msg);
 		}))
   }
-  valCheck(evt,id) {
-    // console.log(evt,id)
-    // console.log(evt.sell_price);
-    // this.sellPrice = evt.sell_price
-    // // this.priceVal = evt;
-    // console.log(evt,this.priceVal);
-    
-    
+  handleChangeFeatured(ev,item) {   
+    this.sellPrice = ev.target.value.sell_price
+    item.default_sell_price = this.sellPrice;
+    this.discountPrice = ev.target.value.discount_price
+    item.default_discount_price = this.discountPrice;
   }
 
 }
