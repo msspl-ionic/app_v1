@@ -20,6 +20,7 @@ export class CategoryPage implements OnInit {
   public sellPrice = '';
   public discountPrice = '';
   public category_id : any;
+  public catTitle : any;
 
   constructor(
     private _router: Router,
@@ -35,6 +36,11 @@ export class CategoryPage implements OnInit {
 
   ngOnInit() {
     this.getFeaturedproducts();
+
+    this.common._onUpdateCatTitle$.subscribe((data:any) => {
+			this.catTitle = data;
+		});
+    console.warn("hii",this.catTitle);
   }
 
   getFeaturedproducts(){

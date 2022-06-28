@@ -32,8 +32,10 @@ export class CommonService {
 
 	public _onProfileData: BehaviorSubject<any> =
 		new BehaviorSubject<any>(null);
-	public _onProfileDataAll$ =
-		this._onProfileData.asObservable();
+	public _onProfileDataAll$ =	this._onProfileData.asObservable();
+
+	public _onUpdateCatTitle: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+	public _onUpdateCatTitle$ =	this._onUpdateCatTitle.asObservable();
 
 	
 

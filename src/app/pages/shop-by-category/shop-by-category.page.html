@@ -11,7 +11,7 @@
         <!-- <h2>Fruits & Vegetables</h2> -->
         <h2>{{item.category_name}}</h2>
       </ion-label>
-      <ion-button fill="outline" slot="end" (click)="categoryNav(item.category_id)">
+      <ion-button fill="outline" slot="end" (click)="categoryNav(item.category_id,item.category_name)">
         <ion-icon slot="start" name="chevron-forward-outline"></ion-icon>
       </ion-button>
     </ion-item>
