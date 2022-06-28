@@ -25,13 +25,30 @@ export class CommonService {
 	public authenticationState: BehaviorSubject<boolean> =
 	new BehaviorSubject<boolean>(false);
 
-
+	// Update Location
 	public _onUpdateLocation: BehaviorSubject<any> =
 		new BehaviorSubject<any>(null);
 
 	public onUpdateLocation$ = this._onUpdateLocation.asObservable();
 
 	public onUpdateLocation: BehaviorSubject<boolean> =
+	new BehaviorSubject<boolean>(false);
+
+	// Update Long Lat
+	public _onUpdateLat: BehaviorSubject<any> =
+		new BehaviorSubject<any>(null);
+
+	public onUpdateLat$ = this._onUpdateLat.asObservable();
+
+	public onUpdateLat: BehaviorSubject<boolean> =
+	new BehaviorSubject<boolean>(false);
+
+	public _onUpdateLong: BehaviorSubject<any> =
+		new BehaviorSubject<any>(null);
+
+	public onUpdateLong$ = this._onUpdateLong.asObservable();
+
+	public onUpdateLong: BehaviorSubject<boolean> =
 	new BehaviorSubject<boolean>(false);
 
 

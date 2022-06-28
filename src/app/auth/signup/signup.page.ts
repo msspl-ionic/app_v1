@@ -54,7 +54,15 @@ export class SignupPage implements OnInit {
 		this.fullLocation = data;
 	});
 
-	console.warn(this.fullLocation);
+	this.common.onUpdateLat$.subscribe((data:any) => {
+		this.latitude = data;
+	});
+
+	this.common.onUpdateLong$.subscribe((data:any) => {
+		this.longitude = data;
+	});
+
+	console.warn("go",this.longitude);
 	
 	//load Places Autocomplete
     // this.mapsAPILoader.load().then(() => {

@@ -18,6 +18,9 @@ export class SetLocationPage implements OnInit {
   @ViewChild('myForm') public myForm!: FormGroupDirective;
   signupForm!: FormGroup;
   public fullLocation: any;
+  public mapLatlong: any;
+  public mapLat: any;
+  public mapLong: any;
 
     title: string = 'AGM project';
     latitude: number = -8.838333;
@@ -78,10 +81,10 @@ export class SetLocationPage implements OnInit {
 	fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+address+'&key='+this.API_KEY)
 	  .then(response => response.json())
 	  .then(data => {
-		console.log(data);
+		// console.log(data);
 		this.latitude = data.results[0].geometry.location.lat;
 		this.longitude = data.results[0].geometry.location.lng;
-		console.log(this.latitude, this.longitude)
+		console.log("hii", this.latitude, "hello", this.longitude)
 	  })
   	}
 
@@ -110,8 +113,17 @@ export class SetLocationPage implements OnInit {
 		// console.warn(this.signupForm.value);
 		this.fullLocation = (this.signupForm.value.street_1 + "," + (this.signupForm.value.street_2 !='' ? this.signupForm.value.street_2 + "," : '')  + this.signupForm.value.City + "," + this.signupForm.value.State + ((this.signupForm.value.Zip !='' && this.signupForm.value.Zip !=null) ?  "," + this.signupForm.value.Zip : ''));
 		
+
+
 		// set a key/value
 		this.common._onUpdateLocation.next(this.fullLocation);
+
+
+		// Map Long Lat
+		this.common._onUpdateLat.next(this.latitude );
+		this.common._onUpdateLong.next(this.longitude );
+
+
 		// this.myForm.resetForm();
 		if(buttonType == 'Confirm'){
 			this._router.navigate(['/signup']);
