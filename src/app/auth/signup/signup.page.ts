@@ -25,6 +25,10 @@ export class SignupPage implements OnInit {
   title: string = 'AGM project';
   latitude: number = -8.838333;
   longitude: number = 13.234444;
+  address1: string = '';
+  address2: string = '';
+  pincode: string = '';
+
   city: string = 'Luanda';
   state: string = 'Angola';
   zoom: number = 12;
@@ -54,34 +58,16 @@ export class SignupPage implements OnInit {
 
 	this.common.onUpdateLocation$.subscribe((data:any) => {
 		if(data) {
-		this.fullLocation = data;
-
-		this.fullAddress = (this.fullLocation.street_1 + "," + (this.fullLocation.street_2 !='' ? this.fullLocation.street_2 + "," : '')  + this.fullLocation.City + "," + this.fullLocation.State + ((this.fullLocation.Zip !='' && this.fullLocation.Zip !=null) ?  "," + this.fullLocation.Zip : ''));
-		
+			this.fullLocation = data.location;
+			this.address1 = this.fullLocation.street_1;
+			this.address2 = this.fullLocation.street_2;
+			this.pincode = this.fullLocation.Zip;
+			this.latitude = data.latitude;
+			this.longitude = data.longitude;
+			this.fullAddress = (this.fullLocation.street_1 + "," + (this.fullLocation.street_2 !='' ? this.fullLocation.street_2 + "," : '')  + this.fullLocation.City + "," + this.fullLocation.State + ((this.fullLocation.Zip !='' && this.fullLocation.Zip !=null) ?  "," + this.fullLocation.Zip : ''));
 		}
 	});
 
-	this.common.onUpdateLat$.subscribe((data:any) => {
-		if(data) {
-			this.latitude = data;
-		}
-	});
-
-	this.common.onUpdateLong$.subscribe((data:any) => {
-		if(data) {
-			this.longitude = data;	
-		}
-	});
-
-	// console.warn("sig",this.fullLocation);
-
-	// if (this.fullLocation) {
-		
-	// }
-	
-
-	console.warn("go",this.fullAddress);
-	
 	//load Places Autocomplete
     // this.mapsAPILoader.load().then(() => {
 	// 	this.setCurrentLocation();
@@ -117,6 +103,7 @@ export class SignupPage implements OnInit {
 			vendor_name: ['', [Validators.required]],
 			phone_no: ['', [Validators.required]],
 			email_id: ['', [Validators.required]],
+			tax_id: ['']
 		})
 	}
 
@@ -130,15 +117,14 @@ export class SignupPage implements OnInit {
 		}
 		let param: any = {};
 		param = this.signupForm.value;
-		param['city'] = 'kolkata';
-		param['state'] = 'WB';
-		param['address1'] = 'Newtown, kolkata';
-		param['address2'] = 'kolkata';
-		param['pincode'] = '700013';
-		param['country'] = 'India';
-		// param['latitude'] = 'kolkata';
-		// param['longitude'] = 'kolkata';
-		param['tax_id'] = 'TX1234';
+		param['city'] = this.city;
+		param['state'] = this.state;
+		param['address1'] = this.address1;
+		param['address2'] = this.address2;
+		param['pincode'] = this.pincode;
+		param['country'] = this.state;
+		param['latitude'] = this.latitude;
+		param['longitude'] = this.longitude;
 		// param['device_os'] = 'kolkata';
 		// param['appversion'] = 'kolkata';
 

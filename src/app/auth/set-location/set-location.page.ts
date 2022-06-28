@@ -18,7 +18,6 @@ export class SetLocationPage implements OnInit {
   @ViewChild('myForm') public myForm!: FormGroupDirective;
   signupForm!: FormGroup;
   public fullLocation: any;
-  public streetVal: any;
   public mapLat: any;
   public mapLong: any;
 
@@ -78,18 +77,15 @@ export class SetLocationPage implements OnInit {
 
 		this.common.onUpdateLocation$.subscribe((data:any) => {
 			if(data) {
-			this.fullLocation = data;
-	
-			this.streetVal = this.fullLocation.street_1;
-			
+				this.fullLocation = data.location;
+				this.signupForm.patchValue({
+					street_1: this.fullLocation.street_1,
+					street_2: this.fullLocation.street_2,
+					Zip: this.fullLocation.Zip
+		
+				});			
 			}
 		});
-
-		this.signupForm.patchValue({
-			street_1: this.streetVal,
-		});
-
-		console.warn('be', this.streetVal);
 	}
 
    	getCoordinates(address){
@@ -118,10 +114,12 @@ export class SetLocationPage implements OnInit {
 	}
 
   	submitForm(buttonType): void {
-		console.log(buttonType);
+		
 		if (this.signupForm.invalid) {
 			return;
 		}
+		let locationParam:any = {};
+		
 		// console.log(buttonType); return;
 		/* Update latitude & longitude */
 		this.getCoordinates(this.signupForm.value.street_1 + "," + this.city + "," + this.state);
@@ -138,19 +136,11 @@ export class SetLocationPage implements OnInit {
 		// console.warn('af', this.streetVal);
 
 		// set a key/value
-		this.common._onUpdateLocation.next(this.fullLocation);
+		locationParam.location = this.fullLocation;
+		locationParam.latitude = this.latitude;
+		locationParam.longitude = this.longitude;
 
-
-		// Map Long Lat
-		this.common._onUpdateLat.next(this.latitude );
-		this.common._onUpdateLong.next(this.longitude );
-
-		// this.signupForm.patchValue({
-		// 	street_1: this.streetVal,
-		// 	// formControlName2: myValue2 (can be omitted)
-		// });
-		// console.warn('be', this.streetVal);
-
+		this.common._onUpdateLocation.next(locationParam);
 
 		// this.myForm.resetForm();
 		if(buttonType == 'Confirm'){
