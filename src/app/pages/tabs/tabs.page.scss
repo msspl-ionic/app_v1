@@ -1,0 +1,34 @@
+ion-tabs ion-tab-button svg path{
+    fill: #C4C4C4;
+}
+ion-tabs ion-tab-button ion-label{
+    font-weight: 600;
+    color: #7c7c7c;
+    font-size: 11px;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 6px;
+}
+ion-tabs ion-tab-button.tab-selected svg path{
+    fill: #03989E;
+}
+ion-tabs ion-tab-button.tab-selected ion-label{
+    color: #03989E;
+}
+ion-tabs ion-tab-bar{
+    padding: 15px 0;
+}
+ion-tabs ion-tab-button{
+    position: relative;
+}
+ion-tabs ion-tab-button:after{
+    background-color: transparent;
+    height: 2px;
+    width: 100%;
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+}
+ion-tabs ion-tab-button.tab-selected:after{
+    background-color: #03989E;
+}
