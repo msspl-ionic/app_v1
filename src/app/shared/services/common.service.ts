@@ -16,7 +16,6 @@ export class CommonService {
 		private storage: Storage
 	) { }
 
-	
 	public _onUpdatePhoneSubject: BehaviorSubject<any> =
 		new BehaviorSubject<any>(null);
 
@@ -30,6 +29,18 @@ export class CommonService {
 		new BehaviorSubject<any>(null);
 
 	public onUpdateLocation$ = this._onUpdateLocation.asObservable();
+
+	public _onProfileData: BehaviorSubject<any> =
+		new BehaviorSubject<any>(null);
+	public _onProfileDataAll$ =
+		this._onProfileData.asObservable();
+
+	
+
+	public setProfileData(data: []): void {
+		this._onProfileData.next(data);
+	}
+
 
 	getToken() {
 		// return new Observable((observer) => {
@@ -47,7 +58,7 @@ export class CommonService {
 		});
 	}
 
-	isAuthenticated() {	
+	isAuthenticated() {
 		const isLoggedIn = this.authenticationState.value;
 
 		console.log(isLoggedIn);
