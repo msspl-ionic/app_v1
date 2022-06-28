@@ -21,9 +21,11 @@ export class SignupPage implements OnInit {
   public fullLocation: any;
 
   title: string = 'AGM project';
-  latitude: number = 47.176418;
-  longitude: number = 5.614490;
-  zoom: number;
+  latitude: number = -8.838333;
+  longitude: number = 13.234444;
+  city: string = 'Luanda';
+  state: string = 'Angola';
+  zoom: number = 12;
   address: string;
   private geoCoder;
   @ViewChild('search',{static:false})
@@ -52,7 +54,15 @@ export class SignupPage implements OnInit {
 		this.fullLocation = data;
 	});
 
-	console.warn(this.fullLocation);
+	this.common.onUpdateLat$.subscribe((data:any) => {
+		this.latitude = data;
+	});
+
+	this.common.onUpdateLong$.subscribe((data:any) => {
+		this.longitude = data;
+	});
+
+	console.warn("go",this.longitude);
 	
 	//load Places Autocomplete
     // this.mapsAPILoader.load().then(() => {
@@ -77,7 +87,7 @@ export class SignupPage implements OnInit {
 	// 		//set latitude, longitude and zoom
 	// 		this.latitude = place.geometry.location.lat();
 	// 		this.longitude = place.geometry.location.lng();
-	// 		this.zoom = 12;
+	// 		this.zoom = 6;
 	// 	  });
 	// 	});
 	// });
@@ -146,7 +156,7 @@ export class SignupPage implements OnInit {
 			this.latitude = position.coords.latitude;
 			this.longitude = position.coords.longitude;
 			this.zoom = 8;
-			this.getAddress(this.latitude, this.longitude);
+			// this.getAddress(this.latitude, this.longitude);
 		  });
 		}
 	  }
@@ -156,7 +166,8 @@ export class SignupPage implements OnInit {
 		console.log($event);
 		this.latitude = $event.coords.lat;
 		this.longitude = $event.coords.lng;
-		this.getAddress(this.latitude, this.longitude);
+		console.log(this.latitude, this.longitude);
+		// this.getAddress(this.latitude, this.longitude);
 	  }
 	
 	  getAddress(latitude, longitude) {

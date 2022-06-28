@@ -1,10 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="back-navigate">
+      <ion-back-button text="" defaultHref="signup" icon="chevron-back-outline" color="light"></ion-back-button>
+      Update Profile
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <div class="login-body">
       <!-- <div class="logo">
         <a><img src="assets/images/logo.png"/></a>
       </div> -->
-      <h2><img src="assets/images/logo.png" width="52" class="small-logo"/> Sign up</h2>
-      <p>You are few steps away from activating your account</p>
+      <!-- <h2><img src="assets/images/logo.png" width="52" class="small-logo"/> Sign up</h2>
+      <p>You are few steps away from activating your account</p> -->
       <form [formGroup]="signupForm" (ngSubmit)="submitForm()" #myForm="ngForm">
         <ion-grid>
           <ion-row class="fld-row">
@@ -19,28 +27,6 @@
               <ion-icon name="information-circle-outline"></ion-icon>
               <span>Please enter shop name</span>
               </div>
-            </ion-col>
-          </ion-row>
-          <ion-row class="fld-row">
-            <ion-col>
-              <!-- <ion-img class="map" src="assets/images/map.png"></ion-img> -->
-              <!-- <agm-map #search [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-                  (dragEnd)="markerDragEnd($event)"></agm-marker>
-              </agm-map> -->
-
-              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-              </agm-map>
-              <div class="ion-no-padding" *ngIf="fullLocation === null;else other_content">
-                <a routerLink="/set-location" class="click-here">Press here to set shop address<span>*</span></a>
-              </div>
-              <ng-template #other_content>
-                <div class="location-data ion-no-padding">
-                  <p><ion-icon name="location-outline"></ion-icon>{{fullLocation}}</p>
-                  <a routerLink="/set-location" class="location_edit">Edit</a>
-                </div>
-            </ng-template>
             </ion-col>
           </ion-row>
           <ion-row class="fld-row">
@@ -85,31 +71,25 @@
               </div>     
             </ion-col>
           </ion-row>
-          <!-- <ion-row class="fld-row">
+          <ion-row class="fld-row">
             <ion-col>
               <ion-input type="text" inputmode="text" name="taxid" placeholder="Tax ID" class="number-fld"></ion-input>     
-            </ion-col>
-          </ion-row> -->
-          <ion-row class="mandatory_info">
-            <ion-col>
-              <span>*Represents all mandatory fields to be filled out.</span>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-button color="primary" shape='round' type="submit">Create my account</ion-button>
-              <div class="acc_link_txt"><p class="signup-withtext">Already have a MERKAAZ account? <a routerLink="/login">Login</a> </p></div>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="support_col">
-              <a href="tel:+244 900 000 000">
-                <span class="svg_wrap"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.21778 6.92444C4.49778 9.44 6.56 11.4933 9.07556 12.7822L11.0311 10.8267C11.2711 10.5867 11.6267 10.5067 11.9378 10.6133C12.9333 10.9422 14.0089 11.12 15.1111 11.12C15.6 11.12 16 11.52 16 12.0089V15.1111C16 15.6 15.6 16 15.1111 16C6.76444 16 0 9.23556 0 0.888889C0 0.4 0.4 0 0.888889 0H4C4.48889 0 4.88889 0.4 4.88889 0.888889C4.88889 2 5.06667 3.06667 5.39556 4.06222C5.49333 4.37333 5.42222 4.72 5.17333 4.96889L3.21778 6.92444Z" fill="white"/>
-                </svg></span> +244 900 000 000</a>
-              <p class="signup-withtext">Customer Support Team</p>
             </ion-col>
           </ion-row>
         </ion-grid>
       </form>
   </div>
 </ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-item lines="none" class="ftr_btm_btns">
+      <ion-buttons slot="start" class="mr-less">
+        <ion-button color="light" class="cancel_btn">Cancel</ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button color="light" class="save_btn">Save Changes</ion-button>
+      </ion-buttons>
+    </ion-item>   
+  </ion-toolbar>
+</ion-footer>

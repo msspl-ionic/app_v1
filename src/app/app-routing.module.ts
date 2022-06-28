@@ -80,6 +80,10 @@ const routes: Routes = [
   {
     path: 'featuredproducts',
     loadChildren: () => import('./pages/featuredproducts/featuredproducts.module').then( m => m.FeaturedproductsPageModule)
+  },
+  {
+    path: 'update-profile',
+    loadChildren: () => import('./auth/update-profile/update-profile.module').then( m => m.UpdateProfilePageModule)
   }
 ];
 @NgModule({

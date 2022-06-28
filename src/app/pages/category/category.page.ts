@@ -27,9 +27,8 @@ export class CategoryPage implements OnInit {
     private common: CommonService,
     private alertController: AlertController,
   ) { 
-    this.category_id = this._route.snapshot.params['id']
-    console.log(this._route.snapshot.params['id'])
-    
+    this.category_id = this._route.snapshot.params['id'];
+    console.log(this._route.snapshot.params['id']);
     
   }
 
