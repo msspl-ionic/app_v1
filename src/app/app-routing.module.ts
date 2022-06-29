@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { TabsPage } from './pages/tabs/tabs.page';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { LoginGuardService } from './shared/services/login-guard.service';
 const routes: Routes = [
@@ -17,10 +18,10 @@ const routes: Routes = [
     path: 'about',
     loadChildren: () => import('./pages/about/about.module').then(m => m.AboutPageModule),
   },
-  {
-    path: 'tabs',
-    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
-  },
+  // {
+  //   path: 'tabs',
+  //   loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
+  // },
   // {
   //   path: 'get-started',
   //   canActivate: [LoginGuardService],
@@ -29,7 +30,12 @@ const routes: Routes = [
   {
 		path: '',
 		canActivate: [AuthGuardService],
+    component: TabsPage,
 		children: [
+      // {
+      //   path: '',
+      //   loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
+      // },
 			{
         path: 'dashboard',
         loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
@@ -42,6 +48,18 @@ const routes: Routes = [
         path: 'shop-by-category',
         loadChildren: () => import('./pages/shop-by-category/shop-by-category.module').then( m => m.ShopByCategoryPageModule)
       },
+      {
+        path: 'featuredproducts',
+        loadChildren: () => import('./pages/featuredproducts/featuredproducts.module').then( m => m.FeaturedproductsPageModule)
+      },
+      {
+        path: 'update-profile',
+        loadChildren: () => import('./auth/update-profile/update-profile.module').then( m => m.UpdateProfilePageModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+      }
 		]
 	},
  
@@ -77,18 +95,18 @@ const routes: Routes = [
     path: 'congratulation',
     loadChildren: () => import('./auth/congratulation/congratulation.module').then( m => m.CongratulationPageModule)
   },
-  {
-    path: 'featuredproducts',
-    loadChildren: () => import('./pages/featuredproducts/featuredproducts.module').then( m => m.FeaturedproductsPageModule)
-  },
-  {
-    path: 'update-profile',
-    loadChildren: () => import('./auth/update-profile/update-profile.module').then( m => m.UpdateProfilePageModule)
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
-  }
+  // {
+  //   path: 'featuredproducts',
+  //   loadChildren: () => import('./pages/featuredproducts/featuredproducts.module').then( m => m.FeaturedproductsPageModule)
+  // },
+  // {
+  //   path: 'update-profile',
+  //   loadChildren: () => import('./auth/update-profile/update-profile.module').then( m => m.UpdateProfilePageModule)
+  // },
+  // {
+  //   path: 'profile',
+  //   loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+  // }
 ];
 @NgModule({
   imports: [

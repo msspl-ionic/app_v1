@@ -77,6 +77,7 @@ export class CommonService {
 		this.storage.remove(environment.TOKEN_KEY).then(() => {
 		  this.authenticationState.next(false);
 		  this._router.navigate(['/login']);
+		//   console.log("kkk")
 		});
 	}
 }

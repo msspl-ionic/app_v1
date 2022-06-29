@@ -38,11 +38,11 @@
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="text" formControlName="vendor_name" placeholder="Name*" class="number-fld"></ion-input>
+              <ion-input type="text" formControlName="customer_name" placeholder="Name*" class="number-fld"></ion-input>
               <div class="error_msg" *ngIf="
-                formControl.vendor_name.invalid &&
-                (formControl.vendor_name.dirty ||
-                  formControl.vendor_name.touched ||
+                formControl.customer_name.invalid &&
+                (formControl.customer_name.dirty ||
+                  formControl.customer_name.touched ||
                   myForm.submitted)
               ">
               <ion-icon name="information-circle-outline"></ion-icon>
@@ -52,11 +52,11 @@
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="number" inputmode="tel" formControlName="phone_no" placeholder="Phone Number*" class="number-fld"></ion-input>
+              <ion-input type="text" inputmode="tel" formControlName="phone" placeholder="Phone Number*" class="number-fld"></ion-input>
               <div class="error_msg" *ngIf="
-                formControl.phone_no.invalid &&
-                (formControl.phone_no.dirty ||
-                  formControl.phone_no.touched ||
+                formControl.phone.invalid &&
+                (formControl.phone.dirty ||
+                  formControl.phone.touched ||
                   myForm.submitted)
               ">
               <ion-icon name="information-circle-outline"></ion-icon>
@@ -66,11 +66,11 @@
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="text" inputmode="email" formControlName="email_id" placeholder="Email Address" class="number-fld"></ion-input>
+              <ion-input type="text" inputmode="email" formControlName="email" placeholder="Email Address" class="number-fld"></ion-input>
               <div class="error_msg" *ngIf="
-                formControl.email_id.invalid &&
-                (formControl.email_id.dirty ||
-                  formControl.email_id.touched ||
+                formControl.email.invalid &&
+                (formControl.email.dirty ||
+                  formControl.email.touched ||
                   myForm.submitted)
               ">
               <ion-icon name="information-circle-outline"></ion-icon>
@@ -84,11 +84,14 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+        <ion-buttons slot="start" class="m-less">
+          <ion-button color="light" class="save_btn" type="submit">Save Changes</ion-button>
+        </ion-buttons>
       </form>
   </div>
 </ion-content>
 
-<ion-footer class="ion-no-border">
+<!-- <ion-footer class="ion-no-border">
   <ion-toolbar>
     <ion-item lines="none" class="ftr_btm_btns ion-item-btmgrp">
       <ion-buttons slot="start" class="mr-less">
@@ -96,8 +99,8 @@
       </ion-buttons>
 
       <ion-buttons slot="start" class="m-less">
-        <ion-button color="light" class="save_btn">Save Changes</ion-button>
+        <ion-button color="light" class="save_btn" type="submit">Save Changes</ion-button>
       </ion-buttons>
     </ion-item>   
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

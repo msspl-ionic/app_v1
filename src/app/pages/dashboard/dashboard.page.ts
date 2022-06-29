@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../../shared/services/api.service';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -17,6 +16,7 @@ export class DashboardPage implements OnInit {
   public discountPrice = '';
   public bestSellersProductList: any = [];
   public snacksBranded: any = [];
+  
 
 
   ngOnInit() {
@@ -24,6 +24,7 @@ export class DashboardPage implements OnInit {
     this.featuredProduct(1);
     this.featuredProduct(2);
     // this.dashboarsProduct();
+
   }
   // slider jayanta
   slideOptsOne = {
