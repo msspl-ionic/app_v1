@@ -149,9 +149,10 @@ ion-button{
         margin-right: 5px;
     }
 }
-
+.map_cont,
 agm-map {
     height: 300px;
+    width: 100%;
 }
 .location-data {
     display: flex;

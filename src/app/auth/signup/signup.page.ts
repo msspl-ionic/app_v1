@@ -20,7 +20,7 @@ export class SignupPage implements OnInit {
   private subscriptions: Subscription[] = [];
   public fullLocation: any;
   public fullAddress: any;
-
+  showMap:boolean = false;
 
   title: string = 'AGM project';
   latitude: number = -8.838333;
@@ -31,10 +31,10 @@ export class SignupPage implements OnInit {
 
   city: string = 'Luanda';
   state: string = 'Angola';
-  zoom: number = 12;
+  zoom: number = 14;
   address: string;
   private geoCoder;
-  @ViewChild('search',{static:false})
+  @ViewChild('search') search: AgmMap;
   public searchElementRef: ElementRef;
 
   constructor(
@@ -47,7 +47,7 @@ export class SignupPage implements OnInit {
 	private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
   ) {
-	
+
    }
 
   // get a key/value pair
@@ -55,7 +55,6 @@ export class SignupPage implements OnInit {
   
   ngOnInit() {
     this.createForm();
-
 	this.common.onUpdateLocation$.subscribe((data:any) => {
 		if(data) {
 			this.fullLocation = data.location;
@@ -67,6 +66,11 @@ export class SignupPage implements OnInit {
 			this.fullAddress = (this.fullLocation.street_1 + "," + (this.fullLocation.street_2 !='' ? this.fullLocation.street_2 + "," : '')  + this.fullLocation.City + "," + this.fullLocation.State + ((this.fullLocation.Zip !='' && this.fullLocation.Zip !=null) ?  "," + this.fullLocation.Zip : ''));
 		}
 	});
+
+
+	setTimeout(() => {
+		this.showMap = true;
+	}, 100);
 
 	//load Places Autocomplete
     // this.mapsAPILoader.load().then(() => {

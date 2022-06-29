@@ -31,7 +31,6 @@ const routes: Routes = [
 		path: '',
 		canActivate: [AuthGuardService],
     // component: TabsPage,
-    // loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule),
 		children: [
 			{
         path: 'dashboard',
