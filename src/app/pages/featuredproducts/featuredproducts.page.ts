@@ -14,6 +14,7 @@ import { AlertController } from '@ionic/angular';
 export class FeaturedproductsPage implements OnInit {
   private subscriptions: Subscription[] = [];
   public featuredProductList: any;
+  public discountPercentage = '';
   public priceVal : any = {};
   public sellPrice = '';
   public discountPrice = '';
@@ -46,6 +47,7 @@ export class FeaturedproductsPage implements OnInit {
       this.featuredProductList = result.response.data.featured_product;
 
       for (let i = 0; i < this.featuredProductList.length; i++) {
+        this.featuredProductList[i]['default_discount_percentage'] = this.featuredProductList[i].variation[0].discount_percentage;
         this.featuredProductList[i]['default_sell_price'] = this.featuredProductList[i].variation[0].sell_price;
         this.featuredProductList[i]['default_discount_price'] = this.featuredProductList[i].variation[0].discount_price;
         this.featuredProductList[i]['default_quantity'] = this.featuredProductList[i].variation[0].quantity;
@@ -70,6 +72,8 @@ export class FeaturedproductsPage implements OnInit {
     item.default_sell_price = this.sellPrice;
     this.discountPrice = ev.target.value.discount_price
     item.default_discount_price = this.discountPrice;
+    this.discountPercentage = ev.target.value.discount_percentage
+    item.default_discount_percentage = this.discountPercentage;
   }
 
 }

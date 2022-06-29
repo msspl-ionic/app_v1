@@ -28,10 +28,11 @@
                 <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
                   (dragEnd)="markerDragEnd($event)"></agm-marker>
               </agm-map> -->
-
-              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-              </agm-map>
+              <div class="map_cont">
+                <agm-map *ngIf="showMap" #search  [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" >
+                  <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                </agm-map>
+              </div>
               <div class="ion-no-padding" *ngIf="fullAddress === undefined;else other_content">
                 <a routerLink="/set-location" class="click-here">Press here to set shop address<span>*</span></a>
               </div>

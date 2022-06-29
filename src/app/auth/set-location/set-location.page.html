@@ -79,14 +79,14 @@
     <ion-grid class="ion-no-padding">
       <ion-row class="ion-no-padding">
         <ion-col>
-          <div class="bap-large">
+          <div class="bap-large map_cont">
             <!-- <ion-img class="map" src="assets/images/map-large.png"></ion-img>           -->
             <!-- <agm-map #search [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
                 <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
                       (dragEnd)="markerDragEnd($event)"></agm-marker>
             </agm-map> -->
 
-            <agm-map #search [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+            <agm-map #search *ngIf="showMap" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
               <agm-marker [latitude]="latitude" [longitude]="longitude" ></agm-marker>
             </agm-map>
           </div>

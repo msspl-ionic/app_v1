@@ -20,13 +20,14 @@ export class SetLocationPage implements OnInit {
   public fullLocation: any;
   public mapLat: any;
   public mapLong: any;
+  showMap:boolean = false;
 
     title: string = 'AGM project';
     latitude: number = -8.838333;
     longitude: number = 13.234444;
 	city: string = 'Luanda';
 	state: string = 'Angola';
-    zoom: number = 12;
+    zoom: number = 14;
     address: string;
     private geoCoder;
     @ViewChild('search',{static:false})
@@ -86,6 +87,10 @@ export class SetLocationPage implements OnInit {
 				});			
 			}
 		});
+
+		setTimeout(() => {
+			this.showMap = true;
+		}, 100);
 	}
 
    	getCoordinates(address){
