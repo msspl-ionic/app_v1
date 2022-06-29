@@ -16,6 +16,7 @@ export class CategoryPage implements OnInit {
   
   private subscriptions: Subscription[] = [];
   public productListArr: any;
+  public discountPercentage: any;
   public priceVal : any = {};
   public sellPrice = '';
   public discountPrice = '';
@@ -30,7 +31,7 @@ export class CategoryPage implements OnInit {
     private alertController: AlertController,
   ) { 
     this.category_id = this._route.snapshot.params['id'];
-    console.log(this._route.snapshot.params['id']);
+    // console.log(this._route.snapshot.params['id']);
     
   }
 
@@ -40,7 +41,6 @@ export class CategoryPage implements OnInit {
     this.common._onUpdateCatTitle$.subscribe((data:any) => {
 			this.catTitle = data;
 		});
-    console.warn("hii",this.catTitle);
   }
 
   getFeaturedproducts(){
@@ -82,6 +82,7 @@ export class CategoryPage implements OnInit {
       this.productListArr = result.response.data.product_list;
 
       for (let i = 0; i < this.productListArr.length; i++) {
+        this.productListArr[i]['default_discount_percentage'] = this.productListArr[i].variation[0].discount_percentage;
         this.productListArr[i]['default_sell_price'] = this.productListArr[i].variation[0].sell_price;
         this.productListArr[i]['default_discount_price'] = this.productListArr[i].variation[0].discount_price;
         this.productListArr[i]['default_quantity'] = this.productListArr[i].variation[0].quantity;
@@ -107,6 +108,8 @@ export class CategoryPage implements OnInit {
     item.default_sell_price = this.sellPrice;
     this.discountPrice = ev.target.value.discount_price
     item.default_discount_price = this.discountPrice;
+    this.discountPercentage = ev.target.value.discount_percentage
+    item.default_discount_percentage = this.discountPercentage;
   }
 
 }

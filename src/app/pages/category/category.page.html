@@ -8,8 +8,8 @@
           <img src="{{item.product_image}}">
         </ion-thumbnail>
         <div class="product-content">
-          <div class="pro_off">
-            <em>30%</em>
+          <div class="pro_off" *ngIf="item.default_discount_percentage !== '0%' && item.default_discount_percentage !== ''">
+            <em>{{item.default_discount_percentage}}</em>
             off
           </div>
           <!-- <h3>Fortune</h3> -->
