@@ -52,7 +52,7 @@
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="text" inputmode="tel" formControlName="phone" placeholder="Phone Number*" class="number-fld"></ion-input>
+              <ion-input type="number" inputmode="tel" formControlName="phone" placeholder="Phone Number*" class="number-fld"></ion-input>
               <div class="error_msg" *ngIf="
                 formControl.phone.invalid &&
                 (formControl.phone.dirty ||

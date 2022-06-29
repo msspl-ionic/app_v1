@@ -67,6 +67,7 @@ export class ProfilePage implements OnInit {
 	}
 
 	submitForm() {
+		console.log("hhh")
 		if (this.signupForm.invalid) {
 			return;
 		}
@@ -85,9 +86,12 @@ export class ProfilePage implements OnInit {
 		};
     // return;
 		this.subscriptions.push(this.service.ApiCall(param, `user/updateprofile`, 'POST').subscribe(result => {
-			this.presentLoadingWithOptions()
+			this.presentLoadingWithOptions();
 		//this.myForm.resetForm();
-		this._router.navigate(['dashboard']);
+		
+		setTimeout(() => {
+			this._router.navigate(['dashboard']);
+		  }, 2000)
 		this.common.setProfileData(this.signupForm.value);
 		}, async apiError => {
 			let  alert =  await this.alertController.create({
