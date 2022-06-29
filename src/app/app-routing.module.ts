@@ -30,7 +30,7 @@ const routes: Routes = [
   {
 		path: '',
 		canActivate: [AuthGuardService],
-    component: TabsPage,
+    // component: TabsPage,
 		children: [
       // {
       //   path: '',
