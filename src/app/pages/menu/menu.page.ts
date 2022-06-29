@@ -17,6 +17,7 @@ export class MenuPage implements OnInit {
   constructor(private common: CommonService, private _router: Router,private service: ApiService, private storage: Storage) { }
   public userDtls:  any = {};
   public userDtlsb:  any = {};
+  public profileDetails:  any = {};
   ngOnInit() {
     
     this.common.authenticationState.subscribe((data:any) => {
@@ -30,6 +31,15 @@ export class MenuPage implements OnInit {
       }
       
     });
+
+    this.common._onProfileDataAll$.subscribe((data)=>{
+      if(data) {
+        this.profileDetails = data;
+      }
+    })
+
+
+    
     
     
     // this.detUser();
@@ -43,6 +53,11 @@ export class MenuPage implements OnInit {
     console.log('ok');
     this.common.logout();
     this.modal.dismiss();
+    // this.common._onTabAll$.subscribe((data)=>{
+    //   if(data) {
+    //    console.log(data,"data")
+    //   }
+    // })
   }
 
 

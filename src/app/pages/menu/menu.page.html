@@ -6,8 +6,11 @@
         <span class="user-tick"><ion-icon name="checkmark-outline"></ion-icon></span>
       </div>
       <div class="user-name">
-        {{this.userDtls.customer_name}}
-        <span><ion-icon name="call"></ion-icon> {{this.userDtls.phone}} 
+        <!-- {{this.userDtls.customer_name}}  -->
+        {{this.profileDetails.customer_name}}
+        <span><ion-icon name="call"></ion-icon> 
+          <!-- {{this.userDtls.phone}}  -->
+          {{this.profileDetails.phone}}
           <ion-menu-toggle>
             <a class="edit" routerLink="profile">Edit</a>
           </ion-menu-toggle>
@@ -20,7 +23,7 @@
       <div class="location">
         <div class="location-inner">
           <h4><ion-icon name="location"></ion-icon> Your Current Location <a class="edit">Edit</a></h4>
-          <p>{{this.userDtls.shop_name + " " + this.userDtls.address1 + " " + this.userDtls.address2 + " " + this.userDtls.city + " " + this.userDtls.country + " " + this.userDtls.pincode}}</p>
+          <p>{{this.userDtls.address1 + " " + this.userDtls.address2 + " " + this.userDtls.city + " " + this.userDtls.country + " " + this.userDtls.pincode}}</p>
         </div>
       </div>
     </div>

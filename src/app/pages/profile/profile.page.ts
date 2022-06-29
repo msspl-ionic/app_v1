@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { CommonService } from '../../shared/services/common.service';
 import { Storage } from '@ionic/storage';
 import { AlertController } from '@ionic/angular';
-
+import { LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -23,43 +23,39 @@ export class ProfilePage implements OnInit {
 		private _router: Router,
 		private fb: FormBuilder,
 		private service: ApiService,
-	  private common: CommonService,
+	  	private common: CommonService,
    		private storage: Storage,
-	  private alertController : AlertController
+	  	private alertController : AlertController,
+		  public loadingController: LoadingController
   ) { }
 
   ngOnInit() {
     this.createForm();
 	this.common._onProfileDataAll$.subscribe((data)=>{
 		if(data) {
-			console.log(data,"abbvb")
 			this.profileDetails = data;
-			console.log(this.profileDetails,"abbvb")
 			this.getProfileData();
 		}
-
 	})
 	
   }
   createForm() {
 		this.signupForm = this.fb.group({
 			shop_name: ['', [Validators.required]],
-			vendor_name: ['', [Validators.required]],
-			phone_no: ['', [Validators.required]],
-			email_id: ['', [Validators.required]],
+			customer_name: ['', [Validators.required]],
+			phone: ['', [Validators.required]],
+			email: ['', [Validators.required]],
 			tax_id: ['', '']
 		})
-
 		
 	}
 
 	getProfileData() {
-		console.log(this.profileDetails,"this.profileDetails")
 		this.signupForm.patchValue({
 			shop_name: this.profileDetails.shop_name,
-			vendor_name: this.profileDetails.customer_name,
-			phone_no: this.profileDetails.phone,
-			email_id: this.profileDetails.email,
+			customer_name: this.profileDetails.customer_name,
+			phone: this.profileDetails.phone,
+			email: this.profileDetails.email,
 			tax_id: this.profileDetails.tax_id
 			// empCode: profileData.emp_code
 		});
@@ -74,19 +70,25 @@ export class ProfilePage implements OnInit {
 		if (this.signupForm.invalid) {
 			return;
 		}
+		const formValue = this.signupForm.value;
 		let param: any = {};
-
-		console.log(param);
+		param = {
+			shop_name: formValue.shop_name,
+			customer_name: formValue.customer_name,
+			phone: formValue.phone,
+			email: formValue.email,
+			tax_id: formValue.tax_id,
+			device_os: 'and',
+			lang_name:2,
+			appversion:'1.0.0',
+			image:''
+		};
     // return;
 		this.subscriptions.push(this.service.ApiCall(param, `user/updateprofile`, 'POST').subscribe(result => {
-      	console.log(result);
-
-		/* Update storage for otp submittion */
-		// this.storage.set(environment.REGISTER_NUMBER, param.phone_no);
-		// this.common._onUpdatePhoneSubject.next(param.phone_no);
-
-		this.myForm.resetForm();
-
+			this.presentLoadingWithOptions()
+		//this.myForm.resetForm();
+		this._router.navigate(['dashboard']);
+		this.common.setProfileData(this.signupForm.value);
 		}, async apiError => {
 			let  alert =  await this.alertController.create({
 				header: 'Error',
@@ -98,4 +100,15 @@ export class ProfilePage implements OnInit {
 			await alert.present();
 		}))
 	}
+
+	async presentLoadingWithOptions() {
+		const loading = await this.loadingController.create({
+		  spinner: "circles",
+		  duration: 1000,
+		  message: 'Please wait...',
+		  translucent: true,
+		  cssClass: 'custom-class custom-loading'
+		});
+		return await loading.present();
+	  }
 }
