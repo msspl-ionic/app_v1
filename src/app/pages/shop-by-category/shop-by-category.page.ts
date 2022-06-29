@@ -15,6 +15,7 @@ import { AlertController } from '@ionic/angular';
 export class ShopByCategoryPage implements OnInit {
   private subscriptions: Subscription[] = [];
   public catArr: any;
+  public catTitle: any;
 
   constructor(
     private _router: Router,
@@ -62,8 +63,15 @@ export class ShopByCategoryPage implements OnInit {
         // console.log(apiError.error.response.status.msg);
 		}))
   }
-  categoryNav(id) {
-    this._router.navigate(['/category/' + id])
+  categoryNav(id,title) {
+    this._router.navigate(['/category/' + id]);
+
+    // this.common.onUpdateCatTitle$.next({
+    //   this.catTitle = "dfd";
+    // });
+    this.common._onUpdateCatTitle.next(
+      this.catTitle = title
+    );
   }
 
 }

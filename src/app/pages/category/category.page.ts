@@ -16,9 +16,11 @@ export class CategoryPage implements OnInit {
   
   private subscriptions: Subscription[] = [];
   public productListArr: any;
-  public priceVal : any;
-  public sellPrice : any;
+  public priceVal : any = {};
+  public sellPrice = '';
+  public discountPrice = '';
   public category_id : any;
+  public catTitle : any;
 
   constructor(
     private _router: Router,
@@ -34,6 +36,11 @@ export class CategoryPage implements OnInit {
 
   ngOnInit() {
     this.getFeaturedproducts();
+
+    this.common._onUpdateCatTitle$.subscribe((data:any) => {
+			this.catTitle = data;
+		});
+    console.warn("hii",this.catTitle);
   }
 
   getFeaturedproducts(){
@@ -71,8 +78,16 @@ export class CategoryPage implements OnInit {
   }
 		this.subscriptions.push(this.service.ApiCall(param, `product/list`, 'POST').subscribe(result => {
       // console.log(result.response.data);
-      console.warn(result);
+      // console.warn(result);
       this.productListArr = result.response.data.product_list;
+
+      for (let i = 0; i < this.productListArr.length; i++) {
+        this.productListArr[i]['default_sell_price'] = this.productListArr[i].variation[0].sell_price;
+        this.productListArr[i]['default_discount_price'] = this.productListArr[i].variation[0].discount_price;
+        this.productListArr[i]['default_quantity'] = this.productListArr[i].variation[0].quantity;
+        this.productListArr[i]['default_unit'] = this.productListArr[i].variation[0].unit;       
+      }
+
      
 		}, async apiError => {
       console.log(apiError);
@@ -87,14 +102,11 @@ export class CategoryPage implements OnInit {
         // console.log(apiError.error.response.status.msg);
 		}))
   }
-  valCheck(evt,id) {
-    // console.log(evt,id)
-    // console.log(evt.sell_price);
-    // this.sellPrice = evt.sell_price
-    // // this.priceVal = evt;
-    // console.log(evt,this.priceVal);
-    
-    
+  handleChangeFeatured(ev,item) {   
+    this.sellPrice = ev.target.value.sell_price
+    item.default_sell_price = this.sellPrice;
+    this.discountPrice = ev.target.value.discount_price
+    item.default_discount_price = this.discountPrice;
   }
 
 }

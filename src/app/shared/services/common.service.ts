@@ -16,7 +16,6 @@ export class CommonService {
 		private storage: Storage
 	) { }
 
-	
 	public _onUpdatePhoneSubject: BehaviorSubject<any> =
 		new BehaviorSubject<any>(null);
 
@@ -31,31 +30,12 @@ export class CommonService {
 
 	public onUpdateLocation$ = this._onUpdateLocation.asObservable();
 
-	public onUpdateLocation: BehaviorSubject<boolean> =
-	new BehaviorSubject<boolean>(false);
-
-	// Update Long Lat
-	public _onUpdateLat: BehaviorSubject<any> =
-		new BehaviorSubject<any>(null);
-
-	public onUpdateLat$ = this._onUpdateLat.asObservable();
-
-	public onUpdateLat: BehaviorSubject<boolean> =
-	new BehaviorSubject<boolean>(false);
-
-	public _onUpdateLong: BehaviorSubject<any> =
-		new BehaviorSubject<any>(null);
-
-	public onUpdateLong$ = this._onUpdateLong.asObservable();
-
-	public onUpdateLong: BehaviorSubject<boolean> =
-	new BehaviorSubject<boolean>(false);
-
-
 	public _onProfileData: BehaviorSubject<any> =
 		new BehaviorSubject<any>(null);
-	public _onProfileDataAll$ =
-		this._onProfileData.asObservable();
+	public _onProfileDataAll$ =	this._onProfileData.asObservable();
+
+	public _onUpdateCatTitle: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+	public _onUpdateCatTitle$ =	this._onUpdateCatTitle.asObservable();
 
 	
 
@@ -74,13 +54,13 @@ export class CommonService {
 		// 	})
 		// })
 		return this.storage.get(environment.TOKEN_KEY).then(token => {
-			if (token) {
+			if(token) {
 				return token;
 			}
 		});
 	}
 
-	isAuthenticated() {	
+	isAuthenticated() {
 		const isLoggedIn = this.authenticationState.value;
 
 		console.log(isLoggedIn);

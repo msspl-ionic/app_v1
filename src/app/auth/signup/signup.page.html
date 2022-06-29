@@ -73,7 +73,7 @@
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="text" inputmode="email" formControlName="email_id" placeholder="Email Address" class="number-fld"></ion-input>
+              <ion-input type="text" inputmode="email" formControlName="email_id" placeholder="Email Address*" class="number-fld"></ion-input>
               <div class="error_msg" *ngIf="
                 formControl.email_id.invalid &&
                 (formControl.email_id.dirty ||
@@ -87,7 +87,7 @@
           </ion-row>
           <ion-row class="fld-row">
             <ion-col>
-              <ion-input type="text" inputmode="text" name="taxid" placeholder="Tax ID" class="number-fld"></ion-input>     
+              <ion-input type="text" inputmode="text" formControlName="tax_id" placeholder="Tax ID" class="number-fld"></ion-input>     
             </ion-col>
           </ion-row>
           <ion-row class="mandatory_info">
