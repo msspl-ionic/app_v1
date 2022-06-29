@@ -30,12 +30,9 @@ const routes: Routes = [
   {
 		path: '',
 		canActivate: [AuthGuardService],
-    component: TabsPage,
+    // component: TabsPage,
+    // loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule),
 		children: [
-      // {
-      //   path: '',
-      //   loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
-      // },
 			{
         path: 'dashboard',
         loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
