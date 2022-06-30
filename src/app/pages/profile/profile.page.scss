@@ -256,4 +256,22 @@ ion-footer ion-buttons{
     border-radius: 100%;
     background-color: #eee;
     margin: 15px auto;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+
+    .cam_icon {
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        top: 50%;
+        width: 39px;
+        height: 39px;
+        border-radius: 100%;
+        background-color: #F5F5F5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+    }
 }

@@ -8,6 +8,13 @@ import { CommonService } from '../../shared/services/common.service';
 import { Storage } from '@ionic/storage';
 import { AlertController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
+
+import { ActionSheetController } from '@ionic/angular';
+import { UserPhoto, PhotoService } from '../../shared/services/photo.service';
+
+
+
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -26,10 +33,13 @@ export class ProfilePage implements OnInit {
 	  	private common: CommonService,
    		private storage: Storage,
 	  	private alertController : AlertController,
-		  public loadingController: LoadingController
+		  public loadingController: LoadingController,
+
+		public photoService: PhotoService, 
+		public actionSheetController: ActionSheetController
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.createForm();
 	this.common._onProfileDataAll$.subscribe((data)=>{
 		if(data) {
@@ -37,8 +47,34 @@ export class ProfilePage implements OnInit {
 			this.getProfileData();
 		}
 	})
+
+	await this.photoService.loadSaved();
 	
   }
+
+  public async showActionSheet(photo: UserPhoto, position: number) {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Photos',
+      buttons: [{
+        text: 'Delete',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          this.photoService.deletePicture(photo, position);
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          // Nothing to do, action sheet is automatically closed
+         }
+      }]
+    });
+    await actionSheet.present();
+  }
+
+  
   createForm() {
 		this.signupForm = this.fb.group({
 			shop_name: ['', [Validators.required]],
