@@ -149,7 +149,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(res =>{
       console.log(res);
       if(res.response.status.action_status){
-        this._router.navigate(['/dashboard']);
+        this._router.navigate(['tabs/dashboard']);
       }
     });
   }

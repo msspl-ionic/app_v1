@@ -24,6 +24,7 @@ export class DashboardPage implements OnInit {
     this.featuredProduct(1);
     this.featuredProduct(2);
     // this.dashboarsProduct();
+    console.log('hello');
 
   }
   // slider jayanta
