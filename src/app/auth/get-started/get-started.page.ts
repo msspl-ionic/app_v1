@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, CanActivate } from '@angular/router';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: 'app-get-started',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GetStartedPage implements OnInit {
 
-  constructor() { }
+  constructor(private common: CommonService, private _router: Router) { }
 
   ngOnInit() {
+    this.common._onProfileDataAll$.subscribe((data)=>{
+      if(data) {
+        this._router.navigate(['tabs/dashboard']);
+      }
+    })
   }
 
 }
