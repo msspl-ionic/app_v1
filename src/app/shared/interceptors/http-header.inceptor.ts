@@ -51,7 +51,7 @@ export class HttpAuthHeaderInterceptor implements HttpInterceptor {
 		return from(this._authService.getToken()).pipe(
 			
 			switchMap((token)=>{
-				console.log(token);
+				// console.log(token);
 				if(token != undefined && token !='' && token != null){
 					return next.handle(HTTPRequest.clone({
 						setHeaders: { Authorization: token }
