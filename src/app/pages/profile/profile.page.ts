@@ -89,9 +89,9 @@ export class ProfilePage implements OnInit {
 			this.presentLoadingWithOptions();
 		//this.myForm.resetForm();
 		
-		setTimeout(() => {
-			this._router.navigate(['dashboard']);
-		  }, 2000)
+		// setTimeout(() => {
+			this._router.navigate(['tabs/dashboard']);
+		//   }, 2000)
 		this.common.setProfileData(this.signupForm.value);
 		}, async apiError => {
 			let  alert =  await this.alertController.create({

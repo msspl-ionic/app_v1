@@ -8,8 +8,6 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
 import { HeaderModule } from 'src/app/component/header/header.module';
-// import { TabsPageModule } from '../tabs/tabs.module';
-import { TabsPage } from '../tabs/tabs.page';
 
 @NgModule({
   imports: [
@@ -20,6 +18,6 @@ import { TabsPage } from '../tabs/tabs.page';
     HeaderModule,
     
   ],
-  declarations: [DashboardPage,TabsPage]
+  declarations: [DashboardPage]
 })
 export class DashboardPageModule {}

@@ -64,7 +64,7 @@ export class ShopByCategoryPage implements OnInit {
 		}))
   }
   categoryNav(id,title) {
-    this._router.navigate(['/category/' + id]);
+    this._router.navigate(['tabs/category/' + id]);
 
     // this.common.onUpdateCatTitle$.next({
     //   this.catTitle = "dfd";

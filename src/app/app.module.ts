@@ -7,7 +7,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MenuPage} from './pages/menu/menu.page'
-// import { TabsPage } from './pages/tabs/tabs.page';
+import { TabsPage } from './pages/tabs/tabs.page';
 import { Network } from '@ionic-native/network/ngx';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
 
@@ -19,7 +19,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { HTTPInterceptorProvider } from '../app/shared/interceptors';
 
 @NgModule({
-  declarations: [AppComponent,MenuPage],
+  declarations: [AppComponent,MenuPage, TabsPage],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, JwtModule.forRoot({ // for JwtHelperService
     config: {

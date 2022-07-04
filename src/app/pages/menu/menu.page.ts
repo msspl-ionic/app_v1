@@ -34,6 +34,7 @@ export class MenuPage implements OnInit {
 
     this.common._onProfileDataAll$.subscribe((data)=>{
       if(data) {
+        console.log(data);
         this.profileDetails = data;
       }
     })

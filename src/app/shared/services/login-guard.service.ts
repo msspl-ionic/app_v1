@@ -17,7 +17,7 @@ export class LoginGuardService implements CanActivate {
         // this._router.navigate(['/login']);
         return true;
     }
-    this._router.navigate(['/dashboard']);
+    this._router.navigate(['tabs/dashboard']);
     return false;
   }
   

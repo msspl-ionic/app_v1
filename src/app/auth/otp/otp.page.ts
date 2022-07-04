@@ -82,7 +82,7 @@ export class OtpPage implements OnInit {
       // this.storage.set("UserDeatils", result.response.data);
       this.common.authenticationState.next(true);
 			this.myForm.resetForm();
-      this._router.navigate(['/dashboard']);
+      this._router.navigate(['tabs/dashboard']);
 		}, async apiError => {
         let  alert =  await this.alertController.create({
           header: 'Error',

@@ -15,7 +15,7 @@ export class CongratulationPage implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this._route.navigate(['/login']);
-		},4000);
+		},3000);
   }
 
 }

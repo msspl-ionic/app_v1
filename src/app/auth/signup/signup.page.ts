@@ -8,6 +8,7 @@ import { CommonService } from '../../shared/services/common.service';
 import { Storage } from '@ionic/storage';
 import { AlertController } from '@ionic/angular';
 import { MapsAPILoader, AgmMap } from '@agm/core';
+import { Device } from '@awesome-cordova-plugins/device/ngx';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +26,7 @@ export class SignupPage implements OnInit {
   title: string = 'AGM project';
   latitude: number = -8.838333;
   longitude: number = 13.234444;
-  address1: string = '';
+  address1: string = 'Cassenda';
   address2: string = '';
   pincode: string = '';
 
@@ -45,7 +46,8 @@ export class SignupPage implements OnInit {
     private storage: Storage,
 	private alertController : AlertController,
 	private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+	private device: Device,
   ) {
 
    }
@@ -54,6 +56,8 @@ export class SignupPage implements OnInit {
   
   
   ngOnInit() {
+	  
+    // this.getDeviceInfo();
     this.createForm();
 	this.common.onUpdateLocation$.subscribe((data:any) => {
 		if(data) {
@@ -67,6 +71,7 @@ export class SignupPage implements OnInit {
 		}
 	});
 
+	
 
 	setTimeout(() => {
 		this.showMap = true;
@@ -101,6 +106,16 @@ export class SignupPage implements OnInit {
 	// });
   }
 
+	// async getDeviceInfo(){
+	// 	let deviceDetails = 
+	// 	`Device UUID: ${this.device.uuid} 
+	// 	Version : ${this.device.version} 
+	// 	Platform : ${this.device.platform} 
+	// 	Model : ${this.device.model}
+	// 	`;
+	// 	alert(deviceDetails);
+	// }
+
   	createForm() {
 		this.signupForm = this.fb.group({
 			shop_name: ['', [Validators.required]],
@@ -116,6 +131,7 @@ export class SignupPage implements OnInit {
 	}
 
 	submitForm() {
+
 		if (this.signupForm.invalid) {
 			return;
 		}
@@ -129,7 +145,7 @@ export class SignupPage implements OnInit {
 		param['country'] = this.state;
 		param['latitude'] = this.latitude;
 		param['longitude'] = this.longitude;
-		// param['device_os'] = 'kolkata';
+		param['device_os'] = this.device.platform;
 		// param['appversion'] = 'kolkata';
 
 		console.log(param);

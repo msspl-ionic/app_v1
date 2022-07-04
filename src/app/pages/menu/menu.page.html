@@ -7,12 +7,12 @@
       </div>
       <div class="user-name">
         <!-- {{this.userDtls.customer_name}}  -->
-        {{this.profileDetails.customer_name}}
+        {{profileDetails.customer_name}}
         <span><ion-icon name="call"></ion-icon> 
           <!-- {{this.userDtls.phone}}  -->
-          {{this.profileDetails.phone}}
+          {{profileDetails.phone}}
           <ion-menu-toggle>
-            <a class="edit" routerLink="profile">Edit</a>
+            <a class="edit" routerLink="tabs/profile">Edit</a>
           </ion-menu-toggle>
         </span>
       </div>
@@ -31,31 +31,31 @@
   <ion-content>
     <ion-list class="sidebar">
       <ion-menu-toggle>
-        <ion-item detail-icon="none" routerLink="dashboard" class="menu-link" lines="none">
+        <ion-item detail-icon="none" routerLink="tabs/dashboard" class="menu-link" lines="none">
           <ion-label>Home</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
+      <!-- <ion-menu-toggle>
         <ion-item detail-icon="none" routerLink="" class="menu-link" lines="none">
           <ion-label>Manage Profit Loss</ion-label>
         </ion-item>
-      </ion-menu-toggle>
+      </ion-menu-toggle> -->
       <ion-menu-toggle>
-        <ion-item detail-icon="none" routerLink="shop-by-category" class="menu-link" lines="none">
+        <ion-item detail-icon="none" routerLink="tabs/shop-by-category" class="menu-link" lines="none">
           <ion-label>Shop by Category</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
-        <ion-item detail-icon="none" routerLink="featuredproducts" class="menu-link" lines="none">
+        <ion-item detail-icon="none" routerLink="tabs/featuredproducts" class="menu-link" lines="none">
           <ion-label>Featured Products</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail-icon="none" routerLink="bestsellers" class="menu-link" lines="none">
+      <!-- <ion-menu-toggle>
+        <ion-item detail-icon="none" routerLink="tabs/bestsellers" class="menu-link" lines="none">
           <ion-label>Best Sellers</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
+      </ion-menu-toggle> -->
+      <!-- <ion-menu-toggle>
         <ion-item detail-icon="none" routerLink="" class="menu-link" lines="none">
           <ion-label>Terms and Conditions</ion-label>
         </ion-item>
@@ -64,7 +64,7 @@
         <ion-item detail-icon="none" routerLink="" class="menu-link" lines="none">
           <ion-label>Privacy Policy</ion-label>
         </ion-item>
-      </ion-menu-toggle>
+      </ion-menu-toggle> -->
       <ion-menu-toggle>
         <!-- <ion-item (click)="logOut()" class="menu-link"  detail-icon="none" lines="none">
           <ion-label>Logout</ion-label>

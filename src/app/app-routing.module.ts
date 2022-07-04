@@ -15,9 +15,29 @@ const routes: Routes = [
     loadChildren: () => import('./auth/get-started/get-started.module').then( m => m.GetStartedPageModule)
   },
   {
-    path: 'about',
-    loadChildren: () => import('./pages/about/about.module').then(m => m.AboutPageModule),
+    path: 'login',
+    canActivate: [LoginGuardService],
+    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'otp',
+    canActivate: [LoginGuardService],
+    loadChildren: () => import('./auth/otp/otp.module').then( m => m.OtpPageModule)
+  },
+  {
+    path: 'signup',
+    canActivate: [LoginGuardService],
+    loadChildren: () => import('./auth/signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'set-location',
+    canActivate: [LoginGuardService],
+    loadChildren: () => import('./auth/set-location/set-location.module').then( m => m.SetLocationPageModule)
+  },
+  // {
+  //   path: 'about',
+  //   loadChildren: () => import('./pages/about/about.module').then(m => m.AboutPageModule),
+  // },
   // {
   //   path: 'tabs',
   //   loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
@@ -28,9 +48,9 @@ const routes: Routes = [
   //   loadChildren: () => import('./auth/get-started/get-started.module').then( m => m.GetStartedPageModule)
   // },
   {
-		path: '',
+		path: 'tabs',
 		canActivate: [AuthGuardService],
-    // component: TabsPage,
+    component: TabsPage,
 		children: [
 			{
         path: 'dashboard',
@@ -58,30 +78,9 @@ const routes: Routes = [
       }
 		]
 	},
- 
-  {
-    path: 'login',
-    canActivate: [LoginGuardService],
-    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'otp',
-    canActivate: [LoginGuardService],
-    loadChildren: () => import('./auth/otp/otp.module').then( m => m.OtpPageModule)
-  },
-  {
-    path: 'signup',
-    canActivate: [LoginGuardService],
-    loadChildren: () => import('./auth/signup/signup.module').then( m => m.SignupPageModule)
-  },
-  {
-    path: 'set-location',
-    canActivate: [LoginGuardService],
-    loadChildren: () => import('./auth/set-location/set-location.module').then( m => m.SetLocationPageModule)
-  },
   {
     path: 'home',
-    loadChildren: () => import('../app/pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('../app/pages/home/home.module').then( m => m.HomePageModule),
   },
   {
     path: 'user-menu',
