@@ -13,7 +13,7 @@
     display: inline-block;
 }
 .login-body{
-    padding: 30px;
+    padding: 20px;
 }
 .login-body,.logo,.logo a{
     width: 100%; 
@@ -37,13 +37,13 @@
     line-height: 21px;
     font-family: 'Open Sans', sans-serif;
     margin-bottom: 30px;
-    margin-top: 25px;
+    margin-top: 20px;
 }
 ion-select.custom-options,ion-input.number-fld{
        background-color: #fff;
        border-radius: 11px;
     //    padding: 10px;
-       box-shadow: 0px 3px 10px 1px #cbcbcb;
+       box-shadow: 0px 4px 12px 0px #cbcbcb;
        height: 49px;
 }
 ion-img.map{
@@ -151,8 +151,11 @@ ion-button{
 }
 .map_cont,
 agm-map {
-    height: 300px;
+    height: 100px;
     width: 100%;
+    border-radius: 11px;
+    overflow: hidden;
+    box-shadow: 0px 4px 12px 0px #cbcbcb;
 }
 .location-data {
     display: flex;

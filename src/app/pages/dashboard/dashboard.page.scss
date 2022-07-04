@@ -140,9 +140,11 @@ ion-select.custom-options{
     border-radius: 2px;
 }
 .product-content ion-select::part(icon) {
-    content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAGCAYAAAARx7TFAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABuSURBVHgBfY5BCoAgEEWHIFLauHCihQ4eoSN1g7qBR/BoHqFjtEpTwqiQ3uYzn8fwARJCGAEV2GhMzqZHM+1t2ErxFOIRvEhcBeqZDXSLOfPdoVreryVZjuSLwKSytQnAUTuGFLnUDv7gktZvdwLwIRRqyC80AgAAAABJRU5ErkJggg==');
+    content: url(/assets/images/select-drop.png);
     height: 6px;
     opacity: 1;
+    width: 9px;
+    height: 6px;
 }
 
 .price h4{
@@ -188,7 +190,6 @@ ion-select.custom-options{
 }
 .featured-section ion-card{
     margin-left:0;
-    padding-left: 0;
     margin-right: 0px;
     margin-top: 0;
     margin-bottom: 0;

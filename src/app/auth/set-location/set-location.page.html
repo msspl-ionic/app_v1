@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <form class="ion-padding" [formGroup]="signupForm" (ngSubmit)="submitForm('Locate')" #myForm="ngForm">
-    <ion-grid>
+  <form [formGroup]="signupForm" (ngSubmit)="submitForm('Locate')" #myForm="ngForm">
+    <ion-grid class="paddingform">
       <ion-row class="fld-row">
         <ion-col>
           <ion-input type="text" inputmode="text" formControlName="street_1" placeholder="Street 1*" class="number-fld"></ion-input>
