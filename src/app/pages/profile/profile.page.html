@@ -18,6 +18,13 @@
           <ion-row class="fld-row">
             <ion-col>
                 <div class="img-upload">
+                  <ion-content>
+                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                      <ion-fab-button (click)="addPhotoToGallery()">
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-fab-button>
+                    </ion-fab>
+                  </ion-content>
                   <!-- <span>fff</span> -->
                 </div>
             </ion-col>
@@ -89,6 +96,17 @@
         </ion-buttons>
       </form>
   </div>
+  <ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+          <ion-img [src]="photo.webviewPath"></ion-img>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <!-- ion-fab markup  -->
+  </ion-content>
 </ion-content>
 
 <!-- <ion-footer class="ion-no-border">

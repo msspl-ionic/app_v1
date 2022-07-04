@@ -8,6 +8,8 @@ import { CommonService } from '../../shared/services/common.service';
 import { Storage } from '@ionic/storage';
 import { AlertController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
+import { PhotoService } from '../../shared/services/photo.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -19,6 +21,7 @@ export class ProfilePage implements OnInit {
   signupForm!: FormGroup;
   private subscriptions: Subscription[] = [];
   public profileDetails:  any = {};
+  public profileImage: string = '';
   constructor(
 		private _router: Router,
 		private fb: FormBuilder,
@@ -26,10 +29,13 @@ export class ProfilePage implements OnInit {
 	  	private common: CommonService,
    		private storage: Storage,
 	  	private alertController : AlertController,
-		  public loadingController: LoadingController
+		public loadingController: LoadingController,
+		public photoService: PhotoService
   ) { }
 
   ngOnInit() {
+	this.photoService.loadSaved();
+	
     this.createForm();
 	this.common._onProfileDataAll$.subscribe((data)=>{
 		if(data) {
@@ -39,6 +45,16 @@ export class ProfilePage implements OnInit {
 	})
 	
   }
+
+  async addPhotoToGallery() {
+	// let profileImageResponse = 
+	await this.photoService.addNewToGallery().then(data => {
+		this.profileImage = (data.base64Image !='') ? data.base64Image : '';
+	});
+	
+  }
+
+
   createForm() {
 		this.signupForm = this.fb.group({
 			shop_name: ['', [Validators.required]],
@@ -82,9 +98,10 @@ export class ProfilePage implements OnInit {
 			device_os: 'and',
 			lang_name:2,
 			appversion:'1.0.0',
-			image:''
+			image: (this.profileImage !='') ? this.profileImage : ''
 		};
-    // return;
+		console.log(param)
+    return;
 		this.subscriptions.push(this.service.ApiCall(param, `user/updateprofile`, 'POST').subscribe(result => {
 			this.presentLoadingWithOptions();
 		//this.myForm.resetForm();
