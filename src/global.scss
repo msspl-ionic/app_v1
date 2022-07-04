@@ -41,6 +41,7 @@ ion-input{
 ion-button{
     &::part(native){
         background-color: #03989E;
+        border-radius: 11px;
     }   
 }
 
