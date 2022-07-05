@@ -246,3 +246,12 @@ ion-modal.logout-modal ion-toolbar {
 ion-header:after{
     content: none;
 }
+.menu-bg::after{
+    background: url(/assets/images/bg-logo.png);
+    width: 267px;
+    height: 168px;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+}

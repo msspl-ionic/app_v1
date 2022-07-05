@@ -98,3 +98,19 @@ ion-searchbar .searchbar-input{
 // ion-slide ion-card{
 //     background-color:white;
 // }
+.login-body{
+    position: relative;
+}
+.login-body:after{
+    background: url(/assets/images/login-logo-bg.png);
+    width: 365px;
+    height: 145px;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+}
+.login-body-inner{
+    position: relative;
+    z-index: 1;
+}

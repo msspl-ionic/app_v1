@@ -6,11 +6,12 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content>
+<ion-content class="before-login">
   <div class="login-header">
     <a (click)="openModal()" id="trigger-button"><img class="country" src="assets/images/country-img.png"/></a>
   </div>
   <div class="login-body">
+    <div class="login-body-inner">
       <div class="logo">
         <a><img src="assets/images/logo.png"/></a>
       </div>
@@ -55,7 +56,7 @@
         </ion-grid>
       </form>
 
-
+    </div>
       <!-- <form [formGroup]="loginForm" (ngSubmit)="loginOnSubmit()" #myForm="ngForm">
         <div class="auth-form-group">
           <div *ngIf="
