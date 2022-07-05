@@ -48,7 +48,7 @@ export class DashboardPage implements OnInit {
 		let param: any = {
       parent_cat_id :0,
       lang_name:2,
-      device_os:"ios"
+      device_os:"and"
     };    
     // return;
 		this.subscriptions.push(this.service.ApiCall(param, `category/list`, 'POST').subscribe(result => {
@@ -62,7 +62,7 @@ export class DashboardPage implements OnInit {
   featuredProduct(type:1|2) {
 		let param: any = {
       lang_name:2,
-      device_os:"ios",
+      device_os:"and",
       list_type:type
     };    
     // return;

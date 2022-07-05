@@ -1,6 +1,7 @@
 .sidebar{
-    padding: 0;
-    padding-top: 20px;
+    padding: 0 19px;
+    padding-top: 30px;
+    background-color: #fff;
 }
 
 .header-top{
@@ -45,6 +46,7 @@
     border-radius: 100%;
     height: 36px;
     background: #fff;
+    width: 36px;
 }
 .user img{
     border: #04878C 2px solid;
@@ -146,8 +148,19 @@ margin: 0; font-family: 'Open Sans', sans-serif;}
         color: #171A2C;
         font-size: 18px;
         font-family: 'Open Sans', sans-serif;
+        margin-bottom: 10px
     }    
 }
+.menu-link.active{
+    &::part(native){
+        background-color: #08151E;
+        border-radius: 11px;
+        color: #fff;
+        font-weight: 700;
+    }
+}
+
+
 ion-menu{
     &::part(container){
         width: 320px;
