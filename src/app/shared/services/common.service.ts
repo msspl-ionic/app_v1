@@ -40,6 +40,7 @@ export class CommonService {
 	
 
 	public setProfileData(data: []): void {
+		console.log(data)
 		this._onProfileData.next(data);
 	}
 
