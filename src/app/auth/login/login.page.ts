@@ -7,6 +7,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { CommonService } from '../../shared/services/common.service';
 import { Storage } from '@ionic/storage';
 import { AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 import {
 	ActivatedRoute,
@@ -54,7 +55,7 @@ export class LoginPage implements OnInit {
   @ViewChild('myForm') public myForm!: FormGroupDirective;
   otpForm!: FormGroup;
   private subscriptions: Subscription[] = [];
-
+  public loader: any;
   constructor(
     private _router: Router,
     private formBuilder: FormBuilder,
@@ -63,7 +64,8 @@ export class LoginPage implements OnInit {
     private service: ApiService,
     private common: CommonService,
     private storage: Storage,
-    private alertController : AlertController
+    private alertController : AlertController,
+    private loadingCtrl: LoadingController
   ) {
     // const isLoggedIn = this.authService.isAuthenticated();
     // // console.log(isLoggedIn);
@@ -71,6 +73,7 @@ export class LoginPage implements OnInit {
     //   this.isLanguageModal = false;
     //   this._router.navigate(['/dashboard']);
     // }
+    
   }
 
   ngOnInit() {
@@ -99,14 +102,17 @@ export class LoginPage implements OnInit {
 
 		// console.log(param);
     // return;
+    this.showLoading();
 		this.subscriptions.push(this.service.ApiCall(param, `user/getphonenumber`, 'POST').subscribe(result => {
+      this.dismissLoading();
       this.storage.set(environment.REGISTER_NUMBER, param.phone);
       this.common._onUpdatePhoneSubject.next(param.phone);
-      console.log(result);
+      // console.log(result);
 			this.myForm.resetForm();
       this._router.navigate(['/otp']);
 
 		}, async apiError => {
+        this.dismissLoading();
         let  alert =  await this.alertController.create({
           header: 'Error',
           message: apiError.error.response.status.msg,
@@ -115,8 +121,23 @@ export class LoginPage implements OnInit {
             }]
           });
         await alert.present();
-		}))
+		}));
 	}
+
+  async showLoading() {
+    this.loader = await this.loadingCtrl.create({
+		  spinner: "circles",
+		  // duration: 5000,
+		  message: 'Please wait...',
+		  translucent: true,
+		  cssClass: 'custom-class custom-loading'
+		});
+		return await this.loader.present();
+  }
+
+  async dismissLoading() {
+    this.loader = await this.loadingCtrl.dismiss();
+  }
 
   get formcontrol() {
 		return this.loginForm.controls;

@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { CommonService } from '../../shared/services/common.service';
 import { Storage } from '@ionic/storage';
 import { AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-otp',
@@ -19,6 +20,7 @@ export class OtpPage implements OnInit {
   otpForm!: FormGroup;
   private subscriptions: Subscription[] = [];
   public phoneNumber : string = '';
+  loader: any;
 
   constructor(
     private _router: Router,
@@ -27,6 +29,7 @@ export class OtpPage implements OnInit {
     private common: CommonService,
     private storage: Storage,
     public alertController: AlertController,
+    private loadingCtrl: LoadingController
   ) {
 
   }
@@ -64,6 +67,7 @@ export class OtpPage implements OnInit {
 		if (this.otpForm.invalid) {
 			return;
 		}
+    
 		let param: any = {};
 		param['phone'] = this.phoneNumber;
 		param['otp'] = `${this.otpForm.value.otp1 + this.otpForm.value.otp2 + this.otpForm.value.otp3 + this.otpForm.value.otp4}`;
@@ -75,8 +79,9 @@ export class OtpPage implements OnInit {
 		param['appversion'] = '1.0.0';
 		param['device_os'] = 'and';
 		param['timezone'] = 'Africa/Kigali';
-
+    this.showLoading();
 		this.subscriptions.push(this.service.ApiCall(param, `user/verify-otp`, 'POST').subscribe(result => {
+      this.dismissLoading();
       console.log(result);
       this.storage.set(environment.TOKEN_KEY, result.response.data.token);
       // this.storage.set("UserDeatils", result.response.data);
@@ -84,6 +89,7 @@ export class OtpPage implements OnInit {
 			this.myForm.resetForm();
       this._router.navigate(['tabs/dashboard']);
 		}, async apiError => {
+      this.dismissLoading();
         let  alert =  await this.alertController.create({
           header: 'Error',
           message: apiError.error.response.status.msg,
@@ -105,8 +111,22 @@ export class OtpPage implements OnInit {
     }
     else {
      return 0;
-    } 
+    }
+  }
 
+  async showLoading() {
+    this.loader = await this.loadingCtrl.create({
+		  spinner: "circles",
+		  // duration: 5000,
+		  message: 'Please wait...',
+		  translucent: true,
+		  cssClass: 'custom-class custom-loading'
+		});
+		return await this.loader.present();
+  }
+
+  async dismissLoading() {
+    this.loader = await this.loadingCtrl.dismiss();
   }
 
 }
