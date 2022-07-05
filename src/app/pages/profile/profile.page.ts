@@ -23,6 +23,8 @@ export class ProfilePage implements OnInit {
 	private subscriptions: Subscription[] = [];
 	public profileDetails:  any = {};
 	public profileImage: any = '';
+	public profileImg: any = '';
+
 	constructor(
 			private _router: Router,
 			private fb: FormBuilder,
@@ -65,7 +67,8 @@ export class ProfilePage implements OnInit {
 	async addPhotoToGallery() {
 		// let profileImageResponse = 
 		await this.photoService.addNewToGallery().then(data => {
-			// console.log(data.base64Image);
+			this.profileImg = (data.filepath !='') ? data.filepath : '';
+			
 			this.profileImage = (data.base64Image !='') ? data.base64Image : '';
 		});
 		
@@ -99,28 +102,106 @@ export class ProfilePage implements OnInit {
 		return this.signupForm.controls;
 	}
 
+	b64toBlob(b64Data, contentType) {
+		contentType = contentType || '';
+		var sliceSize = 512;
+		var byteCharacters = atob(b64Data);
+		console.log(byteCharacters)
+		var byteArrays = [];
+	
+		for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+		  var slice = byteCharacters.slice(offset, offset + sliceSize);
+	
+		  var byteNumbers = new Array(slice.length);
+		  for (var i = 0; i < slice.length; i++) {
+			byteNumbers[i] = slice.charCodeAt(i);
+		  }
+	
+		  var byteArray = new Uint8Array(byteNumbers);
+	
+		  byteArrays.push(byteArray);
+		}
+	
+		var blob = new Blob(byteArrays, {type: contentType});
+		return blob;
+	}
+
 	dataURLtoFile(dataurl, filename) {
- 
+		// var arr = dataurl.split(',');
+		
         var arr = dataurl.split(','),
-            mime = arr[0].match(/:(.*?);/)[1],
-            bstr = atob(arr[1]), 
+            // mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[0]), 
             n = bstr.length, 
             u8arr = new Uint8Array(n);
-            
+		    
         while(n--){
             u8arr[n] = bstr.charCodeAt(n);
         }
-        
-        return new File([u8arr], filename, {type:mime});
+		console.log('ok');
+        return new File([u8arr], filename, {type:'image/jpg'});
     }
 
+	blobCreationFromURL(inputURI) {
+  
+        var binaryVal;
+  
+        // mime extension extraction
+        var inputMIME = inputURI.split(',')[0].split(':')[1].split(';')[0];
+		console.log(inputMIME);
+        // Extract remaining part of URL and convert it to binary value
+        if (inputURI.split(',')[0].indexOf('base64') >= 0)
+            binaryVal = atob(inputURI.split(',')[1]);
+  
+        // Decoding of base64 encoded string
+        else
+            binaryVal = unescape(inputURI.split(',')[1]);
+  
+        // Computation of new string in which hexadecimal
+        // escape sequences are replaced by the character 
+        // it represents
+  
+        // Store the bytes of the string to a typed array
+        var blobArray:any = [];
+        for (var index = 0; index < binaryVal.length; index++) {
+            blobArray.push(binaryVal.charCodeAt(index));
+        }
+		console.log(blobArray);
+  
+        return new Blob([blobArray], {
+            type: inputMIME
+        });
+    }
+
+	dataURItoBlob(dataURI) {
+		// convert base64/URLEncoded data component to raw binary data held in a string
+		var byteString;
+		if (dataURI.split(',')[0].indexOf('base64') >= 0)
+			byteString = atob(dataURI.split(',')[1]);
+		else
+			byteString = unescape(dataURI.split(',')[1]);
+	
+		// separate out the mime component
+		var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+	
+		// write the bytes of the string to a typed array
+		var ia = new Uint8Array(byteString.length);
+		for (var i = 0; i < byteString.length; i++) {
+			ia[i] = byteString.charCodeAt(i);
+		}
+		console.log(ia,mimeString);
+		return new Blob([ia], {type:'image/jpg'});
+	}
+
 	submitForm() {
-		
+		console.log(this.profileImg);
+		console.log(this.dataURItoBlob(this.profileImg));
+		return;
 		if (this.signupForm.invalid) {
 			return;
 		}
 		const formValue = this.signupForm.value;
-		// console.log(this.profileImage);
+		
 		if(this.profileImage != ''){
 			this.profileImage = this.dataURLtoFile(this.profileImage,new Date()+'profile.jpeg');
 		}
