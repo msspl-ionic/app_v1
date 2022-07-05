@@ -29,7 +29,9 @@ export class PhotoService {
     
   
     // Save the picture and add it to photo collection
+    this.photos = [];
     const savedImageFile = await this.savePicture(capturedPhoto);
+    // console.log(savedImageFile);
     this.photos.unshift(savedImageFile);
     // console.log(savedImageFile);
     return savedImageFile;
@@ -53,7 +55,7 @@ export class PhotoService {
       directory: Directory.Data
     });
 
-    console.log(savedFile);
+   
 
     if (this.platform.is('hybrid')) {
       // Display the new image by rewriting the 'file://' path to HTTP
