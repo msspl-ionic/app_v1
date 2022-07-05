@@ -1,7 +1,7 @@
 ion-thumbnail{
     width: 120px;
     height: 120px;
-    padding: 10px;
+    padding: 0px;
 }
 ion-item {
     ion-label{
@@ -30,6 +30,8 @@ ion-select.custom-options{
     color: #fff;
     float: right;
     padding: 5px 25px;
+    width: 101px;
+    text-align: center;
 }
 
 .category-page ion-item{
@@ -75,12 +77,12 @@ ion-select.custom-options{
 }
 .product-content{
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     width: 100%;
     strong {
-        // font-family: 'Mukta';
+        font-family: 'Mukta', sans-serif;
         font-weight: 500;
-        font-size: 9px;
+        font-size: 11px;
         line-height: 117.5%;
         color: #03989E;
         display: block;
@@ -95,29 +97,30 @@ ion-select.custom-options{
         text-align: center;
         font-weight: 600;
         font-size: 12px;
-        line-height: 13px;
+        line-height: 17px;
         letter-spacing: -0.02em;
         text-transform: uppercase;
         color: #FFFFFF;
         padding-bottom: 1px;
         position: absolute;
         right: 8px;
-        top: -30px;
+        top: -25px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        font-family: 'Open Sans', sans-serif;
         * {
             vertical-align: bottom;
         }
         em {
             font-style: normal;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 17px;
             display: block;
         }
     }
     span {
-        // font-family: 'Mukta';
+        font-family: 'Mukta', sans-serif;
         font-weight: 500;
         font-size: 9px;
         line-height: 117.5%;
@@ -125,11 +128,12 @@ ion-select.custom-options{
         background-color: #03989E;
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
         border-radius: 3px 3px 3px 3px;
-        padding: 2px 5px;
+        padding: 3px 5px;
         display: inline-block;
         max-width: calc(100% - 65px);
         position: relative;
-        margin-top: -1px;
+        margin-top: 0px;
+        line-height: 9px;
     }
 }
 // .product-content 
@@ -141,6 +145,8 @@ ion-select.custom-options{
 
     color: #171A2C;
     margin-bottom: 8px;
+    margin-top: 5px;
+    font-family: 'Open Sans', sans-serif;
 }
 ion-select.custom-options{
     height: 24px;
@@ -174,6 +180,7 @@ ion-select.custom-options{
         color: #08151E;
         font-family: 'Open Sans', sans-serif;
         margin-bottom: 0;
+        margin-top: 7px;
     }
 
     del{

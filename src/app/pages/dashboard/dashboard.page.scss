@@ -130,7 +130,10 @@ ion-slide.swiper-slide-active{
     color: #08151E;
     font-family: 'Open Sans', sans-serif;
     margin-bottom: 8px;
-    min-height: 32px;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 ion-select.custom-options{
     height: 24px;
@@ -148,6 +151,11 @@ ion-select.custom-options{
     opacity: 1;
     width: 9px;
     height: 6px;
+}
+.slide-blk-cat .circle img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .price h4{
