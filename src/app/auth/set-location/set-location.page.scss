@@ -5,13 +5,17 @@ ion-toolbar{
 ion-header ion-toolbar{
     --background: #fff;
 }
+ion-header:after{
+    content: none;
+}
 ion-buttons.back-navigate{
     color: #08151E;
-    font-size: 16px;
+    font-size: 20px;
     font-family: "Russo One", sans-serif;
     text-transform: uppercase;
-    height: 76px;
+    height: 85px;
     --margin-end: 15px;
+    padding-top: 26px;
 }
 ion-header ion-back-button {
     margin-right: 15px;
@@ -68,7 +72,9 @@ ion-select::part(icon) {
  display: none !important;
 }
 
-
+.paddingform{
+    padding: 25px;
+}
 
 .error_msg {
     margin-top: 10px;

@@ -6,7 +6,7 @@
         <a><img src="assets/images/logo.png"/></a>
       </div>
       <h2>Enter One Time Password</h2>
-      <p>A one time password has been sent to (+244) {{this.phoneNumber}}</p>
+      <p>A one time password has been sent to <br> (+244) {{this.phoneNumber}}</p>
       <form [formGroup]="otpForm" (ngSubmit)="submitForm()" #myForm="ngForm">
         <ion-grid>
           <ion-row>
@@ -46,7 +46,7 @@
             </div>
           <ion-row>
             <ion-col>
-                <a class="resend">Resend OTP <ion-icon name="repeat-outline"></ion-icon></a>
+                <a class="resend">Resend OTP <img src="assets/images/resend-icon.svg" alt=""></a>
                 <span class="second-count">23 Sec</span>
             </ion-col>
           </ion-row>

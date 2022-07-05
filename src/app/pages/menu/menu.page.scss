@@ -74,6 +74,7 @@
     padding: 1px 8px;
     margin-left: 7px;
     text-transform: uppercase;
+    text-decoration: none;
 }
 .notification{
     position: relative;
@@ -226,4 +227,7 @@ ion-modal.logout-modal ion-toolbar {
     &::part(scroll){
        overflow: hidden;
     }
+}
+ion-header:after{
+    content: none;
 }
