@@ -31,7 +31,7 @@ export class PhotoService {
     // Save the picture and add it to photo collection
     this.photos = [];
     const savedImageFile = await this.savePicture(capturedPhoto);
-    // console.log(savedImageFile);
+    
     this.photos.unshift(savedImageFile);
     // console.log(savedImageFile);
     return savedImageFile;
@@ -44,9 +44,10 @@ export class PhotoService {
 
   // Save picture to file on device
   private async savePicture(photo: Photo) {
+  
     // Convert photo to base64 format, required by Filesystem API to save
     const base64Data = await this.readAsBase64(photo);
-    
+
     // Write the file to the data directory
     const fileName = new Date().getTime() + '.jpeg';
     const savedFile = await Filesystem.writeFile({
@@ -55,7 +56,6 @@ export class PhotoService {
       directory: Directory.Data
     });
 
-   
 
     if (this.platform.is('hybrid')) {
       // Display the new image by rewriting the 'file://' path to HTTP
@@ -78,14 +78,15 @@ export class PhotoService {
   }
 
   private async readAsBase64(photo: Photo) {
+
     // "hybrid" will detect Cordova or Capacitor
     if (this.platform.is('hybrid')) {
       // Read the file into base64 format
       const file = await Filesystem.readFile({
         path: photo.path
       });
-
-      return file.data;
+      // console.log(file.data.length);
+      return `data:image/jpeg;base64,${file.data}`;
     }
     else {
       // Fetch the photo, read as a blob, then convert to base64 format

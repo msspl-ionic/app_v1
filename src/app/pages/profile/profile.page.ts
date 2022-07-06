@@ -11,6 +11,7 @@ import { LoadingController } from '@ionic/angular';
 import { PhotoService } from '../../shared/services/photo.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -23,6 +24,8 @@ export class ProfilePage implements OnInit {
 	private subscriptions: Subscription[] = [];
 	public profileDetails:  any = {};
 	public profileImage: any = '';
+	loader: any;
+
 	constructor(
 			private _router: Router,
 			private fb: FormBuilder,
@@ -65,10 +68,8 @@ export class ProfilePage implements OnInit {
 	async addPhotoToGallery() {
 		// let profileImageResponse = 
 		await this.photoService.addNewToGallery().then(data => {
-			// console.log(data.base64Image);
 			this.profileImage = (data.base64Image !='') ? data.base64Image : '';
 		});
-		
 	}
 
 
@@ -99,28 +100,50 @@ export class ProfilePage implements OnInit {
 		return this.signupForm.controls;
 	}
 
+	b64toBlob(b64Data, contentType) {
+		contentType = contentType || '';
+		var sliceSize = 512;
+		var byteCharacters = atob(b64Data);
+		console.log(byteCharacters)
+		var byteArrays = [];
+	
+		for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+		  var slice = byteCharacters.slice(offset, offset + sliceSize);
+	
+		  var byteNumbers = new Array(slice.length);
+		  for (var i = 0; i < slice.length; i++) {
+			byteNumbers[i] = slice.charCodeAt(i);
+		  }
+	
+		  var byteArray = new Uint8Array(byteNumbers);
+	
+		  byteArrays.push(byteArray);
+		}
+	
+		var blob = new Blob(byteArrays, {type: contentType});
+		return blob;
+	}
+
 	dataURLtoFile(dataurl, filename) {
- 
+		
         var arr = dataurl.split(','),
             mime = arr[0].match(/:(.*?);/)[1],
             bstr = atob(arr[1]), 
             n = bstr.length, 
             u8arr = new Uint8Array(n);
-            
+		    
         while(n--){
             u8arr[n] = bstr.charCodeAt(n);
         }
-        
         return new File([u8arr], filename, {type:mime});
     }
 
 	submitForm() {
-		
 		if (this.signupForm.invalid) {
 			return;
 		}
 		const formValue = this.signupForm.value;
-		// console.log(this.profileImage);
+		
 		if(this.profileImage != ''){
 			this.profileImage = this.dataURLtoFile(this.profileImage,new Date()+'profile.jpeg');
 		}
@@ -135,8 +158,9 @@ export class ProfilePage implements OnInit {
 		formData.append('appversion', '1.0.0');
 		formData.append('image', this.profileImage);
 
+		this.showLoading();
 		this.subscriptions.push(this.service.ApiCall(formData, `user/updateprofile`, 'POST').subscribe(result => {
-			this.presentLoadingWithOptions();
+			this.dismissLoading();
 			//this.myForm.resetForm();
 			this.profileImage = '';
 			// setTimeout(() => {
@@ -147,6 +171,7 @@ export class ProfilePage implements OnInit {
 			this.userDetails();
 
 		}, async apiError => {
+			this.dismissLoading();
 			let  alert =  await this.alertController.create({
 				header: 'Error',
 				message: apiError.error.response.status.msg,
@@ -186,5 +211,20 @@ export class ProfilePage implements OnInit {
 		}, apiError => {
         console.log('API error');
 		}))
+	}
+
+	async showLoading() {
+	this.loader = await this.loadingController.create({
+			spinner: "circles",
+			// duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		return await this.loader.present();
+	}
+
+	async dismissLoading() {
+	this.loader = await this.loadingController.dismiss();
 	}
 }
