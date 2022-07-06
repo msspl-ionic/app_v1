@@ -15,12 +15,12 @@ import { MapsAPILoader, AgmMap } from '@agm/core';
   styleUrls: ['./set-location.page.scss'],
 })
 export class SetLocationPage implements OnInit {
-  @ViewChild('myForm') public myForm!: FormGroupDirective;
-  signupForm!: FormGroup;
-  public fullLocation: any;
-  public mapLat: any;
-  public mapLong: any;
-  showMap:boolean = false;
+	@ViewChild('myForm') public myForm!: FormGroupDirective;
+	signupForm!: FormGroup;
+	public fullLocation: any;
+	public mapLat: any;
+	public mapLong: any;
+	showMap:boolean = false;
 
     title: string = 'AGM project';
     latitude: number = -8.838333;
@@ -33,6 +33,7 @@ export class SetLocationPage implements OnInit {
     @ViewChild('search',{static:false})
     public searchElementRef: ElementRef;
 	API_KEY: string = 'AIzaSyA2PzMpPb4MiHkux7cmlRZlHf_728FBZRg';
+	confirmDisable: boolean = true;
 
 	constructor(
 		private _router: Router,
@@ -78,13 +79,17 @@ export class SetLocationPage implements OnInit {
 
 		this.common.onUpdateLocation$.subscribe((data:any) => {
 			if(data) {
+				this.confirmDisable = false;
 				this.fullLocation = data.location;
+				this.latitude = this.fullLocation.latitude;
+				this.longitude = this.fullLocation.longitude;
 				this.signupForm.patchValue({
 					street_1: this.fullLocation.street_1,
 					street_2: this.fullLocation.street_2,
 					Zip: this.fullLocation.Zip
 		
-				});			
+				});	
+				this.submitForm('Locate');		
 			}
 		});
 
@@ -146,7 +151,7 @@ export class SetLocationPage implements OnInit {
 		locationParam.longitude = this.longitude;
 
 		this.common._onUpdateLocation.next(locationParam);
-
+		this.confirmDisable = false;
 		// this.myForm.resetForm();
 		if(buttonType == 'Confirm'){
 			this._router.navigate(['/signup']);

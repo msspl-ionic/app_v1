@@ -99,7 +99,7 @@
       </ion-row> -->
       <ion-row class="ion-padding-start ion-padding-end ion-margin-top ion-padding-top btn-grp">
         <ion-col class="map-btn">
-          <ion-button color="primary" shape='round' type="submit" (click)="submitForm('Confirm')" class="disabled">Confirm Location</ion-button>
+          <ion-button color="primary" shape='round' type="submit" (click)="submitForm('Confirm')" [disabled]="confirmDisable" >Confirm Location</ion-button>
         </ion-col>
       </ion-row>
       
