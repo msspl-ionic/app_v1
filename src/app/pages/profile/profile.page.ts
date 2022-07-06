@@ -11,6 +11,7 @@ import { LoadingController } from '@ionic/angular';
 import { PhotoService } from '../../shared/services/photo.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -23,7 +24,7 @@ export class ProfilePage implements OnInit {
 	private subscriptions: Subscription[] = [];
 	public profileDetails:  any = {};
 	public profileImage: any = '';
-	public profileImg: any = '';
+	loader: any;
 
 	constructor(
 			private _router: Router,
@@ -67,11 +68,8 @@ export class ProfilePage implements OnInit {
 	async addPhotoToGallery() {
 		// let profileImageResponse = 
 		await this.photoService.addNewToGallery().then(data => {
-			this.profileImg = (data.filepath !='') ? data.filepath : '';
-			
 			this.profileImage = (data.base64Image !='') ? data.base64Image : '';
 		});
-		
 	}
 
 
@@ -127,76 +125,20 @@ export class ProfilePage implements OnInit {
 	}
 
 	dataURLtoFile(dataurl, filename) {
-		// var arr = dataurl.split(',');
 		
         var arr = dataurl.split(','),
-            // mime = arr[0].match(/:(.*?);/)[1],
-            bstr = atob(arr[0]), 
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
             n = bstr.length, 
             u8arr = new Uint8Array(n);
 		    
         while(n--){
             u8arr[n] = bstr.charCodeAt(n);
         }
-		console.log('ok');
-        return new File([u8arr], filename, {type:'image/jpg'});
+        return new File([u8arr], filename, {type:mime});
     }
-
-	blobCreationFromURL(inputURI) {
-  
-        var binaryVal;
-  
-        // mime extension extraction
-        var inputMIME = inputURI.split(',')[0].split(':')[1].split(';')[0];
-		console.log(inputMIME);
-        // Extract remaining part of URL and convert it to binary value
-        if (inputURI.split(',')[0].indexOf('base64') >= 0)
-            binaryVal = atob(inputURI.split(',')[1]);
-  
-        // Decoding of base64 encoded string
-        else
-            binaryVal = unescape(inputURI.split(',')[1]);
-  
-        // Computation of new string in which hexadecimal
-        // escape sequences are replaced by the character 
-        // it represents
-  
-        // Store the bytes of the string to a typed array
-        var blobArray:any = [];
-        for (var index = 0; index < binaryVal.length; index++) {
-            blobArray.push(binaryVal.charCodeAt(index));
-        }
-		console.log(blobArray);
-  
-        return new Blob([blobArray], {
-            type: inputMIME
-        });
-    }
-
-	dataURItoBlob(dataURI) {
-		// convert base64/URLEncoded data component to raw binary data held in a string
-		var byteString;
-		if (dataURI.split(',')[0].indexOf('base64') >= 0)
-			byteString = atob(dataURI.split(',')[1]);
-		else
-			byteString = unescape(dataURI.split(',')[1]);
-	
-		// separate out the mime component
-		var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-	
-		// write the bytes of the string to a typed array
-		var ia = new Uint8Array(byteString.length);
-		for (var i = 0; i < byteString.length; i++) {
-			ia[i] = byteString.charCodeAt(i);
-		}
-		console.log(ia,mimeString);
-		return new Blob([ia], {type:'image/jpg'});
-	}
 
 	submitForm() {
-		console.log(this.profileImg);
-		console.log(this.dataURItoBlob(this.profileImg));
-		return;
 		if (this.signupForm.invalid) {
 			return;
 		}
@@ -216,8 +158,9 @@ export class ProfilePage implements OnInit {
 		formData.append('appversion', '1.0.0');
 		formData.append('image', this.profileImage);
 
+		this.showLoading();
 		this.subscriptions.push(this.service.ApiCall(formData, `user/updateprofile`, 'POST').subscribe(result => {
-			this.presentLoadingWithOptions();
+			this.dismissLoading();
 			//this.myForm.resetForm();
 			this.profileImage = '';
 			// setTimeout(() => {
@@ -228,6 +171,7 @@ export class ProfilePage implements OnInit {
 			this.userDetails();
 
 		}, async apiError => {
+			this.dismissLoading();
 			let  alert =  await this.alertController.create({
 				header: 'Error',
 				message: apiError.error.response.status.msg,
@@ -267,5 +211,20 @@ export class ProfilePage implements OnInit {
 		}, apiError => {
         console.log('API error');
 		}))
+	}
+
+	async showLoading() {
+	this.loader = await this.loadingController.create({
+			spinner: "circles",
+			// duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		return await this.loader.present();
+	}
+
+	async dismissLoading() {
+	this.loader = await this.loadingController.dismiss();
 	}
 }
