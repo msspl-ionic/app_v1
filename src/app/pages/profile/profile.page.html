@@ -28,7 +28,7 @@
                 </div>
             </ion-col>
           </ion-row>
-          <ion-row class="fld-row">
+          <ion-row class="fld-row position-rel">
             <ion-col>
               <ion-input type="text" formControlName="shop_name" placeholder="Shop Name*" class="number-fld"></ion-input>
               <div class="error_msg" *ngIf="
@@ -37,8 +37,8 @@
                   formControl.shop_name.touched ||
                   myForm.submitted)
               ">
-              <ion-icon name="information-circle-outline"></ion-icon>
-              <span>Please enter shop name</span>
+                <ion-icon name="information-circle-outline"></ion-icon>
+                <span>Please enter shop name</span>
               </div>
             </ion-col>
           </ion-row>

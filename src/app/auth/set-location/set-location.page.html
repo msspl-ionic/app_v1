@@ -7,10 +7,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="set-location-content">
   <form [formGroup]="signupForm" (ngSubmit)="submitForm('Locate')" #myForm="ngForm">
     <ion-grid class="paddingform">
-      <ion-row class="fld-row">
+      <ion-row class="fld-row position-rel">
         <ion-col>
           <ion-input type="text" inputmode="text" formControlName="street_1" placeholder="Street 1*" class="number-fld"></ion-input>
           <div class="error_msg" *ngIf="
@@ -70,7 +70,7 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
+        <ion-col class="locate-btn">
           <ion-button color="primary" shape='round' (click)="submitForm('Locate')" type="submit">Locate</ion-button>
         </ion-col>
       </ion-row>
@@ -97,9 +97,9 @@
           <p><ion-icon name="location-outline"></ion-icon> C-1 4floor - Martin burn i spec 1 Street</p>
         </ion-col>
       </ion-row> -->
-      <ion-row class="ion-padding-start ion-padding-end ion-margin-top ion-padding-top">
+      <ion-row class="ion-padding-start ion-padding-end ion-margin-top ion-padding-top btn-grp">
         <ion-col class="map-btn">
-          <ion-button color="primary" shape='round' type="submit" (click)="submitForm('Confirm')">Confirm Location</ion-button>
+          <ion-button color="primary" shape='round' type="submit" (click)="submitForm('Confirm')" class="disabled">Confirm Location</ion-button>
         </ion-col>
       </ion-row>
       

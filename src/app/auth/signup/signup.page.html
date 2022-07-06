@@ -5,10 +5,10 @@
         <a><img src="assets/images/logo.png"/></a>
       </div> -->
       <h2><img src="assets/images/logo.png" width="52" class="small-logo"/> Sign up</h2>
-      <p>You are few steps away from activating your account</p>
+      <p class="signup-text">You are few steps away from activating <br> your account</p>
       <form [formGroup]="signupForm" (ngSubmit)="submitForm()" #myForm="ngForm">
         <ion-grid>
-          <ion-row class="fld-row">
+          <ion-row class="fld-row position-rel">
             <ion-col>
               <ion-input type="text" formControlName="shop_name" placeholder="Shop Name*" class="number-fld"></ion-input>
               <div class="error_msg" *ngIf="
@@ -39,13 +39,13 @@
               </div>
               <ng-template #other_content>
                 <div class="location-data ion-no-padding">
-                  <p><ion-icon name="location-outline"></ion-icon>{{fullAddress}}</p>
+                  <p><span class="nav-navigator"></span> {{fullAddress}}</p>
                   <a routerLink="/set-location" class="location_edit">Edit</a>
                 </div>
             </ng-template>
             </ion-col>
           </ion-row>
-          <ion-row class="fld-row">
+          <ion-row class="fld-row position-rel">
             <ion-col>
               <ion-input type="text" formControlName="vendor_name" placeholder="Name*" class="number-fld"></ion-input>
               <div class="error_msg" *ngIf="
@@ -59,7 +59,7 @@
               </div>
             </ion-col>
           </ion-row>
-          <ion-row class="fld-row">
+          <ion-row class="fld-row position-rel">
             <ion-col>
               <ion-input type="number" inputmode="tel" formControlName="phone_no" placeholder="Phone Number*" class="number-fld"></ion-input>
               <div class="error_msg" *ngIf="
@@ -73,7 +73,7 @@
               </div>
             </ion-col>
           </ion-row>
-          <ion-row class="fld-row">
+          <ion-row class="fld-row position-rel">
             <ion-col>
               <ion-input type="text" inputmode="email" formControlName="email_id" placeholder="Email Address*" class="number-fld"></ion-input>
               <div class="error_msg" *ngIf="

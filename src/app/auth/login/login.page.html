@@ -16,7 +16,7 @@
         <a><img src="assets/images/logo.png"/></a>
       </div>
       <h2>Login</h2>
-      <p>Already a Merkaaz cutomer? Login to place your order & access our services.</p>
+      <p>Already a Merkaaz cutomer? Login to place <br> your order & access our services.</p>
       <form [formGroup]="otpForm" (ngSubmit)="submitForm()" #myForm="ngForm">
         <ion-grid>
           <ion-row>
@@ -26,7 +26,7 @@
                 <ion-select-option ><img src="assets/images/num-flag.png" alt="+244">+244</ion-select-option>
               </ion-select>
             </ion-col>
-            <ion-col size="8">
+            <ion-col size="8" class="position-rel">
               <ion-input type="text" inputmode="numeric" formControlName="phone" placeholder="Phone No*" class="number-fld"></ion-input>
               <div class="error_msg" *ngIf="
                 fControl.phone.invalid &&

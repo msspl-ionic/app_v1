@@ -114,3 +114,14 @@ ion-searchbar .searchbar-input{
     position: relative;
     z-index: 1;
 }
+.acc_link_txt{
+    margin-top: 8px;
+}
+
+.position-rel{
+    position: relative;
+}
+.position-rel .error_msg{
+    position: absolute;
+    bottom: -16px;
+}

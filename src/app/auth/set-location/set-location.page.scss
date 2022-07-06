@@ -19,6 +19,8 @@ ion-buttons.back-navigate{
 }
 ion-header ion-back-button {
     margin-right: 15px;
+    padding: 20px;
+    padding-right: 0;
 }
 ion-button{
     --border-radius: 11px;
@@ -93,4 +95,27 @@ ion-select::part(icon) {
 agm-map {
     height: 300px;
     width: 100%;
+}
+.fld-row{
+    margin-bottom: 15px;
+}
+.set-location-content{
+    &::part(scroll){
+        padding-bottom: 0;
+    }
+}
+.btn-grp{
+    margin-top: 0;
+    padding:40px 30px;
+    background-color: #F4F4F4;
+}
+
+ion-button.disabled{
+    &::part(native){
+        background-color: #CCD0D3;
+        border-radius: 11px;
+    }   
+}
+.locate-btn ion-button{
+    margin-top: 6px;
 }

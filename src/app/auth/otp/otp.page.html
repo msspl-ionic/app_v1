@@ -10,7 +10,7 @@
       <p>A one time password has been sent to <br> (+244) {{this.phoneNumber}}</p>
       <form [formGroup]="otpForm" (ngSubmit)="submitForm()" #myForm="ngForm">
         <ion-grid>
-          <ion-row>
+          <ion-row class="position-rel">
             <ion-col>
               <ion-input type="text" formControlName="otp1" inputmode="numeric" class="number-fld" #otp1 required maxLength="1" (keyup)="otpController($event,otp2,'')"></ion-input>
             </ion-col>
@@ -23,8 +23,7 @@
             <ion-col>
               <ion-input type="text" formControlName="otp4" inputmode="numeric" class="number-fld" #otp4 required maxlength="1" pattern="[0-9]+" (keyup)="otpController($event,'',otp3)"></ion-input>
             </ion-col>
-          </ion-row>
-          <div class="error_msg" *ngIf="
+            <div class="error_msg" *ngIf="
                 (formControl.otp1.invalid &&
                 (formControl.otp1.dirty ||
                   formControl.otp1.touched ||
@@ -45,6 +44,8 @@
                 <ion-icon name="information-circle-outline"></ion-icon>
                 <span>Please enter otp</span>
             </div>
+          </ion-row>
+          
           <ion-row>
             <ion-col>
                 <a class="resend">Resend OTP <img src="assets/images/resend-icon.svg" alt=""></a>
