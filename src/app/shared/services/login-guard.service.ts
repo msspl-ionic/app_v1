@@ -11,7 +11,7 @@ export class LoginGuardService implements CanActivate {
 
   canActivate(): boolean {
     const isLoggedIn = this.common.isAuthenticated();
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
     if (!isLoggedIn) {
         // authorised so return true
         // this._router.navigate(['/login']);

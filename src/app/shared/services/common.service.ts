@@ -40,7 +40,7 @@ export class CommonService {
 	
 
 	public setProfileData(data: []): void {
-		console.log(data)
+		// console.log(data)
 		this._onProfileData.next(data);
 	}
 
@@ -64,7 +64,7 @@ export class CommonService {
 	isAuthenticated() {
 		const isLoggedIn = this.authenticationState.value;
 
-		console.log(isLoggedIn);
+		// console.log(isLoggedIn);
 		// return;
 		if (isLoggedIn) {
 			// authorised so return true

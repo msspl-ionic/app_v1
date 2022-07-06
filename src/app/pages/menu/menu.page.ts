@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { CommonService } from 'src/app/shared/services/common.service';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../../shared/services/api.service';
@@ -14,10 +14,27 @@ import { environment } from '@env/environment';
 export class MenuPage implements OnInit {
   private subscriptions: Subscription[] = [];
   @ViewChild(IonModal) modal: IonModal;
-  constructor(private common: CommonService, private _router: Router,private service: ApiService, private storage: Storage) { }
   public userDtls:  any = {};
   public userDtlsb:  any = {};
   public profileDetails:  any = {};
+  selectedIndex: number = 1;
+
+  constructor(private common: CommonService, private _router: Router,private service: ApiService, private storage: Storage) {
+    this._router.events.subscribe(
+      (event: NavigationEnd) => {
+        if(event instanceof NavigationStart) {
+          this.selectedIndex = 1;
+          if(event.url == '/tabs/shop-by-category'){
+              this.selectedIndex = 2;
+          }else if(event.url == '/tabs/featuredproducts'){
+            this.selectedIndex = 3;
+          }
+        }
+    });
+    
+  }
+  
+
   ngOnInit() {
     
     this.common.authenticationState.subscribe((data:any) => {
@@ -48,6 +65,10 @@ export class MenuPage implements OnInit {
 
   ngAfterViewInit() {
     
+  }
+
+  setIndex(index: number) {
+    this.selectedIndex = index;
   }
 
   logOut(){

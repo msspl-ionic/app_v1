@@ -12,6 +12,7 @@ export class GetStartedPage implements OnInit {
   constructor(private common: CommonService, private _router: Router) { }
 
   ngOnInit() {
+    // this._router.navigate(['tabs/dashboard']);
     this.common._onProfileDataAll$.subscribe((data)=>{
       if(data) {
         this._router.navigate(['tabs/dashboard']);

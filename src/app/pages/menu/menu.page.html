@@ -31,7 +31,7 @@
   <ion-content class="menu-bg">
     <ion-list class="sidebar">
       <ion-menu-toggle>
-        <ion-item detail-icon="none" routerLink="tabs/dashboard" class="menu-link active" lines="none">
+        <ion-item (click)="setIndex(1)" detail-icon="none" routerLink="tabs/dashboard" [class.active]="selectedIndex === 1" class="menu-link" lines="none">
           <ion-label>Home</ion-label>
         </ion-item>
       </ion-menu-toggle>
@@ -41,12 +41,12 @@
         </ion-item>
       </ion-menu-toggle> -->
       <ion-menu-toggle>
-        <ion-item detail-icon="none" routerLink="tabs/shop-by-category" class="menu-link" lines="none">
+        <ion-item (click)="setIndex(2)" detail-icon="none" routerLink="tabs/shop-by-category" [class.active]="selectedIndex === 2" class="menu-link" lines="none">
           <ion-label>Shop by Category</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
-        <ion-item detail-icon="none" routerLink="tabs/featuredproducts" class="menu-link" lines="none">
+        <ion-item (click)="setIndex(3)" detail-icon="none" routerLink="tabs/featuredproducts" [class.active]="selectedIndex === 3" class="menu-link" lines="none">
           <ion-label>Featured Products</ion-label>
         </ion-item>
       </ion-menu-toggle>

@@ -34,6 +34,14 @@ const routes: Routes = [
     canActivate: [LoginGuardService],
     loadChildren: () => import('./auth/set-location/set-location.module').then( m => m.SetLocationPageModule)
   },
+  {
+    path: 'congratulation',
+    loadChildren: () => import('./auth/congratulation/congratulation.module').then( m => m.CongratulationPageModule)
+  },
+  {
+    path: 'user-menu',
+    loadChildren: () => import('./pages/user-menu/user-menu.module').then( m => m.UserMenuPageModule)
+  },
   // {
   //   path: 'about',
   //   loadChildren: () => import('./pages/about/about.module').then(m => m.AboutPageModule),
@@ -77,19 +85,20 @@ const routes: Routes = [
         loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
       }
 		]
-	},
-  {
-    path: 'home',
-    loadChildren: () => import('../app/pages/home/home.module').then( m => m.HomePageModule),
-  },
-  {
-    path: 'user-menu',
-    loadChildren: () => import('./pages/user-menu/user-menu.module').then( m => m.UserMenuPageModule)
-  },
-  {
-    path: 'congratulation',
-    loadChildren: () => import('./auth/congratulation/congratulation.module').then( m => m.CongratulationPageModule)
-  },
+	}
+  // ,
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('../app/pages/home/home.module').then( m => m.HomePageModule),
+  // },
+  // {
+  //   path: 'user-menu',
+  //   loadChildren: () => import('./pages/user-menu/user-menu.module').then( m => m.UserMenuPageModule)
+  // },
+  // {
+  //   path: 'congratulation',
+  //   loadChildren: () => import('./auth/congratulation/congratulation.module').then( m => m.CongratulationPageModule)
+  // },
   // {
   //   path: 'featuredproducts',
   //   loadChildren: () => import('./pages/featuredproducts/featuredproducts.module').then( m => m.FeaturedproductsPageModule)
