@@ -1,6 +1,6 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { ApiService } from '../../shared/services/api.service';
 import { environment } from '@env/environment';
 import { Observable, Subscription } from 'rxjs';
@@ -44,7 +44,33 @@ export class SetLocationPage implements OnInit {
 		private alertController : AlertController,
 		private mapsAPILoader: MapsAPILoader,
 		private ngZone: NgZone,
-	) { }
+	) {
+
+		this._router.events.subscribe(
+		(event: NavigationEnd) => {
+			if(event instanceof NavigationStart) {
+				if(event.url == '/set-location'){
+					this.common.onUpdateLocation$.subscribe((data:any) => {
+						console.log(data)
+						if(data !=null) {
+							this.confirmDisable = false;
+							this.fullLocation = data.location;
+							// this.latitude = this.fullLocation.latitude;
+							// this.longitude = this.fullLocation.longitude;
+							this.signupForm.patchValue({
+								street_1: this.fullLocation.street_1,
+								street_2: this.fullLocation.street_2,
+								Zip: this.fullLocation.Zip
+					
+							});	
+							// console.log( data.location.latitude,this.latitude, this.longitude)
+							// this.submitForm('Locate');		
+						}
+					});
+				}
+			}
+		});
+	 }
 
 	ngOnInit() {
 		this.createForm();

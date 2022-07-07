@@ -34,7 +34,6 @@ export class SignupPage implements OnInit {
   state: string = 'Angola';
   zoom: number = 14;
   address: string;
-  private geoCoder;
   @ViewChild('search') search: AgmMap;
   public searchElementRef: ElementRef;
 
@@ -59,7 +58,6 @@ export class SignupPage implements OnInit {
 	  
     // this.getDeviceInfo();
     this.createForm();
-	let counter = 0;
 	this.common.onUpdateLocation$.subscribe((data:any) => {
 		if(data) {
 			this.fullLocation = data.location;
@@ -69,18 +67,6 @@ export class SignupPage implements OnInit {
 			this.latitude = data.latitude;
 			this.longitude = data.longitude;
 			this.fullAddress = (this.fullLocation.street_1 + "," + (this.fullLocation.street_2 !='' ? this.fullLocation.street_2 + "," : '')  + this.fullLocation.City + "," + this.fullLocation.State + ((this.fullLocation.Zip !='' && this.fullLocation.Zip !=null) ?  "," + this.fullLocation.Zip : ''));
-			
-
-			let locationParam:any = {};
-			// set a key/value
-			locationParam.location = this.fullLocation;
-			locationParam.latitude = this.latitude;
-			locationParam.longitude = this.longitude;
-			// console.log(locationParam);
-			if(counter == 0){
-				counter++;
-				this.common._onUpdateLocation.next(locationParam);
-			}
 		
 		}
 	});
@@ -89,33 +75,7 @@ export class SignupPage implements OnInit {
 		this.showMap = true;
 	}, 100);
 
-	//load Places Autocomplete
-    // this.mapsAPILoader.load().then(() => {
-	// 	this.setCurrentLocation();
-	// 	this.geoCoder = new google.maps.Geocoder;
-	// 	// console.log(this.geoCoder);
-	// 	// return;
-	// 	let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-	// 	  types: ["address"]
-	// 	});
-	// 	console.log(autocomplete);
-	// 	autocomplete.addListener("place_changed", () => {
-	// 	  this.ngZone.run(() => {
-	// 		//get the place result
-	// 		let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-  
-	// 		//verify result
-	// 		if (place.geometry === undefined || place.geometry === null) {
-	// 		  return;
-	// 		}
-  
-	// 		//set latitude, longitude and zoom
-	// 		this.latitude = place.geometry.location.lat();
-	// 		this.longitude = place.geometry.location.lng();
-	// 		this.zoom = 6;
-	// 	  });
-	// 	});
-	// });
+	
   }
 
 	// async getDeviceInfo(){
@@ -183,45 +143,5 @@ export class SignupPage implements OnInit {
 			await alert.present();
 		}))
 	}
-
-
-	// Get Current Location Coordinates
-	private setCurrentLocation() {
-		if ('geolocation' in navigator) {
-		  navigator.geolocation.getCurrentPosition((position) => {
-			this.latitude = position.coords.latitude;
-			this.longitude = position.coords.longitude;
-			this.zoom = 8;
-			// this.getAddress(this.latitude, this.longitude);
-		  });
-		}
-	  }
-	
-	
-	  markerDragEnd($event: any) {
-		console.log($event);
-		this.latitude = $event.coords.lat;
-		this.longitude = $event.coords.lng;
-		console.log(this.latitude, this.longitude);
-		// this.getAddress(this.latitude, this.longitude);
-	  }
-	
-	  getAddress(latitude, longitude) {
-		this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-		  console.log(results);
-		  console.log(status);
-		  if (status === 'OK') {
-			if (results[0]) {
-			  this.zoom = 12;
-			  this.address = results[0].formatted_address;
-			} else {
-			  window.alert('No results found');
-			}
-		  } else {
-			window.alert('Geocoder failed due to: ' + status);
-		  }
-	
-		});
-	  }
 
 }
