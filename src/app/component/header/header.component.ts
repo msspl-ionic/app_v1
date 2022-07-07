@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-
+import { CommonService } from '../../shared/services/common.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,15 +12,23 @@ export class HeaderComponent implements OnInit {
   @Input() alt: string;
   @Input() header_right: string;
   public toggled: boolean = false;
-
+  public profileImg: '';
   constructor(
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private common: CommonService,
   ) {
     this.toggled = false;
   }
   
   ngOnInit() {
-    this.presentLoadingWithOptions()
+    this.presentLoadingWithOptions();
+    this.common._onProfileDataAll$.subscribe((data)=>{
+			if(data) {
+				console.log(data,"data");
+        this.profileImg = data.profile_image;
+				console.log(this.profileImg,"this.profileImg");
+			}
+		});
   }
 
 // header search jayanta

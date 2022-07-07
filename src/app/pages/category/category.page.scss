@@ -158,9 +158,11 @@ ion-select.custom-options{
     max-width: 100% !important;
 }
 .product-content ion-select::part(icon) {
-    content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAGCAYAAAARx7TFAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABuSURBVHgBfY5BCoAgEEWHIFLauHCihQ4eoSN1g7qBR/BoHqFjtEpTwqiQ3uYzn8fwARJCGAEV2GhMzqZHM+1t2ErxFOIRvEhcBeqZDXSLOfPdoVreryVZjuSLwKSytQnAUTuGFLnUDv7gktZvdwLwIRRqyC80AgAAAABJRU5ErkJggg==');
+    content: url(/assets/images/select-drop.png);
     height: 6px;
     opacity: 1;
+    width: 9px;
+    height: 6px;
 }
 
 .price {
@@ -184,4 +186,9 @@ ion-select.custom-options{
         color: rgba(8, 21, 30, 0.59);
         font-family: 'Open Sans', sans-serif;
     }
+}
+
+.category-page ion-card{
+    border-radius: 11px;
+    box-shadow: 0px 4px 12px 0px #dbdbdb;
 }
