@@ -76,20 +76,21 @@ export class SetLocationPage implements OnInit {
 		// 	  });
 		// 	});
 		// });
-
 		this.common.onUpdateLocation$.subscribe((data:any) => {
-			if(data) {
+			// console.log(data)
+			if(data !=null) {
 				this.confirmDisable = false;
 				this.fullLocation = data.location;
-				this.latitude = this.fullLocation.latitude;
-				this.longitude = this.fullLocation.longitude;
+				// this.latitude = this.fullLocation.latitude;
+				// this.longitude = this.fullLocation.longitude;
 				this.signupForm.patchValue({
 					street_1: this.fullLocation.street_1,
 					street_2: this.fullLocation.street_2,
 					Zip: this.fullLocation.Zip
 		
 				});	
-				this.submitForm('Locate');		
+				// console.log( data.location.latitude,this.latitude, this.longitude)
+				// this.submitForm('Locate');		
 			}
 		});
 
@@ -102,10 +103,8 @@ export class SetLocationPage implements OnInit {
 	fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+address+'&key='+this.API_KEY)
 	  .then(response => response.json())
 	  .then(data => {
-		// console.log(data);
 		this.latitude = data.results[0].geometry.location.lat;
 		this.longitude = data.results[0].geometry.location.lng;
-		// console.log(this.latitude, this.longitude);
 	  })
   	}
 
@@ -116,7 +115,7 @@ export class SetLocationPage implements OnInit {
 			City: [this.city, [Validators.required]],
 			State: [this.state, [Validators.required]],
 			Zip: [''],
-		})
+		});
 	}
 
   	get formControl() {
@@ -128,30 +127,24 @@ export class SetLocationPage implements OnInit {
 		if (this.signupForm.invalid) {
 			return;
 		}
-		let locationParam:any = {};
+		
 		
 		// console.log(buttonType); return;
 		/* Update latitude & longitude */
 		this.getCoordinates(this.signupForm.value.street_1 + "," + this.city + "," + this.state);
 		// console.warn(this.signupForm.value);
-
-		this.fullLocation = this.signupForm.value;
-
-		console.warn(this.signupForm.value);
-
-		// this.fullLocation = (this.signupForm.value.street_1 + "," + (this.signupForm.value.street_2 !='' ? this.signupForm.value.street_2 + "," : '')  + this.signupForm.value.City + "," + this.signupForm.value.State + ((this.signupForm.value.Zip !='' && this.signupForm.value.Zip !=null) ?  "," + this.signupForm.value.Zip : ''));
-
-		// this.streetVal = this.signupForm.value.street_1;
 		
-		// console.warn('af', this.streetVal);
-
-		// set a key/value
-		locationParam.location = this.fullLocation;
-		locationParam.latitude = this.latitude;
-		locationParam.longitude = this.longitude;
-
-		this.common._onUpdateLocation.next(locationParam);
-		this.confirmDisable = false;
+		let locationParam:any = {};
+		this.fullLocation = this.signupForm.value;
+		setTimeout(() => {
+			// set a key/value
+			locationParam.location = this.fullLocation;
+			locationParam.latitude = this.latitude;
+			locationParam.longitude = this.longitude;
+			this.common._onUpdateLocation.next(locationParam);
+			this.confirmDisable = false;
+		}, 500);
+		
 		// this.myForm.resetForm();
 		if(buttonType == 'Confirm'){
 			this._router.navigate(['/signup']);
