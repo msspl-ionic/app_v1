@@ -59,6 +59,7 @@ export class SignupPage implements OnInit {
 	  
     // this.getDeviceInfo();
     this.createForm();
+	let counter = 0;
 	this.common.onUpdateLocation$.subscribe((data:any) => {
 		if(data) {
 			this.fullLocation = data.location;
@@ -68,10 +69,21 @@ export class SignupPage implements OnInit {
 			this.latitude = data.latitude;
 			this.longitude = data.longitude;
 			this.fullAddress = (this.fullLocation.street_1 + "," + (this.fullLocation.street_2 !='' ? this.fullLocation.street_2 + "," : '')  + this.fullLocation.City + "," + this.fullLocation.State + ((this.fullLocation.Zip !='' && this.fullLocation.Zip !=null) ?  "," + this.fullLocation.Zip : ''));
+			
+
+			let locationParam:any = {};
+			// set a key/value
+			locationParam.location = this.fullLocation;
+			locationParam.latitude = this.latitude;
+			locationParam.longitude = this.longitude;
+			// console.log(locationParam);
+			if(counter == 0){
+				counter++;
+				this.common._onUpdateLocation.next(locationParam);
+			}
+		
 		}
 	});
-
-	
 
 	setTimeout(() => {
 		this.showMap = true;

@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content class="set-location-content">
-  <form [formGroup]="signupForm" (ngSubmit)="submitForm('Locate')" #myForm="ngForm">
+  <form [formGroup]="signupForm" #myForm="ngForm">
     <ion-grid class="paddingform">
       <ion-row class="fld-row position-rel">
         <ion-col>
@@ -31,7 +31,7 @@
       </ion-row>
       <ion-row class="fld-row">
         <ion-col>
-          <ion-input type="text" disabled="true" inputmode="text" formControlName="City" placeholder="City*" class="number-fld"></ion-input>
+          <ion-input type="text" [attr.disabled]="true" inputmode="text" formControlName="City" placeholder="City*" class="number-fld"></ion-input>
           <div class="error_msg" *ngIf="
             formControl.City.invalid &&
             (formControl.City.dirty ||
@@ -43,7 +43,7 @@
           </div>
         </ion-col>
         <ion-col>
-          <ion-input type="text" disabled="true" inputmode="text" formControlName="State" placeholder="State*" class="number-fld"></ion-input>
+          <ion-input type="text" [attr.disabled]="true" inputmode="text" formControlName="State" placeholder="State*" class="number-fld"></ion-input>
           <div class="error_msg" *ngIf="
             formControl.State.invalid &&
             (formControl.State.dirty ||
